@@ -19,11 +19,12 @@ export type Product = {
   specifications?: Record<string, string>;
   soldCount?: number;
   returnPolicy?: string;
-  createdAt?: string;
-  updatedAt?: string;
+  createdAt: string;
 };
 
 export type Products = Product[];
+const date = new Date();
+const formattedDate = date.toLocaleDateString("en-CA");
 
 export const products: Products = [
   {
@@ -40,22 +41,10 @@ export const products: Products = [
     reviewsCount: 5000,
     stockQuantity: 8,
     colors: [
-      {
-        color: "Midnight",
-        hexCode: "#21212B",
-      },
-      {
-        color: "Starlight",
-        hexCode: "#F0EFE7",
-      },
-      {
-        color: "Blue",
-        hexCode: "#0000FF",
-      },
-      {
-        color: "Red",
-        hexCode: "#FF0000",
-      },
+      { color: "Midnight", hexCode: "#21212B" },
+      { color: "Starlight", hexCode: "#F0EFE7" },
+      { color: "Blue", hexCode: "#0000FF" },
+      { color: "Red", hexCode: "#FF0000" },
     ],
     sizes: ["128GB"],
     tags: ["new-arrival", "top-rated", "Phones", "Electronics"],
@@ -73,6 +62,7 @@ export const products: Products = [
     },
     soldCount: 25000,
     returnPolicy: "14-day return",
+    createdAt: "2023-01-01",
   },
   {
     id: "2",
@@ -88,22 +78,10 @@ export const products: Products = [
     reviewsCount: 9800,
     stockQuantity: 300,
     colors: [
-      {
-        color: "White",
-        hexCode: "#FFFFFF",
-      },
-      {
-        color: "Black",
-        hexCode: "#000000",
-      },
-      {
-        color: "Cosmic Red",
-        hexCode: "#8B0000",
-      },
-      {
-        color: "Midnight Black",
-        hexCode: "#191970",
-      },
+      { color: "White", hexCode: "#FFFFFF" },
+      { color: "Black", hexCode: "#000000" },
+      { color: "Cosmic Red", hexCode: "#8B0000" },
+      { color: "Midnight Black", hexCode: "#191970" },
     ],
     sizes: [],
     tags: ["gaming-accessory", "Controller", "PlayStation 5", "Gaming"],
@@ -122,6 +100,7 @@ export const products: Products = [
     },
     soldCount: 55000,
     returnPolicy: "30-day return policy",
+    createdAt: formattedDate,
   },
   {
     id: "3",
@@ -153,6 +132,7 @@ export const products: Products = [
     },
     soldCount: 15000,
     returnPolicy: "60-day money-back guarantee",
+    createdAt: "2023-01-01",
   },
   {
     id: "4",
@@ -167,12 +147,7 @@ export const products: Products = [
     rating: 4.9,
     reviewsCount: 7500,
     stockQuantity: 30,
-    colors: [
-      {
-        color: "White",
-        hexCode: "#FFFFFF",
-      },
-    ],
+    colors: [{ color: "White", hexCode: "#FFFFFF" }],
     sizes: [],
     tags: ["gaming-console", "Gaming", "Electronics"],
     gallery: [
@@ -189,6 +164,7 @@ export const products: Products = [
     },
     soldCount: 45000,
     returnPolicy: "30-day return",
+    createdAt: "2023-01-01",
   },
   {
     id: "5",
@@ -204,18 +180,9 @@ export const products: Products = [
     reviewsCount: 950,
     stockQuantity: 0,
     colors: [
-      {
-        color: "Black",
-        hexCode: "#000000",
-      },
-      {
-        color: "White",
-        hexCode: "#FFFFFF",
-      },
-      {
-        color: "Neon",
-        hexCode: "#39FF14",
-      },
+      { color: "Black", hexCode: "#000000" },
+      { color: "White", hexCode: "#FFFFFF" },
+      { color: "Neon", hexCode: "#39FF14" },
     ],
     sizes: ["US 7", "US 8", "US 9", "US 10"],
     tags: ["soccer", "athletic", "Sports & Outdoor"],
@@ -233,6 +200,7 @@ export const products: Products = [
     },
     soldCount: 8200,
     returnPolicy: "30-day return",
+    createdAt: formattedDate,
   },
   {
     id: "6",
@@ -264,6 +232,7 @@ export const products: Products = [
     },
     soldCount: 4200,
     returnPolicy: "N/A (due to nature of product)",
+    createdAt: "2023-01-01",
   },
   {
     id: "7",
@@ -295,6 +264,7 @@ export const products: Products = [
     },
     soldCount: 5500,
     returnPolicy: "30-day return",
+    createdAt: "2023-01-01",
   },
   {
     id: "8",
@@ -309,12 +279,7 @@ export const products: Products = [
     rating: 4.8,
     reviewsCount: 1500,
     stockQuantity: 45,
-    colors: [
-      {
-        color: "Black",
-        hexCode: "#000000",
-      },
-    ],
+    colors: [{ color: "Black", hexCode: "#000000" }],
     sizes: [],
     tags: ["photography", "Camera", "Electronics"],
     gallery: [
@@ -331,6 +296,7 @@ export const products: Products = [
     },
     soldCount: 7800,
     returnPolicy: "30-day return",
+    createdAt: formattedDate,
   },
   {
     id: "9",
@@ -345,12 +311,7 @@ export const products: Products = [
     rating: 4.7,
     reviewsCount: 2300,
     stockQuantity: 60,
-    colors: [
-      {
-        color: "Black",
-        hexCode: "#000000",
-      },
-    ],
+    colors: [{ color: "Black", hexCode: "#000000" }],
     sizes: ["15.6 Inch"],
     tags: ["gaming-laptop", "Computers", "Electronics"],
     gallery: [
@@ -367,6 +328,7 @@ export const products: Products = [
     },
     soldCount: 11000,
     returnPolicy: "30-day return",
+    createdAt: "2023-01-01",
   },
   {
     id: "10",
@@ -382,18 +344,9 @@ export const products: Products = [
     reviewsCount: 750,
     stockQuantity: 90,
     colors: [
-      {
-        color: "Red",
-        hexCode: "#FF0000",
-      },
-      {
-        color: "Blue",
-        hexCode: "#0000FF",
-      },
-      {
-        color: "Pink",
-        hexCode: "#FFC0CB",
-      },
+      { color: "Red", hexCode: "#FF0000" },
+      { color: "Blue", hexCode: "#0000FF" },
+      { color: "Pink", hexCode: "#FFC0CB" },
     ],
     sizes: [],
     tags: ["kid-friendly", "Baby’s & Toys"],
@@ -411,6 +364,7 @@ export const products: Products = [
     },
     soldCount: 6500,
     returnPolicy: "30-day return",
+    createdAt: formattedDate,
   },
   {
     id: "11",
@@ -426,14 +380,8 @@ export const products: Products = [
     reviewsCount: 245,
     stockQuantity: 50,
     colors: [
-      {
-        color: "Black",
-        hexCode: "#000000",
-      },
-      {
-        color: "Red",
-        hexCode: "#FF0000",
-      },
+      { color: "Black", hexCode: "#000000" },
+      { color: "Red", hexCode: "#FF0000" },
     ],
     sizes: [],
     tags: ["best-seller", "discount", "Gaming"],
@@ -451,6 +399,7 @@ export const products: Products = [
     },
     soldCount: 3200,
     returnPolicy: "30-day return",
+    createdAt: "2023-01-01",
   },
   {
     id: "12",
@@ -465,12 +414,7 @@ export const products: Products = [
     rating: 4.7,
     reviewsCount: 450,
     stockQuantity: 65,
-    colors: [
-      {
-        color: "Black",
-        hexCode: "#000000",
-      },
-    ],
+    colors: [{ color: "Black", hexCode: "#000000" }],
     sizes: [],
     tags: ["pc-build", "rgb", "Computers", "Electronics"],
     gallery: [
@@ -487,6 +431,7 @@ export const products: Products = [
     },
     soldCount: 4100,
     returnPolicy: "30-day return",
+    createdAt: formattedDate,
   },
   {
     id: "13",
@@ -502,14 +447,8 @@ export const products: Products = [
     reviewsCount: 350,
     stockQuantity: 15,
     colors: [
-      {
-        color: "Brown",
-        hexCode: "#A52A2A",
-      },
-      {
-        color: "Black",
-        hexCode: "#000000",
-      },
+      { color: "Brown", hexCode: "#A52A2A" },
+      { color: "Black", hexCode: "#000000" },
     ],
     sizes: ["One Size"],
     tags: ["luxury", "travel", "Men’s Fashion"],
@@ -527,6 +466,7 @@ export const products: Products = [
     },
     soldCount: 2500,
     returnPolicy: "N/A",
+    createdAt: "2023-01-01",
   },
   {
     id: "14",
@@ -542,14 +482,8 @@ export const products: Products = [
     reviewsCount: 550,
     stockQuantity: 100,
     colors: [
-      {
-        color: "White",
-        hexCode: "#FFFFFF",
-      },
-      {
-        color: "Oak",
-        hexCode: "#A55233",
-      },
+      { color: "White", hexCode: "#FFFFFF" },
+      { color: "Oak", hexCode: "#A55233" },
     ],
     sizes: ["One Size"],
     tags: ["furniture", "storage", "Home & Lifestyle"],
@@ -567,6 +501,7 @@ export const products: Products = [
     },
     soldCount: 4800,
     returnPolicy: "30-day return",
+    createdAt: formattedDate,
   },
   {
     id: "15",
@@ -582,14 +517,8 @@ export const products: Products = [
     reviewsCount: 800,
     stockQuantity: 70,
     colors: [
-      {
-        color: "Black",
-        hexCode: "#000000",
-      },
-      {
-        color: "Blue",
-        hexCode: "#0000FF",
-      },
+      { color: "Black", hexCode: "#000000" },
+      { color: "Blue", hexCode: "#0000FF" },
     ],
     sizes: ["S", "M", "L", "XL"],
     tags: ["winter-wear", "outdoor", "Men’s Fashion"],
@@ -607,6 +536,7 @@ export const products: Products = [
     },
     soldCount: 7200,
     returnPolicy: "30-day return",
+    createdAt: "2023-01-01",
   },
   {
     id: "16",
@@ -622,14 +552,8 @@ export const products: Products = [
     reviewsCount: 950,
     stockQuantity: 40,
     colors: [
-      {
-        color: "Gray",
-        hexCode: "#808080",
-      },
-      {
-        color: "Black",
-        hexCode: "#000000",
-      },
+      { color: "Gray", hexCode: "#808080" },
+      { color: "Black", hexCode: "#000000" },
     ],
     sizes: ["One Size"],
     tags: ["office-chair", "ergonomic", "Home & Lifestyle"],
@@ -647,6 +571,7 @@ export const products: Products = [
     },
     soldCount: 5500,
     returnPolicy: "60-day return",
+    createdAt: "2023-01-01",
   },
   {
     id: "17",
@@ -661,12 +586,7 @@ export const products: Products = [
     rating: 4.6,
     reviewsCount: 650,
     stockQuantity: 110,
-    colors: [
-      {
-        color: "Black",
-        hexCode: "#000000",
-      },
-    ],
+    colors: [{ color: "Black", hexCode: "#000000" }],
     sizes: [],
     tags: ["mechanical-keyboard", "rgb", "Gaming"],
     gallery: [
@@ -683,6 +603,7 @@ export const products: Products = [
     },
     soldCount: 4900,
     returnPolicy: "30-day return",
+    createdAt: formattedDate,
   },
   {
     id: "18",
@@ -697,12 +618,7 @@ export const products: Products = [
     rating: 4.4,
     reviewsCount: 380,
     stockQuantity: 95,
-    colors: [
-      {
-        color: "Black",
-        hexCode: "#000000",
-      },
-    ],
+    colors: [{ color: "Black", hexCode: "#000000" }],
     sizes: [],
     tags: ["gaming-accessory", "Gaming"],
     gallery: [
@@ -719,6 +635,7 @@ export const products: Products = [
     },
     soldCount: 3500,
     returnPolicy: "30-day return",
+    createdAt: "2023-01-01",
   },
   {
     id: "19",
@@ -734,18 +651,9 @@ export const products: Products = [
     reviewsCount: 420,
     stockQuantity: 85,
     colors: [
-      {
-        color: "Black",
-        hexCode: "#000000",
-      },
-      {
-        color: "Green",
-        hexCode: "#008000",
-      },
-      {
-        color: "Burgundy",
-        hexCode: "#800020",
-      },
+      { color: "Black", hexCode: "#000000" },
+      { color: "Green", hexCode: "#008000" },
+      { color: "Burgundy", hexCode: "#800020" },
     ],
     sizes: ["S", "M", "L", "XL"],
     tags: ["fashion", "jacket", "Woman’s Fashion"],
@@ -763,6 +671,7 @@ export const products: Products = [
     },
     soldCount: 6800,
     returnPolicy: "30-day return",
+    createdAt: "2023-01-01",
   },
   {
     id: "20",
@@ -777,12 +686,7 @@ export const products: Products = [
     rating: 4.7,
     reviewsCount: 1200,
     stockQuantity: 55,
-    colors: [
-      {
-        color: "Black",
-        hexCode: "#000000",
-      },
-    ],
+    colors: [{ color: "Black", hexCode: "#000000" }],
     sizes: ["27 Inch"],
     tags: ["gaming-monitor", "high-refresh", "Computers", "Electronics"],
     gallery: [
@@ -799,6 +703,7 @@ export const products: Products = [
     },
     soldCount: 9100,
     returnPolicy: "30-day return",
+    createdAt: "2023-01-01",
   },
   {
     id: "21",
@@ -814,22 +719,10 @@ export const products: Products = [
     reviewsCount: 6500,
     stockQuantity: 200,
     colors: [
-      {
-        color: "Phantom Black",
-        hexCode: "#181414",
-      },
-      {
-        color: "Cream",
-        hexCode: "#F5F5DC",
-      },
-      {
-        color: "Green",
-        hexCode: "#008000",
-      },
-      {
-        color: "Lavender",
-        hexCode: "#E6E6FA",
-      },
+      { color: "Phantom Black", hexCode: "#181414" },
+      { color: "Cream", hexCode: "#F5F5DC" },
+      { color: "Green", hexCode: "#008000" },
+      { color: "Lavender", hexCode: "#E6E6FA" },
     ],
     sizes: ["256GB", "512GB", "1TB"],
     tags: ["flagship", "best-camera", "Phones", "Electronics"],
@@ -847,6 +740,7 @@ export const products: Products = [
     },
     soldCount: 30000,
     returnPolicy: "30-day return",
+    createdAt: "2023-01-01",
   },
   {
     id: "22",
@@ -861,18 +755,9 @@ export const products: Products = [
     reviewsCount: 1500,
     stockQuantity: 150,
     colors: [
-      {
-        color: "Charcoal Fabric",
-        hexCode: "#2C313C",
-      },
-      {
-        color: "Heather Gray Fabric",
-        hexCode: "#A8A8A8",
-      },
-      {
-        color: "Sandstone Fabric",
-        hexCode: "#E6D7B9",
-      },
+      { color: "Charcoal Fabric", hexCode: "#2C313C" },
+      { color: "Heather Gray Fabric", hexCode: "#A8A8A8" },
+      { color: "Sandstone Fabric", hexCode: "#E6D7B9" },
     ],
     sizes: [],
     tags: ["Speakers", "smart-speaker", "Electronics"],
@@ -890,5 +775,6 @@ export const products: Products = [
     },
     soldCount: 20000,
     returnPolicy: "30-day return",
+    createdAt: formattedDate,
   },
 ];

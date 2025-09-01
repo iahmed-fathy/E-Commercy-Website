@@ -12,7 +12,14 @@ export default function ProductsList({ products }: ProductsListProps) {
     <>
       <div className="grid grid-cols-4 max-sm:grid-cols-1 max-lg:grid-cols-2 gap-15">
         {products.slice(0, productsDisplayedNum).map((product) => (
-          <ProductCard product={product} key={product.id} />
+          <ProductCard
+            product={product}
+            key={product.id}
+            source="flash-sale"
+            starsIcon
+            seenIcon
+            wishlistIcon
+          />
         ))}
       </div>
       <button

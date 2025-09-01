@@ -6,11 +6,12 @@ import { products } from "@/features/products/ProductsData";
 import { notFound } from "next/navigation";
 type Params = {
   params: {
+    source: string;
     id: string;
   };
 };
-export default async function ProductDetailsPage({ params }: Params) {
-  const { id } = await params;
+export default function ProductDetailsPage({ params }: Params) {
+  const { source, id } = params;
   const product = products.find((p) => p.id === id);
 
   if (!product) {
@@ -24,7 +25,12 @@ export default async function ProductDetailsPage({ params }: Params) {
         <ProductImgsPreview gallery={product?.gallery} />
         <ProductInf product={product} />
       </div>
-      <RelatedItem category={product.category} id={product.id} />
+      <RelatedItem
+        lable="Related Item"
+        category={product.category}
+        id={product.id}
+        source={source}
+      />
     </div>
   );
 }

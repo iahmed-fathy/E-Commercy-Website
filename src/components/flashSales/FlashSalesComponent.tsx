@@ -90,12 +90,21 @@ export default function FlashSalesComponent() {
       >
         {products.map((product) => {
           if (product.discount > 0) {
-            return <ProductCard product={product} key={product.id} />;
+            return (
+              <ProductCard
+                starsIcon
+                seenIcon
+                wishlistIcon
+                product={product}
+                key={product.id}
+                source="flash-sale"
+              />
+            );
           }
         })}
       </div>
       <Link
-        href={"/flash-sale-products"}
+        href={"/flash-sale"}
         className="bg-[#DB4444] text-white text-[16px] font-semibold flex justify-center items-center h-[56px] w-[234px] rounded-[4px] cursor-pointer hover:animate-pulse animate-infinite animate-delay-500 animate-ease-in-out hover:-translate-y-1 self-center mt-10"
       >
         View All Products

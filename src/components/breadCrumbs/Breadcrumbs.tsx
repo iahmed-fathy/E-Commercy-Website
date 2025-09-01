@@ -16,7 +16,7 @@ export default function Breadcrumb({ productName }: BreadcrumbType) {
     for (let i = 0; i < paths.length; i++) {
       const current = paths[i];
 
-      if (current === "product-details" && paths[i + 1]) {
+      if (current === "product" && paths[i + 1]) {
         const href = "/" + paths.slice(0, i + 2).join("/");
         if (productName) {
           items.push({

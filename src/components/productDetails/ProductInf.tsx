@@ -1,13 +1,23 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useState } from "react";
 import Stars from "../reactStarts/ReactStars";
 import type { Product } from "@/features/products/ProductsData";
+import { useSelector } from "react-redux";
+import {
+  addToFavorites,
+  removeFromFavorites,
+  selectFavoriteIds,
+} from "@/features/products/productsSlice";
+import { useDispatch } from "react-redux";
 
 type ProductInfType = {
   product?: Product;
 };
 export default function ProductInf({ product }: ProductInfType) {
+  if (!product?.id) return;
+
+  const favoriteProducts = useSelector(selectFavoriteIds);
   const [quantity, setQuantity] = useState(1);
 
   const changeQuantity = (method: string) => {
@@ -16,6 +26,22 @@ export default function ProductInf({ product }: ProductInfType) {
     } else if (method === "decrease" && quantity > 1) {
       setQuantity((prev) => (prev -= 1));
     }
+  };
+
+  const dispatch = useDispatch();
+
+  const handleAddToFavorites = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.stopPropagation();
+    e.preventDefault();
+    dispatch(addToFavorites(product.id));
+  };
+
+  const handleRemoveFromFavorites = (
+    e: React.MouseEvent<HTMLButtonElement>
+  ) => {
+    e.stopPropagation();
+    e.preventDefault();
+    dispatch(removeFromFavorites(product.id));
   };
 
   return (
@@ -124,12 +150,20 @@ export default function ProductInf({ product }: ProductInfType) {
           <button
             className="rounded-[4px] border-1 border/black/40 flex items-center justify-center w-[40px] h-[40px] cursor-pointer"
             type="button"
+            onClick={
+              favoriteProducts.includes(product?.id)
+                ? handleRemoveFromFavorites
+                : handleAddToFavorites
+            }
           >
             <svg
+              className={`${
+                favoriteProducts.includes(product?.id) && "fill-[#DB4444]"
+              }`}
               width="22"
               height="20"
               viewBox="0 0 22 20"
-              fill="none"
+              fill="white"
               xmlns="http://www.w3.org/2000/svg"
             >
               <path
