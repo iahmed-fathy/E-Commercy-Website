@@ -59,3 +59,6 @@ export const selectByTag =
 
 export const selectFavoriteIds = (state: { products: ProductsState }) =>
   state.products.favorites;
+
+export const selectCartIds = (state: { products: ProductsState }) =>
+  state.products.cart;

@@ -1,25 +1,21 @@
 "use client";
 
-import { selectFavoriteIds } from "@/features/products/productsSlice";
-import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
 import {
-  addToFavorites,
-  removeFromFavorites,
+  selectCartIds,
+  selectFavoriteIds,
 } from "@/features/products/productsSlice";
-import { addToCart } from "@/features/products/productsSlice";
+import { useSelector } from "react-redux";
 import type { Product } from "@/features/products/ProductsData";
 import Image from "next/image";
 import Link from "next/link";
 import Stars from "../reactStarts/ReactStars";
+import useProductActions from "../../../hooks/useProductActions";
 
 type ProductCardProps = {
   product: Product;
   source: string;
   starsIcon?: boolean;
-  wishlistIcon?: boolean;
-  seenIcon?: boolean;
-  deleteIcon?: boolean;
+  inWishlistPage?: boolean;
 };
 
 const sevenDaysAgoDate = new Date();
@@ -29,34 +25,24 @@ const sevenDaysAgoString = sevenDaysAgoDate.toISOString().split("T")[0];
 export default function ProductCard({
   product,
   source,
-  starsIcon,
-  wishlistIcon,
-  seenIcon,
-  deleteIcon,
+  inWishlistPage,
 }: ProductCardProps) {
   const favoriteProducts = useSelector(selectFavoriteIds);
+  const cartProducts = useSelector(selectCartIds);
 
-  const dispatch = useDispatch();
-  const handleAddToFavorites = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.stopPropagation();
-    e.preventDefault();
-    dispatch(addToFavorites(product.id));
-  };
-
-  const handleRemoveFromFavorites = (
-    e: React.MouseEvent<HTMLButtonElement>
-  ) => {
-    e.stopPropagation();
-    e.preventDefault();
-    dispatch(removeFromFavorites(product.id));
-  };
+  const {
+    handleAddToFavorites,
+    handleRemoveFromFavorites,
+    handleAddToCart,
+    handleRemoveFromCart,
+  } = useProductActions(product.id);
 
   return (
     <Link
       href={`/${source}/product/${product.id}`}
       className="items-center justify-center w-[270px]"
     >
-      <div className="flex flex-col gap-1 w-full">
+      <div className="flex flex-col gap-1 w-full group">
         <div className="relative rounded-[4px] flex flex-col bg-[#F5F5F5] w-full p-4 h-[250px] overflow-hidden item">
           <div className="flex gap-2">
             {product.createdAt > sevenDaysAgoString && (
@@ -75,9 +61,9 @@ export default function ProductCard({
             alt={product.title}
             width={200}
             height={200}
-            className="max-w-[190px] max-h-[180px] m-auto hover:animate-pulse animate-infinite animate-delay-500 animate-ease-in-out transition-transform hover:scale-150"
+            className="max-w-[190px] max-h-[180px] m-auto hover:animate-pulse animate-infinite animate-delay-500 animate-ease-in-out transition-transform group-hover:scale-150"
           />
-          {deleteIcon && (
+          {inWishlistPage && (
             <button
               className={`favoritesButton cursor-pointer`}
               onClick={
@@ -105,7 +91,7 @@ export default function ProductCard({
               </svg>
             </button>
           )}
-          {wishlistIcon && (
+          {!inWishlistPage && (
             <button
               className={`favoritesButton cursor-pointer`}
               onClick={
@@ -135,8 +121,8 @@ export default function ProductCard({
               </svg>
             </button>
           )}
-          {seenIcon && (
-            <button className="cursor-pointer">
+          {!inWishlistPage && (
+            <button className="seenIcon cursor-pointer">
               <svg
                 className="absolute top-16 right-2"
                 width="34"
@@ -163,6 +149,31 @@ export default function ProductCard({
               </svg>
             </button>
           )}
+          <button
+            className={`addToCart cursor-pointer flex items-center justify-center gap-2 text-white bg-black absolute bottom-0 left-0 w-full py-2 ${
+              !inWishlistPage && "invisible group-hover:visible"
+            }`}
+            onClick={
+              cartProducts.includes(product.id)
+                ? handleRemoveFromCart
+                : handleAddToCart
+            }
+          >
+            <Image
+              src={"/icons/cartIcon2.png"}
+              alt="add cart icon"
+              width={24}
+              height={24}
+            />
+            <span className="text-[12px]">
+              {cartProducts.includes(product.id) ? (
+                <span>Remove From</span>
+              ) : (
+                <span>Add To</span>
+              )}{" "}
+              Cart
+            </span>
+          </button>
         </div>
         <p className="font-medium text-[16px] h-6 overflow-hidden">
           {product.title}
@@ -171,7 +182,7 @@ export default function ProductCard({
           <span className="text-[#DB4444]">{product.finalPrice}$</span>
           <span className="line-through text-black/40">{product.price}$</span>
         </p>
-        {starsIcon && (
+        {!inWishlistPage && (
           <div className="flex gap-4 items-center">
             <Stars value={product.rating} size={20} />
             <span className="text-black/40 font-semibold text-[14px]">

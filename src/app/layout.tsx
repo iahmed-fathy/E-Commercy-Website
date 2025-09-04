@@ -27,7 +27,7 @@ export default function RootLayout({
       <body className={`${poppins.variable} antialiased w-screen`}>
         <Providers>
           <Header />
-          <main className="pt-10 pb-20 px-30 max-sm:px-5">{children}</main>
+          <main className="pt-10 pb-20 px-10 max-sm:px-5">{children}</main>
           <Footer />
         </Providers>
       </body>

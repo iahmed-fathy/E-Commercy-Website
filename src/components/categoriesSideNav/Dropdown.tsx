@@ -2,7 +2,7 @@
 
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 import Link from "next/link";
-import { useRef, useState } from "react";
+import { useState } from "react";
 
 type category = {
   categoryName: string;
@@ -31,11 +31,11 @@ export default function Dropdown({
       {Trigger}
     </Link>
   ) : (
-    <div className="w-[220px] hover:scale-105">
+    <div className="w-[250px] hover:scale-105">
       <DropdownMenu.Root open={open} onOpenChange={setOpen}>
         <DropdownMenu.Trigger asChild>
           <button className="px-4 py-2 text-black rounded cursor-pointer focus:outline-0 w-full max-sm:w-fit">
-            <div className="flex justify-between items-center gap-6">
+            <div className="flex justify-between items-center gap-4">
               <div>{Trigger}</div>
               <div>
                 <svg

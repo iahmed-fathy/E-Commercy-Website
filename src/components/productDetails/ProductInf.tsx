@@ -127,7 +127,7 @@ export default function ProductInf({ product }: ProductInfType) {
               -
             </button>
             <input
-              className="text-center w-[80px] h-full border-x-2 border-black/40"
+              className="text-center w-[80px] h-full border-x-2 border-black/40 input--no-spin"
               type="number"
               name="quantity"
               defaultValue={quantity}

@@ -5,7 +5,7 @@ import ProductsList from "@/components/productsList/ProductsList";
 import { RootState } from "@/store";
 import { useSelector } from "react-redux";
 
-export default function FlashSaleProduct() {
+export default function () {
   const products = useSelector((state: RootState) => state.products.items);
   const flashSaleProduct = products.filter((product) => product.discount > 0);
 
