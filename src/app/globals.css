@@ -32,16 +32,6 @@ body {
   scrollbar-width: none;
 }
 
-input[type="number"]::-webkit-inner-spin-button,
-input[type="number"]::-webkit-outer-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
-
-input[type="number"] {
-  -moz-appearance: textfield;
-}
-
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
@@ -155,5 +145,17 @@ input[type="number"] {
   }
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+@layer components {
+  .input--no-spin {
+    -moz-appearance: textfield;
+  }
+
+  .input--no-spin::-webkit-inner-spin-button,
+  .input--no-spin::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
   }
 }

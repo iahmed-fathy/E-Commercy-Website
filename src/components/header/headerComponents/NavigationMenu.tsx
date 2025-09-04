@@ -19,58 +19,44 @@ export default function NavigationMenu({
 
   const closeDialog = () => {
     if (isDialogOpen && setDialogOpen && isDialogOpen === true) {
-      console.log("hello");
       setDialogOpen(false);
     }
   };
 
+  const navData = [
+    {
+      href: "/",
+      label: "Home",
+    },
+    {
+      href: "/contact",
+      label: "Contact",
+    },
+    {
+      href: "/about",
+      label: "About",
+    },
+    {
+      href: "/sign-up",
+      label: "Sign Up",
+    },
+  ];
+
   return (
     <nav className="w-full">
       <ul className={className}>
-        <li>
-          <Link
-            href="/"
-            className={`hover:border-b-[.5px] border-black transform transition-transform ${
-              pathname === "/" ? "scale-150 block" : ""
-            }`}
-            onClick={closeDialog}
-          >
-            Home
-          </Link>
-        </li>
-        <li>
-          <Link
-            href="/contact"
-            className={`hover:border-b-[.5px] border-black transform transition-transform ${
-              pathname === "/contact" ? "scale-150 block" : ""
-            }`}
-            onClick={closeDialog}
-          >
-            Contact
-          </Link>
-        </li>
-        <li>
-          <Link
-            href="/about"
-            className={`hover:border-b-[.5px] border-black transform transition-transform ${
-              pathname === "/about" ? "scale-150 block" : ""
-            }`}
-            onClick={closeDialog}
-          >
-            About
-          </Link>
-        </li>
-        <li>
-          <Link
-            href="/signup"
-            className={`hover:border-b-[.5px] border-black transform transition-transform ${
-              pathname === "/signup" ? "scale-150 block" : ""
-            }`}
-            onClick={closeDialog}
-          >
-            Sign Up
-          </Link>
-        </li>
+        {navData.map((page) => (
+          <li key={page.href} className="group relative w-fit">
+            <Link href={page.href} onClick={closeDialog}>
+              {page.label}
+            </Link>
+            <span
+              className={`absolute -bottom-1 right-0 h-[2px] w-0 bg-black/40 group-hover:w-full transition-[width] duration-300 ease-in-out ${
+                pathname === page.href && "w-full"
+              }`}
+            />
+          </li>
+        ))}
       </ul>
     </nav>
   );

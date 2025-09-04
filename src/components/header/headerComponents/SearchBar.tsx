@@ -1,6 +1,6 @@
 export default function SearchBar() {
   return (
-    <div className="flex bg-[#F5F5F5] px-4 py-2 rounded-[4px] max-w-[280px]">
+    <div className="flex bg-[#F5F5F5] px-4 py-2 rounded-[4px] max-w-[280px] max-sm:w-[220px]">
       <input
         type="text"
         placeholder="What are you looking for?"

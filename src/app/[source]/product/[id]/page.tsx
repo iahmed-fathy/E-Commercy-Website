@@ -10,7 +10,7 @@ type Params = {
     id: string;
   };
 };
-export default function ProductDetailsPage({ params }: Params) {
+export default function DetailsPage({ params }: Params) {
   const { source, id } = params;
   const product = products.find((p) => p.id === id);
 
