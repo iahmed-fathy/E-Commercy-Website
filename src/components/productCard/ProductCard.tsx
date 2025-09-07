@@ -150,7 +150,7 @@ export default function ProductCard({
             </button>
           )}
           <button
-            className={`addToCart cursor-pointer flex items-center justify-center gap-2 text-white bg-black absolute bottom-0 left-0 w-full py-2 ${
+            className={`addToCart cursor-pointer flex items-center justify-center gap-2 text-white bg-black absolute bottom-0 left-0 w-full py-2 max-lg:visible ${
               !inWishlistPage && "invisible group-hover:visible"
             }`}
             onClick={

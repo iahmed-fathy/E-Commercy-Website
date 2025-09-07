@@ -9,14 +9,14 @@ import Link from "next/link";
 import SearchBar from "./SearchBar";
 import SideNavDialog from "./SideNavDialog";
 import Image from "next/image";
-import User from "./User";
+import UserState from "./UserState";
 
 export default function UserActions() {
   const favoriteProducts = useSelector(selectFavoriteIds);
   const cartProducts = useSelector(selectCartIds);
   return (
-    <div className="flex gap-4 w-full justify-end">
-      <div className="sm:hidden">
+    <div className="flex gap-4 w-full justify-end max-lg:justify-between">
+      <div className="lg:hidden">
         <SideNavDialog />
       </div>
       <SearchBar />
@@ -50,7 +50,7 @@ export default function UserActions() {
             className="w-[32px] h-[32px]"
           ></Image>
         </Link>
-        <User />
+        <UserState />
       </div>
     </div>
   );

@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export default function FeaturesBar() {
   return (
-    <div className="flex max-w-[945px] max-sm:flex-col gap-20 self-center">
+    <div className="flex max-w-[1000px] max-sm:flex-col gap-20 self-center">
       <div className="flex flex-col items-center justify-center">
         <Image
           src="/icons/delivery.png"
