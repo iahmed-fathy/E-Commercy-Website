@@ -45,7 +45,7 @@ export default function ProductInf({ product }: ProductInfType) {
   };
 
   return (
-    <section className="flex flex-col justify-between w-[400px]">
+    <section className="flex flex-col justify-between w-[400px] max-sm:w-[300]">
       <h2 className="font-semibold text-[24px]">{product?.title}</h2>
       <div className="flex gap-4 items-center">
         <Stars value={product?.rating} size={20} />
@@ -117,8 +117,8 @@ export default function ProductInf({ product }: ProductInfType) {
             ))}
           </fieldset>
         )}
-        <div className="flex justify-between">
-          <div className="h-[44px] flex items-center border-2 border-black/40 w-[159px] rounded-[4px] overflow-hidden">
+        <div className="flex justify-between max-sm:flex-col max-sm:gap-4 max-sm:items-center mb-2">
+          <div className="h-[44px] flex items-center border-2 border-black/40 w-[159px] rounded-[4px] overflow-hidden ">
             <button
               className="text-black text-[30px]  hover:bg-[#DB4444] hover:text-white w-[41px] cursor-pointer"
               type="button"

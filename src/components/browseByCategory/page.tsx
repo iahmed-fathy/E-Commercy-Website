@@ -1,21 +1,10 @@
 "use client";
-import dynamic from "next/dynamic";
-import { useRef } from "react";
-import ProductCard from "../productCard/ProductCard";
 import Link from "next/link";
-import { useSelector } from "react-redux";
-import { selectAllProducts } from "@/features/products/productsSlice";
+import { useRef } from "react";
+import categories from "@/features/categories/categories";
 
-const FlashSalesTimer = dynamic(() => import("./FlashSalesTimer"), {
-  ssr: false,
-});
-
-export default function FlashSalesComponent() {
-  const products = useSelector(selectAllProducts);
+export default function BrowseByCategory() {
   const scrollRef = useRef<HTMLDivElement>(null);
-
-  const now = new Date();
-  now.setDate(now.getDate() + 1);
 
   const scrollLeft = () => {
     if (scrollRef.current) {
@@ -36,17 +25,14 @@ export default function FlashSalesComponent() {
   };
 
   return (
-    <section className="flex flex-col gap-6 ">
+    <section className="flex flex-col gap-6">
       <div className="flex gap-4 items-center">
         <div className="w-5 h-10 bg-[#DB4444] rounded-[4px]"></div>
-        <h6 className="font-semibold text-[#DB4444] text-[16px]">Today’s</h6>
+        <h6 className="font-semibold text-[#DB4444] text-[16px]">Categories</h6>
       </div>
-      <div className="flex items-center max-sm:flex-col justify-between max-sm:gap-6">
-        <div className="flex gap-15 max-sm:gap-5 items-center max-sm:items-start max-sm:flex-col">
-          <h2 className="font-semibold text-[36px]">Flash Sales</h2>
-          <FlashSalesTimer targetDate={now.toLocaleDateString()} />
-        </div>
-        <div className="flex gap-4 max-sm:self-start">
+      <div className="flex justify-between items-center">
+        <h2 className="font-semibold text-[36px]">Browse By Category</h2>
+        <div className="flex gap-4">
           <button className="cursor-pointer" onClick={scrollLeft}>
             <svg
               width="46"
@@ -87,27 +73,20 @@ export default function FlashSalesComponent() {
         </div>
       </div>
       <div
-        className="flex gap-4 overflow-x-scroll hide-scrollbar"
+        className="flex gap-4 items-center mt-5 overflow-x-scroll hide-scrollbar"
         ref={scrollRef}
       >
-        {products.map((product) => {
-          if (product.discount > 0) {
-            return (
-              <ProductCard
-                product={product}
-                key={product.id}
-                source="flash-sale"
-              />
-            );
-          }
-        })}
+        {categories.map((category) => (
+          <Link
+            key={category.id}
+            href={`/category/${category.id}`}
+            className="flex flex-col flex-shrink-0 group gap-2 border border-black/40 rounded-[4px] w-[170px] h-[145px] items-center justify-center hover:bg-[#DB4444] hover:text-white hover:border-[#DB4444]"
+          >
+            {category.svg}
+            <h6>{category.label}</h6>
+          </Link>
+        ))}
       </div>
-      <Link
-        href={"/flash-sale"}
-        className="bg-[#DB4444] text-white text-[16px] font-semibold flex justify-center items-center h-[56px] w-[234px] rounded-[4px] cursor-pointer hover:animate-pulse animate-infinite animate-delay-500 animate-ease-in-out self-center mt-10"
-      >
-        View All Products
-      </Link>
     </section>
   );
 }

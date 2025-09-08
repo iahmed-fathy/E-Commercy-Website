@@ -2,7 +2,7 @@ import Dropdown from "./Dropdown";
 
 export default function CategoriesSideNav() {
   return (
-    <ul className="flex sm:flex-col pt-4 gap-1 border-e-1 sm:border-black/40 w-[250px] h-fit max-sm:overflow-x-scroll hide-scrollbar max-sm:w-screen max-sm:gap-[1px]">
+    <ul className="flex sm:flex-col pt-4 gap-1 sm:border-r-1 sm:border-black/40 w-[250px] h-fit max-sm:overflow-x-scroll hide-scrollbar max-sm:w-full max-sm:gap-[1px]">
       <li>
         <Dropdown
           Trigger="Woman’s Fashion"

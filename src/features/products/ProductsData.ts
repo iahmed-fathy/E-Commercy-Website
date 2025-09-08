@@ -17,7 +17,7 @@ export type Product = {
   shippingInfo?: string;
   warranty?: string;
   specifications?: Record<string, string>;
-  soldCount?: number;
+  soldCount: number;
   returnPolicy?: string;
   createdAt: string;
 };
@@ -31,7 +31,7 @@ export const products: Products = [
     id: "1",
     title: "iPhone 14 Series",
     brand: "Apple",
-    category: "Electronics",
+    category: "Phones",
     description:
       "Powerful and elegant, the iPhone 14 offers cutting-edge technology, stunning cameras, and an incredibly fast processor.",
     price: 1000,
@@ -106,7 +106,7 @@ export const products: Products = [
     id: "3",
     title: "Curology Product Set",
     brand: "Curology",
-    category: "Health & Beauty",
+    category: "Health",
     description:
       "A personalized skincare set designed to treat acne and improve skin texture, customized for your unique skin needs.",
     price: 60,
@@ -170,7 +170,7 @@ export const products: Products = [
     id: "5",
     title: "Football Shoes",
     brand: "Nike",
-    category: "Sports & Outdoor",
+    category: "Sports",
     description:
       "Designed for maximum speed and agility on the field, with a lightweight design and superior traction.",
     price: 90,
@@ -206,7 +206,7 @@ export const products: Products = [
     id: "6",
     title: "Gucci Intense Oud Eau de Parfum",
     brand: "Gucci",
-    category: "Health & Beauty",
+    category: "Woman",
     description:
       "A deep and luxurious fragrance with notes of oud, leather, and amber, creating a powerful and captivating scent.",
     price: 185,
@@ -238,7 +238,7 @@ export const products: Products = [
     id: "7",
     title: "Breed Dry Dog Food",
     brand: "Royal Canin",
-    category: "Groceries & Pets",
+    category: "Pets",
     description:
       "Nutritionally complete dry dog food tailored to the specific needs of various dog breeds, promoting healthy digestion and a shiny coat.",
     price: 45,
@@ -334,7 +334,7 @@ export const products: Products = [
     id: "10",
     title: "Kids Electric Car",
     brand: "Power Wheels",
-    category: "Baby’s & Toys",
+    category: "Kids",
     description:
       "A safe and fun electric car for children, with realistic features like headlights, a horn, and a remote control for parental supervision.",
     price: 250,
@@ -437,7 +437,7 @@ export const products: Products = [
     id: "13",
     title: "Gucci Duffle Bag",
     brand: "Gucci",
-    category: "Men’s Fashion",
+    category: "Men",
     description:
       "A stylish and luxurious duffle bag crafted from premium materials, perfect for travel or daily use.",
     price: 1800,
@@ -472,7 +472,7 @@ export const products: Products = [
     id: "14",
     title: "Small Bookshelf",
     brand: "IKEA",
-    category: "Home & Lifestyle",
+    category: "Home",
     description:
       "A compact and sturdy bookshelf with multiple shelves, ideal for organizing books and decor in small spaces.",
     price: 80,
@@ -507,7 +507,7 @@ export const products: Products = [
     id: "15",
     title: "The North Coat",
     brand: "Columbia",
-    category: "Men’s Fashion",
+    category: "Men",
     description:
       "A waterproof and insulated coat designed to keep you warm and dry in cold weather, perfect for outdoor adventures.",
     price: 180,
@@ -542,7 +542,7 @@ export const products: Products = [
     id: "16",
     title: "S-Series Comfort Chair",
     brand: "Herman Miller",
-    category: "Home & Lifestyle",
+    category: "Home",
     description:
       "Ergonomic office chair with superior lumbar support and adjustable features, designed for long hours of comfortable seating.",
     price: 500,
@@ -641,7 +641,7 @@ export const products: Products = [
     id: "19",
     title: "Quilted Satin Jacket",
     brand: "Zara",
-    category: "Woman’s Fashion",
+    category: "Woman",
     description:
       "A lightweight quilted satin jacket with a modern fit, perfect for layering in cool weather.",
     price: 95,
@@ -709,7 +709,7 @@ export const products: Products = [
     id: "21",
     title: "Samsung Galaxy S23 Ultra",
     brand: "Samsung",
-    category: "Electronics",
+    category: "phones",
     description:
       "A feature-rich smartphone with a stunning camera, S Pen support, and powerful performance.",
     price: 1200,
@@ -776,5 +776,42 @@ export const products: Products = [
     soldCount: 20000,
     returnPolicy: "30-day return",
     createdAt: formattedDate,
+  },
+  {
+    id: "23",
+    title: "JBL Boombox 3",
+    brand: "JBL",
+    category: "Audio",
+    description:
+      "JBL Boombox 3 delivers massive sound and deep bass with up to 24 hours of playtime. Featuring a water-resistant design and Bluetooth connectivity for ultimate portability and party power.",
+    price: 450,
+    discount: 50,
+    finalPrice: 400,
+    rating: 4.9,
+    reviewsCount: 3120,
+    stockQuantity: 25,
+    colors: [
+      { color: "Black", hexCode: "#111111" },
+      { color: "Squad", hexCode: "#7F7F77" },
+    ],
+    sizes: [],
+    tags: ["boombox", "JBL", "portable-speaker", "Audio"],
+    gallery: [
+      "/products/JBL_BOOMBOX_2_HERO_020_x1.png",
+      "/products/test.png",
+      "/products/JBL_BOOMBOX_2_HERO_020_x1.png",
+      "/products/test.png",
+    ],
+    shippingInfo: "Free next-day shipping",
+    warranty: "1 Year Warranty",
+    specifications: {
+      Power: "80W RMS",
+      Battery: "24h playtime",
+      Waterproof: "IP67",
+      Features: "Bluetooth 5.3, PartyBoost, Powerbank",
+    },
+    soldCount: 17000,
+    returnPolicy: "30-day return",
+    createdAt: "2023-09-08",
   },
 ];

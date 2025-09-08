@@ -1,17 +1,14 @@
 "use client";
-import dynamic from "next/dynamic";
+
+import { selectAllProducts } from "@/features/products/productsSlice";
 import { useRef } from "react";
+import { useSelector } from "react-redux";
 import ProductCard from "../productCard/ProductCard";
 import Link from "next/link";
-import { useSelector } from "react-redux";
-import { selectAllProducts } from "@/features/products/productsSlice";
 
-const FlashSalesTimer = dynamic(() => import("./FlashSalesTimer"), {
-  ssr: false,
-});
-
-export default function FlashSalesComponent() {
+export default function OurProducts() {
   const products = useSelector(selectAllProducts);
+
   const scrollRef = useRef<HTMLDivElement>(null);
 
   const now = new Date();
@@ -39,13 +36,12 @@ export default function FlashSalesComponent() {
     <section className="flex flex-col gap-6 ">
       <div className="flex gap-4 items-center">
         <div className="w-5 h-10 bg-[#DB4444] rounded-[4px]"></div>
-        <h6 className="font-semibold text-[#DB4444] text-[16px]">Today’s</h6>
+        <h6 className="font-semibold text-[#DB4444] text-[16px]">
+          Our Products
+        </h6>
       </div>
       <div className="flex items-center max-sm:flex-col justify-between max-sm:gap-6">
-        <div className="flex gap-15 max-sm:gap-5 items-center max-sm:items-start max-sm:flex-col">
-          <h2 className="font-semibold text-[36px]">Flash Sales</h2>
-          <FlashSalesTimer targetDate={now.toLocaleDateString()} />
-        </div>
+        <h2 className="font-semibold text-[36px]">Explore Our Products</h2>
         <div className="flex gap-4 max-sm:self-start">
           <button className="cursor-pointer" onClick={scrollLeft}>
             <svg
@@ -87,7 +83,7 @@ export default function FlashSalesComponent() {
         </div>
       </div>
       <div
-        className="flex gap-4 overflow-x-scroll hide-scrollbar"
+        className="grid grid-rows-2 grid-flow-col gap-x-5 gap-y-10 overflow-x-scroll hide-scrollbar"
         ref={scrollRef}
       >
         {products.map((product) => {
@@ -103,7 +99,7 @@ export default function FlashSalesComponent() {
         })}
       </div>
       <Link
-        href={"/flash-sale"}
+        href={"/our-product"}
         className="bg-[#DB4444] text-white text-[16px] font-semibold flex justify-center items-center h-[56px] w-[234px] rounded-[4px] cursor-pointer hover:animate-pulse animate-infinite animate-delay-500 animate-ease-in-out self-center mt-10"
       >
         View All Products

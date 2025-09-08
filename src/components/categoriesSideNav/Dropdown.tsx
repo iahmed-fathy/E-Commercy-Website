@@ -34,7 +34,7 @@ export default function Dropdown({
     <div className="w-[250px] hover:scale-105">
       <DropdownMenu.Root open={open} onOpenChange={setOpen}>
         <DropdownMenu.Trigger asChild>
-          <button className="px-4 py-2 text-black rounded cursor-pointer focus:outline-0 w-full max-sm:w-fit">
+          <button className="px-4 py-2 text-black rounded cursor-pointer focus:outline-0 w-fit max-sm:w-fit">
             <div className="flex justify-between items-center gap-4">
               <div>{Trigger}</div>
               <div>

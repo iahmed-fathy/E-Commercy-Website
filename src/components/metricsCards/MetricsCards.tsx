@@ -1,5 +1,5 @@
 "use client";
-import CountUp from "../countUp/CountUp";
+import CountUp from "./CountUp";
 
 export default function MetricsCards() {
   return (

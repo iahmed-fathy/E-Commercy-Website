@@ -12,8 +12,8 @@ export default function ProductImgsPreview({
 }: ProductImgsPreviewType) {
   const [imgUrl, setImgUrl] = useState(gallery ? gallery[0] : "");
   return (
-    <section className="flex gap-4 h-[600px]">
-      <div className="flex flex-col justify-between">
+    <section className="flex gap-4 h-[600px] max-sm:h-[400px] max-sm:flex-col">
+      <div className="flex flex-col justify-between max-sm:flex-row max-sm:gap-2">
         {gallery?.map((img, index) => (
           <div
             key={index}
@@ -29,8 +29,14 @@ export default function ProductImgsPreview({
           </div>
         ))}
       </div>
-      <div className="flex items-center justify-center bg-[#F5F5F5] rounded-[4px] w-[500px]">
-        <Image src={imgUrl} alt={imgUrl} width={500} height={500} />
+      <div className="flex items-center justify-center bg-[#F5F5F5] rounded-[4px] w-[500px] max-sm:w-[300] max-sm:h-[300] max-sm:self-center">
+        <Image
+          src={imgUrl}
+          alt={imgUrl}
+          width={500}
+          height={500}
+          className="max-sm:w-[200px] max-sm:h-[200px]"
+        />
       </div>
     </section>
   );

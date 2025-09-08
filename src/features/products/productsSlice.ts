@@ -51,7 +51,9 @@ export const selectProductById =
 
 export const selectByCategory =
   (category: string) => (state: { products: ProductsState }) =>
-    state.products.items.filter((p) => p.category === category);
+    state.products.items.filter(
+      (p) => p.category.toLocaleLowerCase() === category
+    );
 
 export const selectByTag =
   (tag: string) => (state: { products: ProductsState }) =>

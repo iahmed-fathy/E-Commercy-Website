@@ -3,7 +3,7 @@ import ContactSection from "@/components/contact/ContactSection";
 
 export default function Contact() {
   return (
-    <div>
+    <div className="pt-10">
       <Breadcrumb />
       <ContactSection />
     </div>

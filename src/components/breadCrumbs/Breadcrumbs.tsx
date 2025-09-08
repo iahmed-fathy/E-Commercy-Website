@@ -27,6 +27,17 @@ export default function Breadcrumb({ productName }: BreadcrumbType) {
           items.push({ label: "404 ERROR" });
         }
         i++;
+      } else if (current === "category" && paths[i + 1]) {
+        const href = "/" + paths.slice(0, i + 2).join("/");
+        if (productName) {
+          items.push({
+            label: `${productName?.toUpperCase()}`,
+            href,
+          });
+        } else {
+          items.push({ label: "404 ERROR" });
+        }
+        i++;
       } else {
         const href = "/" + paths.slice(0, i + 1).join("/");
         items.push({
@@ -42,7 +53,7 @@ export default function Breadcrumb({ productName }: BreadcrumbType) {
   const breadcrumbItems = generateBreadcrumbs();
 
   return (
-    <nav aria-label="breadcrumb" className="text-sm">
+    <nav aria-label="breadcrumb" className="text-[18px] max-sm:text-[14px]">
       <ol className="flex items-center">
         {breadcrumbItems.map((item, index) => (
           <li

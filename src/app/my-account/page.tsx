@@ -5,7 +5,7 @@ import Welcome from "@/components/myAccount/Welcome";
 
 export default function AccountPage() {
   return (
-    <section className="flex flex-col gap-15">
+    <section className="flex flex-col gap-15 pt-10">
       <div className="flex justify-between max-sm:flex-col gap-5">
         <Breadcrumb />
         <Welcome />

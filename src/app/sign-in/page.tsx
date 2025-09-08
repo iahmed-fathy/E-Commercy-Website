@@ -2,7 +2,7 @@ import SignIn from "@/components/signIn/SignIn";
 
 export default function SignInPage() {
   return (
-    <div>
+    <div className="pt-10">
       <SignIn />
     </div>
   );

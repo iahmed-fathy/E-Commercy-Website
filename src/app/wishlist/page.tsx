@@ -21,7 +21,7 @@ export default function WishList() {
   ];
 
   return favoriteProducts.length > 0 ? (
-    <div className="flex flex-col gap-15">
+    <div className="flex flex-col gap-15 pt-10">
       <Breadcrumb />
       <WishListSection />
       <RelatedItem
@@ -33,6 +33,6 @@ export default function WishList() {
       />{" "}
     </div>
   ) : (
-    <div className="text-center text-[32px]">No Wishlist Items</div>
+    <div className="text-center text-[32px] pt-10">No Wishlist Items</div>
   );
 }

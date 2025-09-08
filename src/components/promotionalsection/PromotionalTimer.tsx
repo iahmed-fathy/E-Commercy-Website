@@ -12,7 +12,7 @@ type TargetDateType = {
   targetDate: string;
 };
 
-function FlashSalesTimer({ targetDate }: TargetDateType) {
+function PromotionalTimer({ targetDate }: TargetDateType) {
   const calculateTimeLeft = (): TimeLeftType => {
     const difference = +new Date(targetDate) - +new Date();
     let timeLeft: TimeLeftType = { days: 0, hours: 0, minutes: 0, seconds: 0 };
@@ -45,42 +45,36 @@ function FlashSalesTimer({ targetDate }: TargetDateType) {
   }, [targetDate]);
 
   return (
-    <div className="grid grid-cols-8 gap-2 items-center text-center justify-between w-[350px] mx-auto">
-      <div className="flex flex-col items-center">
-        <span className="font-medium text-[16px]">Days</span>
-        <span className="font-bold text-[32px]">
+    <div className="grid grid-cols-4 gap-2 self-start max-sm:self-center max-sm:w-full">
+      <div className="flex flex-col items-center bg-white rounded-full w-[60px] h-[60px] justify-center">
+        <span className="font-bold text-[16px]">
           {String(timeLeft?.days).padStart(2, "0")}
         </span>
+        <span className="font-medium text-[10px]">Days</span>
       </div>
 
-      <span className="font-bold text-[#E07575] text-[32px] self-end">:</span>
-
-      <div className="flex flex-col items-center">
-        <span className="font-medium text-[16px]">Hours </span>
-        <span className="font-bold text-[32px]">
-          {String(timeLeft?.hours).padStart(2, "0")}{" "}
+      <div className="flex flex-col items-center bg-white rounded-full w-[60px] h-[60px] justify-center">
+        <span className="font-bold text-[16px]">
+          {String(timeLeft?.hours).padStart(2, "0")}
         </span>
+        <span className="font-medium text-[10px]">Hours </span>
       </div>
 
-      <span className="font-bold text-[#E07575] text-[32px] self-end">:</span>
-
-      <div className="flex flex-col items-center">
-        <span className="font-medium text-[16px]">Minutes </span>
-        <span className="font-bold text-[32px]">
-          {String(timeLeft?.minutes).padStart(2, "0")}{" "}
+      <div className="flex flex-col items-center bg-white rounded-full w-[60px] h-[60px] justify-center">
+        <span className="font-bold text-[16px]">
+          {String(timeLeft?.minutes).padStart(2, "0")}
         </span>
+        <span className="font-medium text-[10px]">Minutes </span>
       </div>
 
-      <span className="font-bold text-[#E07575] text-[32px] self-end">:</span>
-
-      <div className="flex flex-col items-center">
-        <span className="font-medium text-[16px]">Seconds </span>
-        <span className="font-bold text-[32px]">
+      <div className="flex flex-col items-center bg-white rounded-full w-[60px] h-[60px] justify-center">
+        <span className="font-bold text-[16px]">
           {String(timeLeft?.seconds).padStart(2, "0")}
         </span>
+        <span className="font-medium text-[10px]">Seconds </span>
       </div>
     </div>
   );
 }
 
-export default FlashSalesTimer;
+export default PromotionalTimer;

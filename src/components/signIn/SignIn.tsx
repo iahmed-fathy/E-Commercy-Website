@@ -62,7 +62,7 @@ export default function SignIn() {
   };
 
   return (
-    <section className="flex gap-30">
+    <section className="flex gap-30 max-sm:flex-col">
       <Image
         src={"/logIn.png"}
         alt="signup image"

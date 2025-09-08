@@ -48,7 +48,7 @@ export default function Cart() {
   );
 
   return (
-    <div className="w-full">
+    <div className="w-full pt-10">
       <Breadcrumb />
       {cartProductsIds.length > 0 ? (
         <>

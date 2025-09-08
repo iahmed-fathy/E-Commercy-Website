@@ -5,9 +5,8 @@ import ProductsList from "@/components/productsList/ProductsList";
 import { selectAllProducts } from "@/features/products/productsSlice";
 import { useSelector } from "react-redux";
 
-export default function FlashSalePage() {
+export default function OurProducts() {
   const products = useSelector(selectAllProducts);
-  const flashSaleProduct = products.filter((product) => product.discount > 0);
 
   return (
     <div className="flex flex-col gap-10 pt-10">
@@ -15,9 +14,9 @@ export default function FlashSalePage() {
         <Breadcrumb />
       </div>
       <h2 className="text-[40px] font-medium text-center">
-        Explore Flash Sale Products
+        Explore Our Products
       </h2>
-      <ProductsList products={flashSaleProduct} />
+      <ProductsList products={products} />
     </div>
   );
 }

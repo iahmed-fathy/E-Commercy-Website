@@ -6,7 +6,7 @@ import Image from "next/image";
 
 export default function About() {
   return (
-    <div className="flex flex-col gap-20">
+    <div className="flex flex-col gap-20 pt-10">
       <Breadcrumb />
       <section className="flex max-lg:flex-col gap-25 items-center">
         <div className="flex flex-col gap-2 max-w-[525px] max-sm:order-2">

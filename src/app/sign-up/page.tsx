@@ -2,7 +2,7 @@ import SignUp from "@/components/signUp/SignUp";
 
 export default function SignUpPage() {
   return (
-    <div>
+    <div className="pt-10">
       <SignUp />
     </div>
   );
