@@ -55,7 +55,7 @@ export default function Cart() {
           <table className="w-full text-[16px] border-separate border-spacing-y-8 mt-10">
             <thead>
               <tr className="shadow font-normal h-20">
-                <th className="py-4 px-8 text-left w-1/2 max-sm:w-1/4">
+                <th className="py-4 px-8 max-sm:px-1 text-left w-1/2 max-sm:w-1/4">
                   Product
                 </th>
                 <th className="w-1/6">Price</th>
@@ -71,12 +71,13 @@ export default function Cart() {
 
                 return (
                   <tr key={product.id} className="shadow h-25">
-                    <td className="py-3 px-8 h-25 flex items-center gap-2 w-1/2 max-sm:w-1/4">
+                    <td className="py-3 px-8 max-sm:px-1 h-25 flex items-center gap-2 w-1/2 max-sm:w-1/4">
                       <Image
                         src={product.gallery[0]}
                         alt={product.title}
                         width={50}
                         height={50}
+                        className="min-w-[50px] h-[50px]"
                       />
                       <span>{product.title}</span>
                     </td>
@@ -87,7 +88,7 @@ export default function Cart() {
                       <input
                         type="number"
                         min="1"
-                        className="w-20 text-center border rounded"
+                        className="w-20 text-center border rounded max-sm:w-[50px]"
                         value={qty}
                         onChange={(e) =>
                           onQuantityChange(product.id, Number(e.target.value))
@@ -120,7 +121,7 @@ export default function Cart() {
           </div>
 
           <div className="mt-20 flex max-lg:flex-col max-lg:items-center max-lg:gap-10 justify-between">
-            <div className="flex gap-4">
+            <div className="flex gap-4 max-sm:flex-col items-center">
               <input
                 type="text"
                 name="couponCode"
@@ -162,7 +163,7 @@ export default function Cart() {
           </div>
         </>
       ) : (
-        <div className="text-center text-[32px]">Your Cart is empty</div>
+        <div className="text-center text-[32px] mt-10">Your Cart is empty</div>
       )}
     </div>
   );
