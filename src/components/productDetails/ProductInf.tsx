@@ -14,11 +14,13 @@ import { useDispatch } from "react-redux";
 type ProductInfType = {
   product?: Product;
 };
-export default function ProductInf({ product }: ProductInfType) {
-  if (!product?.id) return;
 
+export default function ProductInf({ product }: ProductInfType) {
+  const dispatch = useDispatch();
   const favoriteProducts = useSelector(selectFavoriteIds);
   const [quantity, setQuantity] = useState(1);
+
+  if (!product?.id) return;
 
   const changeQuantity = (method: string) => {
     if (method === "increase") {
@@ -27,8 +29,6 @@ export default function ProductInf({ product }: ProductInfType) {
       setQuantity((prev) => (prev -= 1));
     }
   };
-
-  const dispatch = useDispatch();
 
   const handleAddToFavorites = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();

@@ -7,10 +7,10 @@ import ProductsList from "@/components/productsList/ProductsList";
 import React from "react";
 import { useParams } from "next/navigation";
 
-export default function subCategoryPage() {
+export default function SubCategoryPage() {
   const params = useParams();
-  const id = params.id as string;
   const products = useSelector(selectAllProducts);
+  const id = params.id as string;
   const subCategoryProducts = products.filter((product) =>
     product.tags?.includes(id.split("-").join(" "))
   );

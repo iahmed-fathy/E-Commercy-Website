@@ -23,7 +23,7 @@ export default function SignIn() {
     try {
       await sendPasswordResetEmail(auth, email);
       alert("تم إرسال رابط إعادة تعيين كلمة المرور إلى بريدك الإلكتروني");
-    } catch (err: unknown) {
+    } catch {
       setError("برجاء ادخل بريد الكتروني صحيح");
     }
   };
@@ -41,7 +41,7 @@ export default function SignIn() {
         await updateProfile(auth.currentUser, { displayName: userName });
       }
       router.push("/");
-    } catch (err: unknown) {
+    } catch {
       setError("يوجد خطأ فى اسم المستخدم او كلمة السر");
     }
   };
@@ -57,7 +57,7 @@ export default function SignIn() {
       }
       router.push("/");
     } catch (err: unknown) {
-      console.log(err);
+      console.error(err);
     }
   };
 

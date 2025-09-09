@@ -64,8 +64,6 @@ export default function RelatedItem({
           {randomProducts.map((product) => (
             <ProductCard
               starsIcon
-              seenIcon
-              wishlistIcon
               product={product}
               key={product.id}
               source={source}

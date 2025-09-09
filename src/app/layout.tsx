@@ -12,7 +12,7 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: "Online Store - Home",
+  title: "Exclusive Store",
   description: "Discover the best products in our online store",
   keywords: ["Products", "Shopping", "Offers"],
 };

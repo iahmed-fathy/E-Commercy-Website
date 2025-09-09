@@ -1,3 +1,4 @@
+import { RootState } from "@/store";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 type CheckoutState = {
@@ -32,7 +33,7 @@ const checkoutSlice = createSlice({
 export const { setQuantities, updateQuantity, setShipping } =
   checkoutSlice.actions;
 
-export const selectQuantities = (state: any) => state.checkout.quantities;
-export const selectShipping = (state: any) => state.checkout.shipping;
+export const selectQuantities = (state: RootState) => state.checkout.quantities;
+export const selectShipping = (state: RootState) => state.checkout.shipping;
 
 export default checkoutSlice.reducer;

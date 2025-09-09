@@ -72,8 +72,12 @@ export default function EditPtofileForm() {
       }
 
       alert("تم تحديث البيانات بنجاح");
-    } catch (error: any) {
-      alert("حدث خطأ: " + error.message);
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        alert("حدث خطأ: " + error.message);
+      } else {
+        console.error("حدث خطأ غير معروف");
+      }
     }
   };
 
