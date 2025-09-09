@@ -15,7 +15,15 @@ export default function FlashSalesComponent() {
   const scrollRef = useRef<HTMLDivElement>(null);
 
   const now = new Date();
-  now.setDate(now.getDate() + 1);
+  const endOfDayLocal = new Date(
+    now.getFullYear(),
+    now.getMonth(),
+    now.getDate(),
+    23,
+    59,
+    59
+  );
+  const targetDateUTC = endOfDayLocal.toISOString();
 
   const scrollLeft = () => {
     if (scrollRef.current) {
@@ -44,7 +52,7 @@ export default function FlashSalesComponent() {
       <div className="flex items-center max-sm:flex-col justify-between max-sm:gap-6">
         <div className="flex gap-15 max-sm:gap-5 items-center max-sm:items-start max-sm:flex-col">
           <h2 className="font-semibold text-[36px]">Flash Sales</h2>
-          <FlashSalesTimer targetDate={now.toLocaleDateString()} />
+          <FlashSalesTimer targetDate={targetDateUTC} />
         </div>
         <div className="flex gap-4 max-sm:self-start">
           <button className="cursor-pointer" onClick={scrollLeft}>

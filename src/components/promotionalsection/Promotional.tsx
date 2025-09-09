@@ -4,7 +4,15 @@ import Link from "next/link";
 
 export default function Promotional() {
   const now = new Date();
-  now.setDate(now.getDate() + 1);
+  const endOfDayLocal = new Date(
+    now.getFullYear(),
+    now.getMonth(),
+    now.getDate(),
+    23,
+    59,
+    59
+  );
+  const targetDateUTC = endOfDayLocal.toISOString();
 
   return (
     <section className="bg-black p-10 flex max-sm:flex-col gap-10">
@@ -15,7 +23,7 @@ export default function Promotional() {
         <h4 className="font-semibold text-[48px] max-sm:text-center text-white">
           Enhance Your Music Experience
         </h4>
-        <PromotionalTimer targetDate={now.toLocaleDateString()} />
+        <PromotionalTimer targetDate={targetDateUTC} />
         <Link
           href={"/flash-sale/product/23"}
           className="bg-[#00FF66] text-white text-[16px] font-semibold flex justify-center items-center h-[56px] w-[234px] rounded-[4px] cursor-pointer hover:animate-pulse animate-infinite animate-delay-500 animate-ease-in-out max-sm:self-center mt-10 self-start"

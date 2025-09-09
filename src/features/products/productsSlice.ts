@@ -33,7 +33,7 @@ const productsSlice = createSlice({
       state.favorites = state.favorites.filter((id) => id !== action.payload);
     },
     setSearchValue: (state, action: PayloadAction<string>) => {
-      state.searchValue = action.payload;
+      state.searchValue = action.payload.toLocaleLowerCase();
     },
   },
 });
