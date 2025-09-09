@@ -4,18 +4,14 @@ import ProductImgsPreview from "@/components/productDetails/ProductImgsPreview";
 import ProductInf from "@/components/productDetails/ProductInf";
 import RelatedItem from "@/components/relatedItem/RelatedItem";
 import { selectAllProducts } from "@/features/products/productsSlice";
-import { notFound } from "next/navigation";
+import { notFound, useParams } from "next/navigation";
 import { useSelector } from "react-redux";
-type Params = {
-  params: {
-    source: string;
-    id: string;
-  };
-};
-export default function DetailsPage({ params }: Params) {
-  const products = useSelector(selectAllProducts);
 
-  const { source, id } = params;
+export default function DetailsPage() {
+  const products = useSelector(selectAllProducts);
+  const params = useParams();
+  const id = params.id as string;
+  const source = params.source as string;
   const product = products.find((p) => p.id === id);
 
   if (!product) {

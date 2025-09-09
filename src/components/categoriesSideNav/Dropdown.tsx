@@ -1,8 +1,5 @@
-"use client";
-
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 import Link from "next/link";
-import { useState } from "react";
 
 type category = {
   categoryName: string;
@@ -22,7 +19,6 @@ export default function Dropdown({
   categories,
   triggerLink,
 }: DropdownType) {
-  const [open, setOpen] = useState(false);
   return triggerLink ? (
     <Link
       href={triggerLink}
@@ -31,10 +27,10 @@ export default function Dropdown({
       {Trigger}
     </Link>
   ) : (
-    <div className="w-[250px] hover:scale-105">
-      <DropdownMenu.Root open={open} onOpenChange={setOpen}>
+    <div className="w-[250px] ">
+      <DropdownMenu.Root>
         <DropdownMenu.Trigger asChild>
-          <button className="px-4 py-2 text-black rounded cursor-pointer focus:outline-0 w-fit max-sm:w-fit">
+          <button className="px-4 py-2 text-black rounded cursor-pointer focus:outline-0 w-fit max-sm:w-fit hover:scale-105">
             <div className="flex justify-between items-center gap-4">
               <div>{Trigger}</div>
               <div>
@@ -56,17 +52,20 @@ export default function Dropdown({
         </DropdownMenu.Trigger>
 
         <DropdownMenu.Content
-          className="min-w-[120px] bg-white shadow-md rounded p-2 sm:ms-52 sm:mt-[-30px]"
+          className="w-[200px] bg-white shadow-md rounded p-2 z-50 sm:mt-[-10px]"
           sideOffset={5}
         >
           {Content}
 
           {categories?.map((category) => (
             <DropdownMenu.Item
-              className="px-3 py-2 rounded hover:bg-gray-100 cursor-pointer focus:outline-0 "
+              className="px-3 py-2 rounded hover:bg-gray-100 w-full focus:outline-0"
               key={category.categoryPageUrl}
             >
-              <Link href={category.categoryPageUrl}>
+              <Link
+                href={category.categoryPageUrl}
+                className="flex items-center"
+              >
                 {category.categoryName}
               </Link>
             </DropdownMenu.Item>

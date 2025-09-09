@@ -6,6 +6,7 @@ import BestSelling from "@/components/bestSelling/BestSelling";
 import Promotional from "@/components/promotionalsection/Promotional";
 import OurProducts from "@/components/ourProducts/OurProducts";
 import FeaturesBar from "@/components/featuresBar/FeaturesBar";
+import NewArrival from "@/components/newArrival/NewArrival";
 
 export default function Home() {
   return (
@@ -21,6 +22,7 @@ export default function Home() {
       <BestSelling />
       <Promotional />
       <OurProducts />
+      <NewArrival />
       <FeaturesBar />
     </div>
   );

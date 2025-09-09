@@ -38,6 +38,17 @@ export default function Breadcrumb({ productName }: BreadcrumbType) {
           items.push({ label: "404 ERROR" });
         }
         i++;
+      } else if (current === "sub-category" && paths[i + 1]) {
+        const href = "/";
+        if (productName) {
+          items.push({
+            label: `${productName?.toUpperCase()}`,
+            href,
+          });
+        } else {
+          items.push({ label: "404 ERROR" });
+        }
+        i++;
       } else {
         const href = "/" + paths.slice(0, i + 1).join("/");
         items.push({

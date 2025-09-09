@@ -117,7 +117,7 @@ export const products: Products = [
     stockQuantity: 200,
     colors: [],
     sizes: ["Full set"],
-    tags: ["customized-skincare", "Health & Beauty"],
+    tags: ["customized-skincare", "Health", "Medicine"],
     gallery: [
       "/products/Curology Product Set.png",
       "/products/test.png",
@@ -185,7 +185,7 @@ export const products: Products = [
       { color: "Neon", hexCode: "#39FF14" },
     ],
     sizes: ["US 7", "US 8", "US 9", "US 10"],
-    tags: ["soccer", "athletic", "Sports & Outdoor"],
+    tags: ["soccer", "athletic", "Sports"],
     gallery: [
       "/products/Football Shoes.png",
       "/products/test.png",
@@ -217,7 +217,7 @@ export const products: Products = [
     stockQuantity: 60,
     colors: [],
     sizes: ["90ml"],
-    tags: ["luxury", "oud", "Perfume", "Health & Beauty"],
+    tags: ["luxury", "oud", "Perfume", "Health"],
     gallery: [
       "/products/Gucci Intense Oud Eau de Parfum.png",
       "/products/test.png",
@@ -249,7 +249,7 @@ export const products: Products = [
     stockQuantity: 180,
     colors: [],
     sizes: ["10kg", "20kg"],
-    tags: ["pet-food", "dog-nutrition", "Groceries & Pets"],
+    tags: ["pet-food", "dog-nutrition", "Groceries"],
     gallery: [
       "/products/Breed Dry Dog Food.png",
       "/products/test.png",
@@ -349,7 +349,7 @@ export const products: Products = [
       { color: "Pink", hexCode: "#FFC0CB" },
     ],
     sizes: [],
-    tags: ["kid-friendly", "Baby’s & Toys"],
+    tags: ["kid-friendly", "Kids"],
     gallery: [
       "/products/Kids Electric Car.png",
       "/products/test.png",
@@ -451,7 +451,7 @@ export const products: Products = [
       { color: "Black", hexCode: "#000000" },
     ],
     sizes: ["One Size"],
-    tags: ["luxury", "travel", "Men’s Fashion"],
+    tags: ["luxury", "travel", "Men's Fashion"],
     gallery: [
       "/products/Gucci Duffle Bag.png",
       "/products/test.png",
@@ -486,7 +486,7 @@ export const products: Products = [
       { color: "Oak", hexCode: "#A55233" },
     ],
     sizes: ["One Size"],
-    tags: ["furniture", "storage", "Home & Lifestyle"],
+    tags: ["furniture", "storage", "Lifestyle"],
     gallery: [
       "/products/Small Bookshelf.png",
       "/products/test.png",
@@ -521,7 +521,7 @@ export const products: Products = [
       { color: "Blue", hexCode: "#0000FF" },
     ],
     sizes: ["S", "M", "L", "XL"],
-    tags: ["winter-wear", "outdoor", "Men’s Fashion"],
+    tags: ["winter-wear", "outdoor", "Men's Fashion"],
     gallery: [
       "/products/The North Coat.png",
       "/products/test.png",
@@ -556,7 +556,7 @@ export const products: Products = [
       { color: "Black", hexCode: "#000000" },
     ],
     sizes: ["One Size"],
-    tags: ["office-chair", "ergonomic", "Home & Lifestyle"],
+    tags: ["office-chair", "ergonomic", "Lifestyle"],
     gallery: [
       "/products/S-Series Comfort Chair.png",
       "/products/test.png",
@@ -656,7 +656,7 @@ export const products: Products = [
       { color: "Burgundy", hexCode: "#800020" },
     ],
     sizes: ["S", "M", "L", "XL"],
-    tags: ["fashion", "jacket", "Woman’s Fashion"],
+    tags: ["fashion", "jacket", "Woman's Fashion"],
     gallery: [
       "/products/Quilted Satin Jacket.png",
       "/products/test.png",

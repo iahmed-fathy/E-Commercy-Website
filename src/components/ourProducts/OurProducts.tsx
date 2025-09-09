@@ -99,7 +99,7 @@ export default function OurProducts() {
         })}
       </div>
       <Link
-        href={"/our-product"}
+        href={"/our-products"}
         className="bg-[#DB4444] text-white text-[16px] font-semibold flex justify-center items-center h-[56px] w-[234px] rounded-[4px] cursor-pointer hover:animate-pulse animate-infinite animate-delay-500 animate-ease-in-out self-center mt-10"
       >
         View All Products

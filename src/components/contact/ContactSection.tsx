@@ -3,7 +3,7 @@ import Image from "next/image";
 export default function Contact() {
   return (
     <section className="flex gap-10 mt-10 max-sm:flex-col">
-      <div className="flex flex-col items-center p-8 shadow gap-8 rounded-[4px] w-1/3 max-sm:w-full">
+      <div className="flex flex-col items-center p-8 shadow gap-8 rounded-[4px] max-sm:w-full">
         <div className="flex flex-col gap-4 w-full">
           <div className="flex gap-2 items-center">
             <Image
@@ -39,16 +39,16 @@ export default function Contact() {
           </address>
         </div>
       </div>
-      <form className="w-2/3 max-sm:w-full p-10 shadow rounded-[4px] flex flex-col gap-10">
-        <div className="flex max-sm:flex-col max-sm:items-start gap-5 justify-between items-center">
+      <form className="w-2/3 max-sm:w-full p-10 max-xl:p-5 shadow rounded-[4px] flex flex-col gap-10">
+        <div className="flex max-sm:flex-col max-sm:items-start gap-4 justify-between items-center">
           <div className="relative w-fit">
             <input
               type="text"
               placeholder="Your Name"
               required
-              className="peer py-2 px-4 focus:outline-0 bg-[#F5F5F5] w-[235px] h-[50px] rounded-[4px]"
+              className="peer py-2 px-4 focus:outline-0 bg-[#F5F5F5] w-[235px] max-xl:w-[220px] h-[50px] rounded-[4px]"
             />
-            <span className="absolute right-1/2 top-1/2 transform -translate-y-1/2 text-red-300 pointer-events-none peer-focus:hidden">
+            <span className="absolute right-[10px] top-[20px] transform -translate-y-1/2 text-red-300 pointer-events-none peer-focus:hidden">
               *
             </span>
           </div>
@@ -57,9 +57,9 @@ export default function Contact() {
               type="text"
               placeholder="Your Email"
               required
-              className="peer py-2 px-4 focus:outline-0 bg-[#F5F5F5] w-[235px] h-[50px] rounded-[4px]"
+              className="peer py-2 px-4 focus:outline-0 bg-[#F5F5F5] w-[235px] max-xl:w-[220px] h-[50px] rounded-[4px]"
             />
-            <span className="absolute right-1/2 top-1/2 transform -translate-y-1/2 text-red-300 pointer-events-none peer-focus:hidden">
+            <span className="absolute right-[10px] top-[20px] transform -translate-y-1/2 text-red-300 pointer-events-none peer-focus:hidden">
               *
             </span>
           </div>
@@ -68,9 +68,9 @@ export default function Contact() {
               type="text"
               placeholder="your Phone"
               required
-              className="peer py-2 px-4 focus:outline-0 bg-[#F5F5F5] w-[235px] h-[50px] rounded-[4px]"
+              className="peer py-2 px-4 focus:outline-0 bg-[#F5F5F5] w-[235px] max-xl:w-[220px] h-[50px] rounded-[4px]"
             />
-            <span className="absolute right-1/2 top-1/2 transform -translate-y-1/2 text-red-300 pointer-events-none peer-focus:hidden">
+            <span className="absolute right-[10px] top-[20px] transform -translate-y-1/2 text-red-300 pointer-events-none peer-focus:hidden">
               *
             </span>
           </div>

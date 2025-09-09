@@ -7,11 +7,13 @@ type ProductsState = {
   items: Product[];
   favorites: string[];
   cart: string[];
+  searchValue: string;
 };
 const initialState: ProductsState = {
   items: seedProducts,
   favorites: [],
   cart: [],
+  searchValue: "",
 };
 
 const productsSlice = createSlice({
@@ -30,6 +32,9 @@ const productsSlice = createSlice({
     removeFromFavorites: (state, action: PayloadAction<string>) => {
       state.favorites = state.favorites.filter((id) => id !== action.payload);
     },
+    setSearchValue: (state, action: PayloadAction<string>) => {
+      state.searchValue = action.payload;
+    },
   },
 });
 
@@ -38,6 +43,7 @@ export const {
   removeFromCart,
   addToFavorites,
   removeFromFavorites,
+  setSearchValue,
 } = productsSlice.actions;
 
 export default productsSlice.reducer;
@@ -53,6 +59,18 @@ export const selectByCategory =
   (category: string) => (state: { products: ProductsState }) =>
     state.products.items.filter(
       (p) => p.category.toLocaleLowerCase() === category
+    );
+
+export const selectSearchValue = (state: { products: ProductsState }) =>
+  state.products.searchValue;
+
+export const selectSearchedProducts =
+  (value: string) => (state: { products: ProductsState }) =>
+    state.products.items.filter(
+      (p) =>
+        p.title.toLocaleLowerCase().includes(value) ||
+        p.description.toLocaleLowerCase().includes(value) ||
+        p.category.toLowerCase().includes(value)
     );
 
 export const selectByTag =
