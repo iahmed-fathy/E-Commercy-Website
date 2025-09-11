@@ -10,6 +10,7 @@ import Image from "next/image";
 import Link from "next/link";
 import Stars from "../reactStarts/ReactStars";
 import useProductActions from "../../../hooks/useProductActions";
+import { useTranslations } from "next-intl";
 
 type ProductCardProps = {
   product: Product;
@@ -27,6 +28,8 @@ export default function ProductCard({
   source,
   inWishlistPage,
 }: ProductCardProps) {
+  const t = useTranslations("tags");
+  const p = useTranslations("products");
   const favoriteProducts = useSelector(selectFavoriteIds);
   const cartProducts = useSelector(selectCartIds);
 
@@ -44,10 +47,10 @@ export default function ProductCard({
     >
       <div className="flex flex-col gap-1 w-full group">
         <div className="relative rounded-[4px] flex flex-col bg-[#F5F5F5] w-full p-4 h-[250px] overflow-hidden item">
-          <div className="flex gap-2">
+          <div className="flex gap-2 self-end">
             {product.createdAt > sevenDaysAgoString && (
               <p className="text-white bg-[#00FF66] py-1 w-[55px] text-center rounded-[4px] text-[12px] z-1">
-                New
+                {t("New")}
               </p>
             )}
             {product.discount > 0 && (
@@ -65,7 +68,7 @@ export default function ProductCard({
           />
           {inWishlistPage && (
             <button
-              className={`favoritesButton cursor-pointer`}
+              className={`cursor-pointer`}
               onClick={
                 favoriteProducts.includes(product.id)
                   ? handleRemoveFromFavorites
@@ -73,7 +76,7 @@ export default function ProductCard({
               }
             >
               <svg
-                className={`absolute top-4 right-2 hover:fill-[#DB4444]`}
+                className={`absolute top-4 rtl:right-2 ltr:left-4 hover:fill-[#DB4444]`}
                 width="34"
                 height="34"
                 viewBox="0 0 34 34"
@@ -101,7 +104,7 @@ export default function ProductCard({
               }
             >
               <svg
-                className={`absolute top-4 right-2  ${
+                className={`absolute top-4 rtl:right-2 ltr:left-4  ${
                   favoriteProducts.includes(product.id) && "fill-[#DB4444]"
                 }`}
                 width="34"
@@ -124,7 +127,7 @@ export default function ProductCard({
           {!inWishlistPage && (
             <button className="seenIcon cursor-pointer">
               <svg
-                className="absolute top-16 right-2"
+                className="absolute top-15 rtl:right-2 ltr:left-4"
                 width="34"
                 height="34"
                 viewBox="0 0 34 34"
@@ -170,13 +173,13 @@ export default function ProductCard({
                 <span>Remove From</span>
               ) : (
                 <span>Add To</span>
-              )}{" "}
+              )}
               Cart
             </span>
           </button>
         </div>
         <p className="font-medium text-[16px] h-6 overflow-hidden">
-          {product.title}
+          {p(`${product.id}.title`)}
         </p>
         <p className="font-medium text-[16px] flex gap-2">
           <span className="text-[#DB4444]">{product.finalPrice}$</span>

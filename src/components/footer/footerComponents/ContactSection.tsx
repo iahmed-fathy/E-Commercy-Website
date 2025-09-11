@@ -1,19 +1,26 @@
-export default function ContactSection() {
+import { getTranslations } from "next-intl/server";
+
+export default async function ContactSection() {
+  const t = await getTranslations("headers");
+
   return (
     <ul className="flex flex-col gap-4">
-      <h6 className="font-Medium text-[24px]">Support</h6>
+      <h6 className="font-Medium text-[24px]">{t("Support")}</h6>
       <li>
         <a href="#" className="font-normal text-[16px]">
-          111 Bijoy sarani, Dhaka, DH 1515, Bangladesh.
+          {t("address")}
         </a>
       </li>
       <li>
-        <a href="#" className="font-normal text-[16px]">
+        <a
+          href="mailto:exclusive@gmail.com"
+          className="font-normal text-[16px]"
+        >
           exclusive@gmail.com
         </a>
       </li>
       <li>
-        <a href="#" className="font-normal text-[16px]">
+        <a href="tel:+88015888889999" className="font-normal text-[16px]">
           +88015-88888-9999
         </a>
       </li>

@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
+import { useTranslations } from "next-intl";
 
 type TimeLeftType = {
   days: number;
@@ -13,6 +14,8 @@ type TargetDateType = {
 };
 
 function PromotionalTimer({ targetDate }: TargetDateType) {
+  const t = useTranslations("headers");
+
   const [timeLeft, setTimeLeft] = useState<TimeLeftType>({
     days: 0,
     hours: 0,
@@ -54,28 +57,28 @@ function PromotionalTimer({ targetDate }: TargetDateType) {
         <span className="font-bold text-[16px]">
           {String(timeLeft?.days).padStart(2, "0")}
         </span>
-        <span className="font-medium text-[10px]">Days</span>
+        <span className="font-medium text-[10px]">{t("Days")}</span>
       </div>
 
       <div className="flex flex-col items-center bg-white rounded-full w-[60px] h-[60px] justify-center">
         <span className="font-bold text-[16px]">
           {String(timeLeft?.hours).padStart(2, "0")}
         </span>
-        <span className="font-medium text-[10px]">Hours </span>
+        <span className="font-medium text-[10px]">{t("Hours")} </span>
       </div>
 
       <div className="flex flex-col items-center bg-white rounded-full w-[60px] h-[60px] justify-center">
         <span className="font-bold text-[16px]">
           {String(timeLeft?.minutes).padStart(2, "0")}
         </span>
-        <span className="font-medium text-[10px]">Minutes </span>
+        <span className="font-medium text-[10px]">{t("Minutes")} </span>
       </div>
 
       <div className="flex flex-col items-center bg-white rounded-full w-[60px] h-[60px] justify-center">
         <span className="font-bold text-[16px]">
           {String(timeLeft?.seconds).padStart(2, "0")}
         </span>
-        <span className="font-medium text-[10px]">Seconds </span>
+        <span className="font-medium text-[10px]">{t("Seconds")} </span>
       </div>
     </div>
   );

@@ -5,8 +5,11 @@ import { useRef } from "react";
 import { useSelector } from "react-redux";
 import ProductCard from "../productCard/ProductCard";
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 
 export default function OurProducts() {
+  const t = useTranslations("headers");
+  const isRtl = typeof document !== "undefined" && document.dir === "rtl";
   const products = useSelector(selectAllProducts);
 
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -16,19 +19,29 @@ export default function OurProducts() {
 
   const scrollLeft = () => {
     if (scrollRef.current) {
-      scrollRef.current.scrollBy({
-        left: -300,
-        behavior: "smooth",
-      });
+      isRtl
+        ? scrollRef.current.scrollBy({
+            left: 300,
+            behavior: "smooth",
+          })
+        : scrollRef.current.scrollBy({
+            left: -300,
+            behavior: "smooth",
+          });
     }
   };
 
   const scrollRight = () => {
     if (scrollRef.current) {
-      scrollRef.current.scrollBy({
-        left: 300,
-        behavior: "smooth",
-      });
+      isRtl
+        ? scrollRef.current.scrollBy({
+            left: -300,
+            behavior: "smooth",
+          })
+        : scrollRef.current.scrollBy({
+            left: 300,
+            behavior: "smooth",
+          });
     }
   };
 
@@ -37,11 +50,13 @@ export default function OurProducts() {
       <div className="flex gap-4 items-center">
         <div className="w-5 h-10 bg-[#DB4444] rounded-[4px]"></div>
         <h6 className="font-semibold text-[#DB4444] text-[16px]">
-          Our Products
+          {t("Our Products")}
         </h6>
       </div>
       <div className="flex items-center max-sm:flex-col justify-between max-sm:gap-6">
-        <h2 className="font-semibold text-[36px]">Explore Our Products</h2>
+        <h2 className="font-semibold text-[36px]">
+          {t("Explore Our Products")}
+        </h2>
         <div className="flex gap-4 max-sm:self-start">
           <button className="cursor-pointer" onClick={scrollLeft}>
             <svg
@@ -50,6 +65,7 @@ export default function OurProducts() {
               viewBox="0 0 46 46"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
+              className="rtl:rotate-180"
             >
               <circle cx="23" cy="23" r="23" fill="#F5F5F5" />
               <path
@@ -69,6 +85,7 @@ export default function OurProducts() {
               viewBox="0 0 46 46"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
+              className="rtl:rotate-180"
             >
               <circle cx="23" cy="23" r="23" fill="#F5F5F5" />
               <path
@@ -102,7 +119,7 @@ export default function OurProducts() {
         href={"/our-products"}
         className="bg-[#DB4444] text-white text-[16px] font-semibold flex justify-center items-center h-[56px] w-[234px] rounded-[4px] cursor-pointer hover:animate-pulse animate-infinite animate-delay-500 animate-ease-in-out self-center mt-10"
       >
-        View All Products
+        {t("View All Products")}
       </Link>
     </section>
   );

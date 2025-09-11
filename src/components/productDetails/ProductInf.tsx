@@ -10,23 +10,25 @@ import {
   selectFavoriteIds,
 } from "@/features/products/productsSlice";
 import { useDispatch } from "react-redux";
+import { useTranslations } from "next-intl";
 
 type ProductInfType = {
   product?: Product;
 };
 
 export default function ProductInf({ product }: ProductInfType) {
+  const t = useTranslations("products");
   const dispatch = useDispatch();
   const favoriteProducts = useSelector(selectFavoriteIds);
   const [quantity, setQuantity] = useState(1);
 
-  if (!product?.id) return;
+  if (!product?.id) return null;
 
   const changeQuantity = (method: string) => {
     if (method === "increase") {
-      setQuantity((prev) => (prev += 1));
+      setQuantity((prev) => prev + 1);
     } else if (method === "decrease" && quantity > 1) {
-      setQuantity((prev) => (prev -= 1));
+      setQuantity((prev) => prev - 1);
     }
   };
 
@@ -44,48 +46,50 @@ export default function ProductInf({ product }: ProductInfType) {
     dispatch(removeFromFavorites(product.id));
   };
 
+  const inStockText =
+    product?.stockQuantity && product.stockQuantity > 10
+      ? t("inStock")
+      : product?.stockQuantity === 0
+      ? t("outOfStock")
+      : t("piecesAvailable", { count: product?.stockQuantity || 0 });
+
   return (
     <section className="flex flex-col justify-between w-[400px] max-sm:w-[300]">
-      <h2 className="font-semibold text-[24px]">{product?.title}</h2>
+      <h2 className="font-semibold text-[24px]">
+        {t(`${product.id}.title`, { fallback: product.title })}
+      </h2>
       <div className="flex gap-4 items-center">
         <Stars value={product?.rating} size={20} />
         <span className="text-black/40 font-semibold text-[14px]">
-          ({product?.reviewsCount} Reviews)
+          ({product?.reviewsCount} {t("reviews")})
         </span>
         <span className="text-black/40">|</span>
         <p>
-          {product?.stockQuantity && product?.stockQuantity > 10 ? (
-            <span className="text-[#00FF66] font-normal text-[14px]">
-              In Stock
-            </span>
-          ) : product?.stockQuantity === 0 ? (
-            <span className="text-[#DB4444] font-normal text-[14px]">
-              Out Of Stock
-            </span>
-          ) : (
-            <span className="text-black/40 font-normal text-[14px]">
-              {product?.stockQuantity} Piece Available
-            </span>
-          )}
+          <span
+            className={`font-normal text-[14px] ${
+              product?.stockQuantity === 0 ? "text-[#DB4444]" : "text-[#00FF66]"
+            }`}
+          >
+            {inStockText}
+          </span>
         </p>
       </div>
       <span className="text-[24px]">${product?.finalPrice.toFixed(2)}</span>
-      <p className="text-[14px] leading-5">{product?.description}</p>
+      <p className="text-[14px] leading-5">
+        {t(`${product.id}.description`, { fallback: product.description })}
+      </p>
       <hr className="border-t-2 border-black/40 my-4" />
       <form className="flex flex-col gap-4">
         {product?.colors && product?.colors.length > 0 && (
           <fieldset className="flex items-center gap-3">
-            <label className="text-[20px]">Colours:</label>
+            <label className="text-[20px]">{t("coloursLabel")}</label>
             {product.colors.map((color, index) => (
               <input
                 key={color.hexCode}
                 type="radio"
                 name="color"
                 value={color.color}
-                className={`
-                  w-5 h-5 rounded-full cursor-pointer border-2 
-                  appearance-none checked:scale-150 
-                `}
+                className="w-5 h-5 rounded-full cursor-pointer border-2 appearance-none checked:scale-150"
                 style={{ background: `${color.hexCode}` }}
                 defaultChecked={index === 0}
               />
@@ -95,7 +99,9 @@ export default function ProductInf({ product }: ProductInfType) {
 
         {product?.sizes && product?.sizes.length > 0 && (
           <fieldset className="flex gap-2">
-            <label className="mb-2 font-medium text-[20px]">Size:</label>
+            <label className="mb-2 font-medium text-[20px]">
+              {t("sizeLabel")}
+            </label>
             {product.sizes.map((size, index) => (
               <label key={size} className="cursor-pointer">
                 <input
@@ -105,12 +111,7 @@ export default function ProductInf({ product }: ProductInfType) {
                   className="peer hidden"
                   defaultChecked={index === 0}
                 />
-                <span
-                  className="w-full p-1 flex items-center justify-center rounded-md 
-                     border-2 border-black/40 text-black font-medium 
-                     peer-checked:bg-[#DB4444] peer-checked:text-white 
-                     peer-checked:border-[#DB4444] transition text-[14px]"
-                >
+                <span className="w-full p-1 flex items-center justify-center rounded-md border-2 border-black/40 text-black font-medium peer-checked:bg-[#DB4444] peer-checked:text-white peer-checked:border-[#DB4444] transition text-[14px]">
                   {size}
                 </span>
               </label>
@@ -120,7 +121,7 @@ export default function ProductInf({ product }: ProductInfType) {
         <div className="flex justify-between max-sm:flex-col max-sm:gap-4 max-sm:items-center mb-2">
           <div className="h-[44px] flex items-center border-2 border-black/40 w-[159px] rounded-[4px] overflow-hidden ">
             <button
-              className="text-black text-[30px]  hover:bg-[#DB4444] hover:text-white w-[41px] cursor-pointer"
+              className="text-black text-[30px] hover:bg-[#DB4444] hover:text-white w-[41px] cursor-pointer"
               type="button"
               onClick={() => changeQuantity("decrease")}
             >
@@ -130,11 +131,12 @@ export default function ProductInf({ product }: ProductInfType) {
               className="text-center w-[80px] h-full border-x-2 border-black/40 input--no-spin"
               type="number"
               name="quantity"
-              defaultValue={quantity}
+              value={quantity}
               min="1"
+              readOnly
             />
             <button
-              className="text-black text-[30px] hover:bg-[#DB4444] hover:text-white w-[41px]  cursor-pointer"
+              className="text-black text-[30px] hover:bg-[#DB4444] hover:text-white w-[41px] cursor-pointer"
               type="button"
               onClick={() => changeQuantity("increase")}
             >
@@ -145,7 +147,7 @@ export default function ProductInf({ product }: ProductInfType) {
             type="submit"
             className="font-medium w-[159px] h-[44px] text-[16px] bg-[#DB4444] rounded-[4px] text-white cursor-pointer hover:animate-pulse animate-infinite animate-delay-500 animate-ease-in-out"
           >
-            Buy Now
+            {t("buyNow")}
           </button>
           <button
             className="rounded-[4px] border-1 border/black/40 flex items-center justify-center w-[40px] h-[40px] cursor-pointer"
@@ -158,7 +160,7 @@ export default function ProductInf({ product }: ProductInfType) {
           >
             <svg
               className={`${
-                favoriteProducts.includes(product?.id) && "fill-[#DB4444]"
+                favoriteProducts.includes(product?.id) ? "fill-[#DB4444]" : ""
               }`}
               width="22"
               height="20"
@@ -246,9 +248,13 @@ export default function ProductInf({ product }: ProductInfType) {
             </svg>
           </div>
           <div>
-            <p className="font-medium text-[16px]">{product?.shippingInfo}</p>
+            <p className="font-medium text-[16px]">
+              {t(`${product.id}.shippingInfo`, {
+                fallback: product.shippingInfo ?? "",
+              })}
+            </p>
             <a href="#" className="font-medium text-[12px] underline">
-              Enter your postal code for Delivery Availability
+              {t("enterPostalCode")}
             </a>
           </div>
         </div>
@@ -286,11 +292,11 @@ export default function ProductInf({ product }: ProductInfType) {
             </svg>
           </div>
           <div>
-            <p className="font-medium text-[16px]">Return Delivery</p>
+            <p className="font-medium text-[16px]">{t("returnDelivery")}</p>
             <p className="font-medium text-[12px]">
-              Free 30 Days Delivery Returns.{" "}
-              <a href="#" className=" underline">
-                Details
+              {t("freeReturnDetails")}{" "}
+              <a href="#" className="underline">
+                {t("details")}
               </a>
             </p>
           </div>

@@ -1,19 +1,19 @@
-import BrowseByCategory from "@/components/browseByCategory/page";
-import CategoriesSideNav from "../components/categoriesSideNav/CategoriesSideNav";
-import FlashSalesComponent from "../components/flashSales/FlashSalesComponent";
-import MainSwiperSlide from "../components/swiperSlide/MainSwiperSlide";
+import BrowseByCategory from "@/components/browseByCategory/BrowseByCategory";
 import BestSelling from "@/components/bestSelling/BestSelling";
 import Promotional from "@/components/promotionalsection/Promotional";
 import OurProducts from "@/components/ourProducts/OurProducts";
 import FeaturesBar from "@/components/featuresBar/FeaturesBar";
 import NewArrival from "@/components/newArrival/NewArrival";
+import CategoriesSideNav from "@/components/categoriesSideNav/CategoriesSideNav";
+import MainSwiperSlide from "@/components/swiperSlide/MainSwiperSlide";
+import FlashSalesComponent from "@/components/flashSales/FlashSalesComponent";
 
 export default function Home() {
   return (
     <div className="flex flex-col gap-20">
       <section className="flex max-sm:flex-col">
         <CategoriesSideNav />
-        <div className="sm:m-auto sm:px-4 overflow-hidden">
+        <div className="sm:m-auto sm:px-4 overflow-hidden" dir="rtl">
           <MainSwiperSlide />
         </div>
       </section>

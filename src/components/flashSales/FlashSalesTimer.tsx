@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
+import { useTranslations } from "next-intl";
 
 type TimeLeftType = {
   days: number;
@@ -13,6 +14,7 @@ type TargetDateType = {
 };
 
 function FlashSalesTimer({ targetDate }: TargetDateType) {
+  const t = useTranslations("headers");
   const [timeLeft, setTimeLeft] = useState<TimeLeftType>({
     days: 0,
     hours: 0,
@@ -52,7 +54,7 @@ function FlashSalesTimer({ targetDate }: TargetDateType) {
   return (
     <div className="grid grid-cols-8 gap-2 items-center text-center justify-between w-[350px] mx-auto">
       <div className="flex flex-col items-center">
-        <span className="font-medium text-[16px]">Days</span>
+        <span className="font-medium text-[16px]">{t("Days")}</span>
         <span className="font-bold text-[32px]">
           {String(timeLeft?.days).padStart(2, "0")}
         </span>
@@ -61,7 +63,7 @@ function FlashSalesTimer({ targetDate }: TargetDateType) {
       <span className="font-bold text-[#E07575] text-[32px] self-end">:</span>
 
       <div className="flex flex-col items-center">
-        <span className="font-medium text-[16px]">Hours </span>
+        <span className="font-medium text-[16px]">{t("Hours")} </span>
         <span className="font-bold text-[32px]">
           {String(timeLeft?.hours).padStart(2, "0")}{" "}
         </span>
@@ -70,7 +72,7 @@ function FlashSalesTimer({ targetDate }: TargetDateType) {
       <span className="font-bold text-[#E07575] text-[32px] self-end">:</span>
 
       <div className="flex flex-col items-center">
-        <span className="font-medium text-[16px]">Minutes </span>
+        <span className="font-medium text-[16px]">{t("Minutes")} </span>
         <span className="font-bold text-[32px]">
           {String(timeLeft?.minutes).padStart(2, "0")}{" "}
         </span>
@@ -79,7 +81,7 @@ function FlashSalesTimer({ targetDate }: TargetDateType) {
       <span className="font-bold text-[#E07575] text-[32px] self-end">:</span>
 
       <div className="flex flex-col items-center">
-        <span className="font-medium text-[16px]">Seconds </span>
+        <span className="font-medium text-[16px]">{t("Seconds")} </span>
         <span className="font-bold text-[32px]">
           {String(timeLeft?.seconds).padStart(2, "0")}
         </span>

@@ -1,11 +1,15 @@
-export default function DownloadSection() {
+import { getTranslations } from "next-intl/server";
+
+export default async function DownloadSection() {
+  const t = await getTranslations("headers");
+
   return (
     <div className="flex flex-col gap-4">
-      <h6 className="font-Medium text-[24px]">Download App</h6>
+      <h6 className="font-Medium text-[24px]">{t("Download App")}</h6>
 
       <div>
         <p className="font-medium text-[12px] text-[#FAFAFA] mb-2">
-          Save $3 with App New User Only
+          {t("Save $3 with App New User Only")}
         </p>
         <div className="flex gap-2">
           <div>

@@ -1,8 +1,11 @@
 import Image from "next/image";
 import PromotionalTimer from "./PromotionalTimer";
 import Link from "next/link";
+import { getTranslations } from "next-intl/server";
 
-export default function Promotional() {
+export default async function Promotional() {
+  const t = await getTranslations("headers");
+
   const now = new Date();
   const endOfDayLocal = new Date(
     now.getFullYear(),
@@ -18,17 +21,17 @@ export default function Promotional() {
     <section className="bg-black p-10 flex max-sm:flex-col gap-10">
       <div className="flex flex-col gap-4 w-1/2 max-sm:w-full">
         <span className="text-[#00FF66] text-[16px] font-semibold max-sm:text-center">
-          Categories
+          {t("Categories")}
         </span>
         <h4 className="font-semibold text-[48px] max-sm:text-center text-white">
-          Enhance Your Music Experience
+          {t("PromotionalTitle")}
         </h4>
         <PromotionalTimer targetDate={targetDateUTC} />
         <Link
           href={"/flash-sale/product/23"}
           className="bg-[#00FF66] text-white text-[16px] font-semibold flex justify-center items-center h-[56px] w-[234px] rounded-[4px] cursor-pointer hover:animate-pulse animate-infinite animate-delay-500 animate-ease-in-out max-sm:self-center mt-10 self-start"
         >
-          Buy Now!
+          {t("Buy Now")}!
         </Link>
       </div>
       <Image

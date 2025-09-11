@@ -1,23 +1,27 @@
-export default function SubscribeSection() {
+import { getTranslations } from "next-intl/server";
+
+export default async function SubscribeSection() {
+  const t = await getTranslations("headers");
+
   return (
     <div className="flex flex-col gap-4">
       <ul className="flex flex-col gap-4">
-        <h6 className="font-bold text-[24px]">Exclusive</h6>
+        <h6 className="font-bold text-[24px]">{t("exclusive")}</h6>
         <li>
           <a href="#" className="font-medium text-[20px]">
-            Subscribe
+            {t("subscribe")}
           </a>
         </li>
         <li>
           <a href="#" className="font-normal text-[16px]">
-            Get 10% off your first order
+            {t("getDiscount")}
           </a>
         </li>
       </ul>
       <div className="flex border-2 border-white text-[#FAFAFA] px-3 py-2 max-w-[217px] items-center rounded-[4px]">
         <input
           type="mail"
-          placeholder="Enter your email"
+          placeholder={t("enterEmail")}
           className="w-full focus:outline-0"
         />
         <svg

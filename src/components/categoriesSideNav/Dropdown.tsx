@@ -1,5 +1,8 @@
+"use client";
+
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 
 type category = {
   categoryName: string;
@@ -19,12 +22,14 @@ export default function Dropdown({
   categories,
   triggerLink,
 }: DropdownType) {
+  const t = useTranslations("headers");
+
   return triggerLink ? (
     <Link
       href={triggerLink}
       className="w-[250px] max-sm:justify-center max-sm:w-[170px] text-center hover:scale-105 px-4 py-2 text-black rounded cursor-pointer focus:outline-0 flex justify-between items-center gap-6"
     >
-      {Trigger}
+      {t(Trigger)}
     </Link>
   ) : (
     <div className="w-[250px] ">
@@ -32,7 +37,7 @@ export default function Dropdown({
         <DropdownMenu.Trigger asChild>
           <button className="px-4 py-2 text-black rounded cursor-pointer focus:outline-0 w-fit max-sm:w-fit hover:scale-105">
             <div className="flex justify-between items-center gap-4">
-              <div>{Trigger}</div>
+              <div>{t(Trigger)}</div>
               <div>
                 <svg
                   width="8"
@@ -40,6 +45,7 @@ export default function Dropdown({
                   viewBox="0 0 8 13"
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
+                  className="rtl:rotate-180"
                 >
                   <path
                     d="M4.95 6.63597L0 1.68597L1.414 0.271973L7.778 6.63597L1.414 13L0 11.586L4.95 6.63597Z"
@@ -66,7 +72,7 @@ export default function Dropdown({
                 href={category.categoryPageUrl}
                 className="flex items-center"
               >
-                {category.categoryName}
+                {t(category.categoryName)}
               </Link>
             </DropdownMenu.Item>
           ))}

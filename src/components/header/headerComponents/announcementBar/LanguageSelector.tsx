@@ -1,5 +1,7 @@
 "use client";
 import * as DropdownMenuPrimitive from "@radix-ui/react-dropdown-menu";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useState } from "react";
 
 const DropdownMenu = DropdownMenuPrimitive.Root;
@@ -8,12 +10,21 @@ const DropdownMenuContent = DropdownMenuPrimitive.Content;
 const DropdownMenuItem = DropdownMenuPrimitive.Item;
 
 export default function LanguageSelector() {
-  const [currentLanguage, setCurrentLanguage] = useState("English");
+  const pathName = usePathname();
+  const language = pathName.split("/")[1];
+  console.log(language);
+  const [currentLanguage, setCurrentLanguage] = useState(
+    (language === "ar" && "العربية") ||
+      (language === "en" && "English") ||
+      (language === "es" && "Spanish") ||
+      "English"
+  );
+
   return (
     <div>
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <button className="flex items-center gap-2 text-[14px] text-white cursor-pointer focus:outline-0">
+          <button className="flex items-center gap-2 text-white cursor-pointer focus:outline-0">
             <span className="font-normal ">{currentLanguage}</span>
             <svg
               width="13"
@@ -29,18 +40,24 @@ export default function LanguageSelector() {
             </svg>
           </button>
         </DropdownMenuTrigger>
-        <DropdownMenuContent className="cursor-pointer z-20 shadow-md bg-black text-white p-2 text-center rounded-[6px] mt-2 mr-2">
+        <DropdownMenuContent className="cursor-pointer z-20 shadow-md bg-black text-white p-2 text-center rounded-[6px] mt-2 mr-2 flex flex-col gap-2">
+          <DropdownMenuItem
+            onClick={() => setCurrentLanguage("العربية")}
+            className="focus:outline-0"
+          >
+            <Link href={"/ar"}>العربية</Link>
+          </DropdownMenuItem>
           <DropdownMenuItem
             onClick={() => setCurrentLanguage("English")}
             className="focus:outline-0"
           >
-            English
+            <Link href={"/en"}>English</Link>
           </DropdownMenuItem>
           <DropdownMenuItem
             onClick={() => setCurrentLanguage("العربية")}
             className="focus:outline-0"
           >
-            العربية
+            <Link href={"/es"}>Spanish</Link>
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>

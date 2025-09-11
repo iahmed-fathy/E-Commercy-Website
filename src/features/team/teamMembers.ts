@@ -17,15 +17,15 @@ const teamMembers: TeamMember[] = [
     position: "Founder & CEO",
     image: "/team/ahmed_fathy.png",
     social: {
-      twitter: "https://twitter.com/ahmedfathy",
-      instagram: "https://instagram.com/ahmedfathy",
-      linkedin: "https://linkedin.com/in/ahmedfathy",
+      twitter: "https://www.linkedin.com/in/iahmedfathy/",
+      instagram: "https://www.linkedin.com/in/iahmedfathy/",
+      linkedin: "https://www.linkedin.com/in/iahmedfathy/",
     },
   },
   {
     name: "Omar Khaled",
     position: "Chief Operating Officer",
-    image: "/team/omar_khaled.png",
+    image: "/team/youssef_adel.png",
     social: {
       twitter: "https://twitter.com/omarkhaled",
       instagram: "https://instagram.com/omarkhaled",

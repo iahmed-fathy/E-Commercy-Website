@@ -1,30 +1,34 @@
-export default function AccountSection() {
+import { getTranslations } from "next-intl/server";
+
+export default async function AccountSection() {
+  const t = await getTranslations("headers");
+
   return (
     <ul className="flex flex-col gap-4">
-      <h6 className="font-Medium text-[24px]">Account</h6>
+      <h6 className="font-Medium text-[24px]">{t("Account")}</h6>
       <li>
         <a href="#" className="font-normal text-[16px]">
-          My Account
+          {t("My Account")}
         </a>
       </li>
       <li>
         <a href="#" className="font-normal text-[16px]">
-          Login / Register
+          {t("Login / Register")}
         </a>
       </li>
       <li>
         <a href="#" className="font-normal text-[16px]">
-          Cart
+          {t("Cart")}
         </a>
       </li>
       <li>
         <a href="#" className="font-normal text-[16px]">
-          Wishlist
+          {t("Wishlist")}
         </a>
       </li>
       <li>
         <a href="#" className="font-normal text-[16px]">
-          Shop
+          {t("Shop")}
         </a>
       </li>
     </ul>

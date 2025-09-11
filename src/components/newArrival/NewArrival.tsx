@@ -1,14 +1,18 @@
 import Image from "next/image";
 import Link from "next/link";
+import { getTranslations } from "next-intl/server";
 
-export default function NewArrival() {
+export default async function NewArrival() {
+  const t = await getTranslations("headers");
   return (
     <section className="flex flex-col gap-6 ">
       <div className="flex gap-4 items-center">
         <div className="w-5 h-10 bg-[#DB4444] rounded-[4px]"></div>
-        <h6 className="font-semibold text-[#DB4444] text-[16px]">Featured</h6>
+        <h6 className="font-semibold text-[#DB4444] text-[16px]">
+          {t("Featured")}
+        </h6>
       </div>
-      <h2 className="font-semibold text-[36px]">New Arrival</h2>
+      <h2 className="font-semibold text-[36px]">{t("New Arrival")}</h2>
       <div className="text-white border-white flex gap-5 w-full max-sm:flex-col">
         <div className="w-full">
           <div className="relative  bg-black h-[600px] max-sm:h-[400px] flex items-end justify-center">
@@ -19,15 +23,17 @@ export default function NewArrival() {
               height={500}
             />
             <div className="absolute start-5 bottom-5 w-1/3 max-sm:w-2/3 flex flex-col gap-2">
-              <h6 className="font-semibold text-[24px] ">PlayStation 5</h6>
+              <h6 className="font-semibold text-[24px] ">
+                {t("PlayStation 5")}
+              </h6>
               <p className="text-[14px]">
-                Black and White version of the PS5 coming out on sale.
+                {t("Black and White version of the PS5 coming out on sale")}.
               </p>
               <Link
                 href={"/our-products"}
                 className="text-[16px] font-medium border-b  w-fit"
               >
-                Shop Now
+                {t("Shop Now")}
               </Link>
             </div>
           </div>
@@ -36,16 +42,16 @@ export default function NewArrival() {
           <div className="bg-black p-5 h-1/2 flex items-end">
             <div className="w-2/5 max-sm:w-2/3 flex flex-col gap-2">
               <h6 className="font-semibold text-[24px] ">
-                Women’s Collections
+                {t("Women's Collections")}
               </h6>
               <p className="text-[14px]">
-                Featured woman collections that give you another vibe.
+                {t("Featured women collections that give you another vibe")}.
               </p>
               <Link
                 href={"/our-products"}
                 className="text-[16px] font-medium border-b  w-fit"
               >
-                Shop Now
+                {t("Shop Now")}
               </Link>
             </div>
           </div>
@@ -60,14 +66,14 @@ export default function NewArrival() {
               />
               <div className="absolute start-5 bottom-5 flex flex-col gap-1 max-sm:gap-[4px]">
                 <h6 className="font-semibold text-[24px] max-sm:text-[20px]">
-                  Speakers
+                  {t("Speakers")}
                 </h6>
-                <p className="text-[14px]">Amazon wireless speakers</p>
+                <p className="text-[14px]">{t("Amazon wireless speakers")}</p>
                 <Link
                   href={"/our-products"}
                   className="text-[16px] font-medium border-b  w-fit"
                 >
-                  Shop Now
+                  {t("Shop Now")}
                 </Link>
               </div>
             </div>
@@ -81,14 +87,14 @@ export default function NewArrival() {
               />
               <div className="absolute start-5 bottom-5 flex flex-col gap-1 max-sm:gap-[4px]">
                 <h6 className="font-semibold text-[24px] max-sm:text-[20px]">
-                  Perfume
+                  {t("Perfume")}
                 </h6>
-                <p className="text-[14px]">GUCCI INTENSE OUD EDP</p>
+                <p className="text-[14px]">{t("GUCCI INTENSE OUD EDP")}</p>
                 <Link
                   href={"/our-products"}
                   className="text-[16px] font-medium border-b  w-fit"
                 >
-                  Shop Now
+                  {t("Shop Now")}
                 </Link>
               </div>
             </div>

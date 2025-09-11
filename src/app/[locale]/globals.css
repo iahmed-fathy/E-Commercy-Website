@@ -7,22 +7,6 @@ body {
   font-family: var(--font-poppins), sans-serif;
 }
 
-.splide__pagination__page {
-  background-color: rgba(0, 0, 0, 0.4) !important;
-  width: 12px !important;
-  height: 12px !important;
-  border: 1px solid white !important;
-  opacity: 1 !important;
-  margin: 0 4px !important;
-  transition: transform 0.3s ease;
-}
-
-.splide__pagination__page.is-active {
-  background-color: #db4444 !important;
-  border: 1px solid white !important;
-  transform: scale(1.25) !important;
-}
-
 .hide-scrollbar::-webkit-scrollbar {
   display: none;
 }

@@ -4,6 +4,7 @@ import Link from "next/link";
 import ProductCard from "../productCard/ProductCard";
 import { useSelector } from "react-redux";
 import { selectAllProducts } from "@/features/products/productsSlice";
+import { useTranslations } from "next-intl";
 
 type RelatedItemType = {
   category?: string;
@@ -28,6 +29,8 @@ export default function RelatedItem({
   seeAll,
   href = "#",
 }: RelatedItemType) {
+  const t = useTranslations("products");
+
   const products = useSelector(selectAllProducts);
   const excludeIds = Array.isArray(id) ? id : [id];
 
@@ -48,7 +51,7 @@ export default function RelatedItem({
           <div className="flex  gap-4 items-center">
             <div className="w-5 h-10 bg-[#DB4444] rounded-[4px]"></div>
             <h6 className="font-semibold text-[#DB4444] text-[16px]">
-              {lable}
+              {t(lable)}
             </h6>
           </div>
           {seeAll && (
@@ -56,7 +59,7 @@ export default function RelatedItem({
               href={href}
               className="flex items-center justify-center text-[16px] font-medium hover:text-white hover:bg-[#DB4444] w-[150px] h-[56px] rounded-[4px] border border-black/40 hover:border-[#DB4444] cursor-pointer"
             >
-              See All
+              {t("See All")}
             </Link>
           )}
         </div>
