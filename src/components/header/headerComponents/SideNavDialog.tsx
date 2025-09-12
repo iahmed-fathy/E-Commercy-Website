@@ -59,12 +59,12 @@ export default function SideNavDialog() {
               </svg>
             </div>
           </Dialog.Close>
-          <div>
+          <div className="w-full text-center">
             <Logo className="font-bold text-[24px] mb-5" />
             <NavigationMenu
               isDialogOpen={isDialogOpen}
               setDialogOpen={setDialogOpen}
-              className="flex not-last:justify-around flex-col gap-5"
+              className="flex flex-col gap-6"
             />
           </div>
         </Dialog.Content>

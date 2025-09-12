@@ -6,6 +6,7 @@ import { useSelector } from "react-redux";
 import ProductCard from "../productCard/ProductCard";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
+import { scrollLeft, scrollRight } from "../../../utils/scroll/scroll";
 
 export default function OurProducts() {
   const t = useTranslations("headers");
@@ -16,34 +17,6 @@ export default function OurProducts() {
 
   const now = new Date();
   now.setDate(now.getDate() + 1);
-
-  const scrollLeft = () => {
-    if (scrollRef.current) {
-      isRtl
-        ? scrollRef.current.scrollBy({
-            left: 300,
-            behavior: "smooth",
-          })
-        : scrollRef.current.scrollBy({
-            left: -300,
-            behavior: "smooth",
-          });
-    }
-  };
-
-  const scrollRight = () => {
-    if (scrollRef.current) {
-      isRtl
-        ? scrollRef.current.scrollBy({
-            left: -300,
-            behavior: "smooth",
-          })
-        : scrollRef.current.scrollBy({
-            left: 300,
-            behavior: "smooth",
-          });
-    }
-  };
 
   return (
     <section className="flex flex-col gap-6 ">
@@ -58,7 +31,10 @@ export default function OurProducts() {
           {t("Explore Our Products")}
         </h2>
         <div className="flex gap-4 max-sm:self-start">
-          <button className="cursor-pointer" onClick={scrollLeft}>
+          <button
+            className="cursor-pointer"
+            onClick={() => scrollLeft(scrollRef, isRtl)}
+          >
             <svg
               width="46"
               height="46"
@@ -78,7 +54,10 @@ export default function OurProducts() {
             </svg>
           </button>
 
-          <button className="cursor-pointer" onClick={scrollRight}>
+          <button
+            className="cursor-pointer"
+            onClick={() => scrollRight(scrollRef, isRtl)}
+          >
             <svg
               width="46"
               height="46"
@@ -109,7 +88,7 @@ export default function OurProducts() {
               <ProductCard
                 product={product}
                 key={product.id}
-                source="flash-sale"
+                source="our-products"
               />
             );
           }

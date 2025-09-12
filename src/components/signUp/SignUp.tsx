@@ -11,12 +11,13 @@ import { auth } from "@/lib/firebase";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { useTranslations } from "next-intl";
 
 export default function SignUp() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
+  const t = useTranslations("SignUp");
   const router = useRouter();
 
   const handleSignUp = async () => {
@@ -47,21 +48,21 @@ export default function SignUp() {
   };
 
   return (
-    <section className="flex gap-30 max-sm:flex-col">
+    <section className="flex gap-30 px-10 max-lg:px-5 max-sm:flex-col">
       <Image
         src={"/logIn.png"}
         alt="signup image"
         width={500}
         height={300}
-        className="w-[700px]"
+        className="w-full"
       />
-      <div className="p-4 flex flex-col gap-4">
-        <h1 className="font-medium text-[36px]">Create an account</h1>
-        <p className="text-[16px] mb-2">Enter your details below</p>
+      <div className="p-4 flex flex-col gap-4 w-full">
+        <h1 className="font-medium text-[36px]">{t("Create an account")}</h1>
+        <p className="text-[16px] mb-2">{t("Enter your details below")}</p>
         <input
           className="border-b-2 focus:outline-0  py-2 w-full mb-2"
           type="text"
-          placeholder="Name"
+          placeholder={t("Name")}
           value={name}
           onChange={(e) => setName(e.target.value)}
           required
@@ -69,7 +70,7 @@ export default function SignUp() {
         <input
           className="border-b-2 focus:outline-0  py-2 w-full mb-2"
           type="email"
-          placeholder="Email or Phone Number"
+          placeholder={t("Email or Phone Number")}
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
@@ -77,7 +78,7 @@ export default function SignUp() {
         <input
           className="border-b-2 focus:outline-0  py-2 w-full mb-2"
           type="password"
-          placeholder="Password"
+          placeholder={t("Password")}
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
@@ -87,7 +88,7 @@ export default function SignUp() {
           onClick={handleSignUp}
           type="button"
         >
-          Create Account
+          {t("Create Account")}
         </button>
 
         <button
@@ -101,13 +102,13 @@ export default function SignUp() {
             width={24}
             height={24}
           />
-          <span>Sign up with Google</span>
+          <span>{t("Sign up with Google")}</span>
         </button>
 
         <p className="text-[16px] flex items-center justify-center gap-2 text-black/40">
-          <span>Already have account?</span>
+          <span>{t("Already have account")}</span>
           <Link href={"/sign-in"} className="underline font-medium">
-            Log in
+            {t("Log in")}
           </Link>
         </p>
       </div>

@@ -5,10 +5,19 @@ import { useEffect, useState } from "react";
 import { doc, setDoc, getDoc } from "firebase/firestore";
 import { db } from "@/lib/firebase";
 import Link from "next/link";
-import { updateEmail, updatePassword, updateProfile } from "firebase/auth";
-import { EmailAuthProvider, reauthenticateWithCredential } from "firebase/auth";
+import {
+  updateEmail,
+  updatePassword,
+  updateProfile,
+  onAuthStateChanged,
+  EmailAuthProvider,
+  reauthenticateWithCredential,
+} from "firebase/auth";
+import { useTranslations } from "next-intl";
 
 export default function EditPtofileForm() {
+  const t = useTranslations("EditProfile");
+
   const [fname, setFname] = useState("");
   const [lname, setLname] = useState("");
   const [email, setEmail] = useState("");
@@ -28,7 +37,7 @@ export default function EditPtofileForm() {
 
   const reauthenticate = async (currentPassword: string) => {
     if (!auth.currentUser || !auth.currentUser.email)
-      throw new Error("لا يوجد مستخدم");
+      throw new Error(t("noUserError"));
     const credential = EmailAuthProvider.credential(
       auth.currentUser.email,
       currentPassword
@@ -58,12 +67,12 @@ export default function EditPtofileForm() {
 
       if (newPassword.length > 0 || confirmPassword.length > 0) {
         if (newPassword !== confirmPassword) {
-          alert("كلمة المرور الجديدة غير متطابقة مع التأكيد");
+          alert(t("passwordMismatchError"));
           return;
         }
 
         if (!currentPassword) {
-          alert("الرجاء إدخال كلمة المرور الحالية لتغيير كلمة المرور");
+          alert(t("currentPasswordRequiredError"));
           return;
         }
 
@@ -71,92 +80,94 @@ export default function EditPtofileForm() {
         await updatePassword(auth.currentUser, newPassword);
       }
 
-      alert("تم تحديث البيانات بنجاح");
+      alert(t("updateSuccess"));
     } catch (error: unknown) {
       if (error instanceof Error) {
-        alert("حدث خطأ: " + error.message);
+        alert(t("genericError", { message: error.message }));
       } else {
-        console.error("حدث خطأ غير معروف");
+        console.error(t("unknownError"));
       }
     }
   };
 
   useEffect(() => {
-    const user = auth.currentUser;
-    if (!user || user === undefined) {
-      return;
-    } else {
-      const userName = user.displayName?.split(" ");
-      if (!userName) return;
-      setFname(userName[0]);
-      setLname(userName[1]);
-      setEmail(user?.email || "");
-      getAddress(user.uid).then(setAddress);
-    }
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        const userName = user.displayName?.split(" ");
+        if (userName) {
+          setFname(userName[0] || "");
+          setLname(userName.slice(1).join(" ") || "");
+        }
+        setEmail(user.email || "");
+        getAddress(user.uid).then(setAddress);
+      } else {
+        console.log("No user is signed in.");
+      }
+    });
+
+    return () => unsubscribe();
   }, []);
 
   return (
-    <form className="p-15 max-sm:p-5 shadow w-full flex flex-col gap-6 items-center justify-between">
-      <h1 className="text-[20px] text-[#DB4444] font-semibold">
-        Edit Your Profile
-      </h1>
+    <form className="p-15 max-sm:p-5 shadow flex flex-col gap-6 justify-between w-full">
+      <h1 className="text-[20px] text-[#DB4444] font-semibold">{t("title")}</h1>
       <div className="grid grid-cols-2 gap-x-15 gap-y-5 max-lg:grid-cols-1">
         <div className="flex flex-col gap-2">
-          <label htmlFor="fname">First Name</label>
+          <label htmlFor="fname">{t("firstNameLabel")}</label>
           <input
             type="text"
             name="fname"
             id="fname"
             className="bg-[#F5F5F5] p-3 rounded-[4px] focus:outline-0"
-            placeholder="Ahmed"
+            placeholder={t("firstNamePlaceholder")}
             value={fname}
             onChange={(e) => setFname(e.target.value)}
           />
         </div>
         <div className="flex flex-col gap-2">
-          <label htmlFor="lname">Last Name</label>
+          <label htmlFor="lname">{t("lastNameLabel")}</label>
           <input
             type="text"
             name="lname"
             id="lname"
             className="bg-[#F5F5F5] p-3 rounded-[4px] focus:outline-0"
-            placeholder="Fathy"
+            placeholder={t("lastNamePlaceholder")}
             value={lname}
             onChange={(e) => setLname(e.target.value)}
           />
         </div>
         <div className="flex flex-col gap-2">
-          <label htmlFor="email">Email</label>
+          <label htmlFor="email">{t("emailLabel")}</label>
           <input
             type="email"
             name="email"
             id="email"
             className="bg-[#F5F5F5] p-3 rounded-[4px] focus:outline-0"
-            placeholder="iahmed.fathy@hotmail.com"
+            placeholder={t("emailPlaceholder")}
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
         </div>
         <div className="flex flex-col gap-2">
-          <label htmlFor="address">Address</label>
+          <label htmlFor="address">{t("addressLabel")}</label>
           <input
             type="text"
             name="address"
             id="address"
             className="bg-[#F5F5F5] p-3 rounded-[4px] focus:outline-0"
-            placeholder="Kingston, 5236, United State"
+            placeholder={t("addressPlaceholder")}
             value={address}
             onChange={(e) => setAddress(e.target.value)}
           />
         </div>
         <div className="flex flex-col gap-2 col-span-2 max-lg:col-span-1">
-          <label htmlFor="passwordChanges">Password Changes</label>
+          <label htmlFor="passwordChanges">{t("passwordChangesLabel")}</label>
           <input
             type="password"
             name="currentPassword"
             id="currentPassword"
             className="bg-[#F5F5F5] p-3 rounded-[4px] focus:outline-0"
-            placeholder="Current Password"
+            placeholder={t("currentPasswordPlaceholder")}
             value={currentPassword}
             onChange={(e) => setCurrentPassword(e.target.value)}
           />
@@ -165,7 +176,7 @@ export default function EditPtofileForm() {
             name="newPassword"
             id="newPassword"
             className="bg-[#F5F5F5] p-3 rounded-[4px] focus:outline-0"
-            placeholder="New Password"
+            placeholder={t("newPasswordPlaceholder")}
             value={newPassword}
             onChange={(e) => setNewPassword(e.target.value)}
           />
@@ -174,7 +185,7 @@ export default function EditPtofileForm() {
             name="confirmPassword"
             id="confirmPassword"
             className="bg-[#F5F5F5] p-3 rounded-[4px] focus:outline-0"
-            placeholder="Confirm New Password"
+            placeholder={t("confirmNewPasswordPlaceholder")}
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
           />
@@ -185,14 +196,14 @@ export default function EditPtofileForm() {
           href={"/"}
           className="text-[16px] cursor-pointer flex items-center justify-center"
         >
-          Cancel
+          {t("cancelButton")}
         </Link>
         <button
           type="button"
-          className="bg-[#DB4444] cursor-pointer rounded-[4px] text-white w-[214px] max-sm:w-[100px] h-[56px] flex items-center justify-center text-[16px] font-medium"
+          className="bg-[#DB4444] cursor-pointer rounded-[4px] text-white w-[214px] max-sm:w-[120px] h-[56px] flex items-center justify-center text-[16px] font-medium"
           onClick={handleSaveChanges}
         >
-          Save Changes
+          {t("saveChangesButton")}
         </button>
       </div>
     </form>

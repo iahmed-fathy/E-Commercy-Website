@@ -1,3 +1,4 @@
+import { useTranslations } from "next-intl";
 import { auth } from "@/lib/firebase";
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 import Image from "next/image";
@@ -8,6 +9,7 @@ import { useRouter } from "next/navigation";
 export default function UserState() {
   const router = useRouter();
   const [user, setUser] = useState<User | null>(null);
+  const t = useTranslations("UserState");
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
@@ -22,7 +24,7 @@ export default function UserState() {
       await signOut(auth);
       router.push("/");
     } catch (err) {
-      console.error("حدث خطأ أثناء تسجيل الخروج:", err);
+      console.error(t("logoutError"), err);
     }
   };
 
@@ -64,7 +66,7 @@ export default function UserState() {
         {user ? (
           <>
             <DropdownMenu.Item
-              className="flex gap-2 cursor-pointer hover:outline-0"
+              className="flex gap-2 cursor-pointer hover:outline-0 items-center"
               onClick={() => router.push("/my-account")}
             >
               <Image
@@ -73,10 +75,10 @@ export default function UserState() {
                 width={35}
                 height={35}
               />
-              <span>Manage My Account</span>
+              <span>{t("manageMyAccount")}</span>
             </DropdownMenu.Item>
             <DropdownMenu.Item
-              className="flex gap-2 cursor-pointer hover:outline-0"
+              className="flex gap-2 cursor-pointer hover:outline-0 items-center"
               onClick={() => router.push("/")}
             >
               <Image
@@ -85,10 +87,10 @@ export default function UserState() {
                 width={32}
                 height={32}
               />
-              <span>My Order</span>
+              <span>{t("myOrder")}</span>
             </DropdownMenu.Item>
             <DropdownMenu.Item
-              className="flex gap-2 cursor-pointer hover:outline-0"
+              className="flex gap-2 cursor-pointer hover:outline-0 items-center"
               onClick={() => router.push("/")}
             >
               <Image
@@ -97,10 +99,10 @@ export default function UserState() {
                 width={32}
                 height={32}
               />
-              <span>My Cancellations</span>
+              <span>{t("myCancellations")}</span>
             </DropdownMenu.Item>
             <DropdownMenu.Item
-              className="flex gap-2 cursor-pointer hover:outline-0"
+              className="flex gap-2 cursor-pointer hover:outline-0 items-center"
               onClick={() => router.push("/")}
             >
               <Image
@@ -109,10 +111,10 @@ export default function UserState() {
                 width={32}
                 height={32}
               />
-              <span>My Reviews</span>
+              <span>{t("myReviews")}</span>
             </DropdownMenu.Item>
             <DropdownMenu.Item
-              className="flex gap-2 cursor-pointer hover:outline-0"
+              className="flex gap-2 cursor-pointer hover:outline-0 items-center"
               onClick={logoutHandler}
             >
               <Image
@@ -121,13 +123,13 @@ export default function UserState() {
                 width={25}
                 height={25}
               />
-              <span>Sign Out</span>
+              <span>{t("signOut")}</span>
             </DropdownMenu.Item>
           </>
         ) : (
           <>
             <DropdownMenu.Item
-              className="flex gap-2 cursor-pointer hover:outline-0"
+              className="flex gap-2 cursor-pointer hover:outline-0 items-center"
               onClick={() => {
                 router.push("/sign-in");
               }}
@@ -138,11 +140,11 @@ export default function UserState() {
                 width={32}
                 height={32}
               />
-              <span>Sign in</span>
+              <span>{t("signIn")}</span>
             </DropdownMenu.Item>
 
             <DropdownMenu.Item
-              className="flex gap-2 cursor-pointer hover:outline-0"
+              className="flex gap-2 cursor-pointer hover:outline-0 items-center"
               onClick={() => {
                 router.push("/sign-up");
               }}
@@ -153,7 +155,7 @@ export default function UserState() {
                 width={32}
                 height={32}
               />
-              <span>Sign Up</span>
+              <span>{t("signUp")}</span>
             </DropdownMenu.Item>
           </>
         )}

@@ -472,7 +472,7 @@ export const products: Products = [
     id: "14",
     title: "Small Bookshelf",
     brand: "IKEA",
-    category: "Home",
+    category: "HOUSE",
     description:
       "A compact and sturdy bookshelf with multiple shelves, ideal for organizing books and decor in small spaces.",
     price: 80,
@@ -542,7 +542,7 @@ export const products: Products = [
     id: "16",
     title: "S-Series Comfort Chair",
     brand: "Herman Miller",
-    category: "Home",
+    category: "HOUSE",
     description:
       "Ergonomic office chair with superior lumbar support and adjustable features, designed for long hours of comfortable seating.",
     price: 500,

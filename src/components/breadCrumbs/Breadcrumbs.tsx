@@ -2,15 +2,18 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useTranslations } from "next-intl";
 
 type BreadcrumbType = { productName?: string };
 export default function Breadcrumb({ productName }: BreadcrumbType) {
+  const t = useTranslations("headers");
+
   const pathname = usePathname();
 
   const generateBreadcrumbs = () => {
     const paths = pathname.split("/").filter(Boolean);
     const items: { label: string; href?: string }[] = [
-      { label: "HOME", href: "/" },
+      { label: t("HOME"), href: "/" },
     ];
 
     for (let i = 0; i < paths.length; i++) {
@@ -42,17 +45,19 @@ export default function Breadcrumb({ productName }: BreadcrumbType) {
         const href = "/";
         if (productName) {
           items.push({
-            label: `${productName?.toUpperCase()}`,
+            label: t(`${productName?.toUpperCase()}`),
             href,
           });
         } else {
           items.push({ label: "404 ERROR" });
         }
         i++;
+      } else if (current === "en" || current === "es" || current === "ar") {
+        continue;
       } else {
         const href = "/" + paths.slice(0, i + 1).join("/");
         items.push({
-          label: current.replace(/-/g, " ").toUpperCase(),
+          label: t(current.replace(/-/g, " ").toUpperCase()),
           href,
         });
       }

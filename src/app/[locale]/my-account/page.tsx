@@ -10,7 +10,7 @@ export default function AccountPage() {
         <Breadcrumb />
         <Welcome />
       </div>
-      <div className="flex gap-20 max-sm:flex-col m-auto">
+      <div className="flex gap-20 max-sm:flex-col px-10 max-lg:px-5">
         <AccountSideNave />
         <EditPtofileForm />
       </div>

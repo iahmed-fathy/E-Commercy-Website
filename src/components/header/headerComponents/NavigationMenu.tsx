@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import type { Dispatch, SetStateAction } from "react";
-import { usePathname } from "next/navigation";
 import { useTranslations } from "next-intl";
 
 type NavigationMenuType = {
@@ -16,7 +15,6 @@ export default function NavigationMenu({
   isDialogOpen,
   setDialogOpen,
 }: NavigationMenuType) {
-  const pathname = usePathname();
   const t = useTranslations("nav");
 
   const closeDialog = () => {
@@ -45,18 +43,22 @@ export default function NavigationMenu({
   ];
 
   return (
-    <nav className="w-full">
+    <nav>
       <ul className={className}>
         {navData.map((page) => (
-          <li key={page.href} className="group relative w-fit">
-            <Link href={page.href} onClick={closeDialog}>
-              {page.label}
+          <li key={page.href} className="w-full text-[20px]">
+            <Link
+              href={page.href}
+              onClick={closeDialog}
+              className=" max-xl:flex max-xl:w-full text-center"
+            >
+              <span className="group relative max-xl:w-full">
+                {page.label}
+                <span
+                  className={`absolute -bottom-1 right-0 h-[2px] w-0 bg-black/40 group-hover:w-full transition-[width] duration-300 ease-in-out`}
+                />
+              </span>
             </Link>
-            <span
-              className={`absolute -bottom-1 right-0 h-[2px] w-0 bg-black/40 group-hover:w-full transition-[width] duration-300 ease-in-out ${
-                pathname === page.href && "w-full"
-              }`}
-            />
           </li>
         ))}
       </ul>

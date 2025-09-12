@@ -11,11 +11,13 @@ import {
 import { auth } from "@/lib/firebase";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import { useTranslations } from "next-intl";
 
 export default function SignIn() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const t = useTranslations("SignIn");
 
   const router = useRouter();
 
@@ -24,7 +26,7 @@ export default function SignIn() {
       await sendPasswordResetEmail(auth, email);
       alert("تم إرسال رابط إعادة تعيين كلمة المرور إلى بريدك الإلكتروني");
     } catch {
-      setError("برجاء ادخل بريد الكتروني صحيح");
+      setError(t("Incorrect username or password"));
     }
   };
 
@@ -42,7 +44,7 @@ export default function SignIn() {
       }
       router.push("/");
     } catch {
-      setError("يوجد خطأ فى اسم المستخدم او كلمة السر");
+      setError(t("Please enter a valid email"));
     }
   };
 
@@ -62,21 +64,21 @@ export default function SignIn() {
   };
 
   return (
-    <section className="flex gap-30 max-sm:flex-col">
+    <section className="flex gap-30 max-sm:flex-col px-10 max-lg:px-5 ">
       <Image
         src={"/logIn.png"}
         alt="signup image"
         width={500}
         height={300}
-        className="w-[700px]"
+        className="w-full"
       />
-      <div className="p-4 flex flex-col gap-4">
-        <h1 className="font-medium text-[36px]">Sign in to Exclusive</h1>
-        <p className="text-[16px] mb-2">Enter your details below</p>
+      <div className="p-4 flex flex-col gap-4 w-full">
+        <h1 className="font-medium text-[36px]">{t("Sign in to Exclusive")}</h1>
+        <p className="text-[16px] mb-2">{t("Enter your details below")}</p>
         <input
           className="border-b-2 focus:outline-0  py-2 w-full mb-2"
           type="email"
-          placeholder="Email or Phone Number"
+          placeholder={t("Email or Phone Number")}
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
@@ -84,7 +86,7 @@ export default function SignIn() {
         <input
           className="border-b-2 focus:outline-0  py-2 w-full mb-2"
           type="password"
-          placeholder="Password"
+          placeholder={t("Password")}
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
@@ -95,14 +97,14 @@ export default function SignIn() {
             onClick={() => signIn(email, password)}
             type="button"
           >
-            Log In
+            {t("Log In")}
           </button>
 
           <button
             className="text-[#DB4444] text-[16px] cursor-pointer"
             onClick={() => resetPassword(email)}
           >
-            Forget Password?
+            {t("Forget Password")}
           </button>
         </div>
         <button
@@ -116,7 +118,7 @@ export default function SignIn() {
             width={24}
             height={24}
           />
-          <span>Sign in with Google</span>
+          <span>{t("Sign in with Google")}</span>
         </button>
         {error.length > 0 && (
           <p className="text-red-500 text-center">{error}</p>

@@ -55,9 +55,7 @@ export default function ProductInf({ product }: ProductInfType) {
 
   return (
     <section className="flex flex-col justify-between w-[400px] max-sm:w-[300]">
-      <h2 className="font-semibold text-[24px]">
-        {t(`${product.id}.title`, { fallback: product.title })}
-      </h2>
+      <h2 className="font-semibold text-[24px]">{t(`${product.id}.title`)}</h2>
       <div className="flex gap-4 items-center">
         <Stars value={product?.rating} size={20} />
         <span className="text-black/40 font-semibold text-[14px]">
@@ -75,9 +73,7 @@ export default function ProductInf({ product }: ProductInfType) {
         </p>
       </div>
       <span className="text-[24px]">${product?.finalPrice.toFixed(2)}</span>
-      <p className="text-[14px] leading-5">
-        {t(`${product.id}.description`, { fallback: product.description })}
-      </p>
+      <p className="text-[14px] leading-5">{t(`${product.id}.description`)}</p>
       <hr className="border-t-2 border-black/40 my-4" />
       <form className="flex flex-col gap-4">
         {product?.colors && product?.colors.length > 0 && (
@@ -249,9 +245,7 @@ export default function ProductInf({ product }: ProductInfType) {
           </div>
           <div>
             <p className="font-medium text-[16px]">
-              {t(`${product.id}.shippingInfo`, {
-                fallback: product.shippingInfo ?? "",
-              })}
+              {t(`${product.id}.shippingInfo`)}
             </p>
             <a href="#" className="font-medium text-[12px] underline">
               {t("enterPostalCode")}

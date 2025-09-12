@@ -27,12 +27,12 @@ export default function Dropdown({
   return triggerLink ? (
     <Link
       href={triggerLink}
-      className="w-[250px] max-sm:justify-center max-sm:w-[170px] text-center hover:scale-105 px-4 py-2 text-black rounded cursor-pointer focus:outline-0 flex justify-between items-center gap-6"
+      className="w-[300px] max-sm:justify-center max-sm:w-[170px] text-center hover:scale-105 px-4 py-2 text-black rounded cursor-pointer focus:outline-0 flex justify-between items-center gap-6"
     >
       {t(Trigger)}
     </Link>
   ) : (
-    <div className="w-[250px] ">
+    <div className="w-[300px] max-sm:w-[170px]">
       <DropdownMenu.Root>
         <DropdownMenu.Trigger asChild>
           <button className="px-4 py-2 text-black rounded cursor-pointer focus:outline-0 w-fit max-sm:w-fit hover:scale-105">

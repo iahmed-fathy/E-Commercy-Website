@@ -7,8 +7,11 @@ import Breadcrumb from "@/components/breadCrumbs/Breadcrumbs";
 import ProductsList from "@/components/productsList/ProductsList";
 import React from "react";
 import { useParams } from "next/navigation";
+import { useTranslations } from "next-intl";
 
 export default function CategoryProductPage() {
+  const t = useTranslations("headers");
+
   const params = useParams();
   const id = params.id as string;
   const category = categories.find((category) => category.id === id);
@@ -20,12 +23,12 @@ export default function CategoryProductPage() {
   return (
     <div className="flex flex-col gap-10 pt-10">
       <div className="self-start">
-        <Breadcrumb productName={categoryName} />
+        <Breadcrumb productName={t(categoryName)} />
       </div>
       <h2 className="text-[40px] font-medium text-center">
-        {`Explore ${categoryName} Products`}
+        {`${t("ExploreProductsByCategory", { category: t(categoryName) })}`}
       </h2>
-      <ProductsList products={products} />
+      {category && <ProductsList products={products} source={categoryName} />}
     </div>
   );
 }

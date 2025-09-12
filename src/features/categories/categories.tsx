@@ -241,7 +241,7 @@ const categories: Category[] = [
   },
   {
     id: "8",
-    label: "Home",
+    label: "HOUSE",
     svg: (
       <svg
         width="56"

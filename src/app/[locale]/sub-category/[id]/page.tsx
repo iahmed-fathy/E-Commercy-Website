@@ -6,8 +6,10 @@ import Breadcrumb from "@/components/breadCrumbs/Breadcrumbs";
 import ProductsList from "@/components/productsList/ProductsList";
 import React from "react";
 import { useParams } from "next/navigation";
+import { useTranslations } from "next-intl";
 
 export default function SubCategoryPage() {
+  const t = useTranslations("headers");
   const params = useParams();
   const products = useSelector(selectAllProducts);
   const id = params.id as string;
@@ -20,9 +22,11 @@ export default function SubCategoryPage() {
         <Breadcrumb productName={id.split("-").join(" ")} />
       </div>
       <h2 className="text-[40px] font-medium text-center">
-        {`${id.split("-").join(" ")} Products`}
+        {`${t("ExploreProductsByCategory", {
+          category: t(id.split("-").join(" ")),
+        })}`}
       </h2>
-      <ProductsList products={subCategoryProducts} />
+      <ProductsList products={subCategoryProducts} source="sub-category" />
     </div>
   );
 }

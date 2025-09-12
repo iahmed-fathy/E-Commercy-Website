@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useTranslations } from "next-intl";
 
 export default function BillingDetails() {
   const [fname, setFname] = useState("");
@@ -12,13 +13,16 @@ export default function BillingDetails() {
   const [emailAddress, setEmailAddress] = useState("");
   const [saveInfo, setSaveInfo] = useState(false);
 
+  const t = useTranslations("check-out");
+
   return (
     <div className="w-1/2 max-lg:w-full">
-      <h1 className="font-medium text-[36px] mb-4">Billing Details</h1>
+      <h1 className="font-medium text-[36px] mb-4">{t("Title")}</h1>
       <form className="flex flex-col gap-2 w-full">
         <div>
           <label htmlFor="fname" className="text-black/40 text-[16px] block">
-            <span>First Name</span> <span className="text-red-300">*</span>
+            <span>{t("First Name")}</span>{" "}
+            <span className="text-red-300">*</span>
           </label>
           <input
             id="fname"
@@ -35,7 +39,7 @@ export default function BillingDetails() {
             htmlFor="companyName"
             className="text-black/40 text-[16px] block"
           >
-            Company Name
+            {t("Company Name")}
           </label>
           <input
             id="companyName"
@@ -51,7 +55,8 @@ export default function BillingDetails() {
             htmlFor="streetAddress"
             className="text-black/40 text-[16px] block"
           >
-            <span>Street Address</span> <span className="text-red-300">*</span>
+            <span>{t("Street Address")}</span>{" "}
+            <span className="text-red-300">*</span>
           </label>
           <input
             id="streetAddress"
@@ -68,7 +73,7 @@ export default function BillingDetails() {
             htmlFor="apartment"
             className="text-black/40 text-[16px] block"
           >
-            Apartment, floor, etc. (optional)
+            {t("address")}
           </label>
           <input
             id="apartment"
@@ -81,7 +86,8 @@ export default function BillingDetails() {
         </div>
         <div>
           <label htmlFor="townCity" className="text-black/40 text-[16px] block">
-            <span>Town/City</span> <span className="text-red-300">*</span>
+            <span>{t("Town/City")}</span>{" "}
+            <span className="text-red-300">*</span>
           </label>
           <input
             id="townCity"
@@ -98,7 +104,8 @@ export default function BillingDetails() {
             htmlFor="phoneNumber"
             className="text-black/40 text-[16px] block"
           >
-            <span>Phone Number</span> <span className="text-red-300">*</span>
+            <span>{t("Phone Number")}</span>{" "}
+            <span className="text-red-300">*</span>
           </label>
           <input
             id="phoneNumber"
@@ -115,7 +122,8 @@ export default function BillingDetails() {
             htmlFor="emailAddress"
             className="text-black/40 text-[16px] block"
           >
-            <span>Email Address</span> <span className="text-red-300">*</span>
+            <span>{t("Email Address")}</span>{" "}
+            <span className="text-red-300">*</span>
           </label>
           <input
             id="emailAddress"
@@ -137,7 +145,7 @@ export default function BillingDetails() {
             className="w-4 h-4 accent-[#DB4444]"
           />
           <label htmlFor="saveInfo" className="text-[16px]">
-            Save this information for faster check-out next time
+            {t("Save this information for faster check-out next time")}
           </label>
         </div>
       </form>

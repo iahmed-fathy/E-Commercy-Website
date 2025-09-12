@@ -1,15 +1,15 @@
 import type { Metadata } from "next";
-import { Poppins } from "next/font/google";
+import { Cairo } from "next/font/google";
 import "./globals.css";
 import Providers from "./providers";
 import Header from "@/components/header/Header";
 import Footer from "@/components/footer/Footer";
 import { NextIntlClientProvider } from "next-intl";
 
-const poppins = Poppins({
-  variable: "--font-poppins",
-  subsets: ["latin"],
-  weight: ["400", "700"],
+const cairo = Cairo({
+  variable: "--font-cairo",
+  subsets: ["latin", "arabic"],
+  weight: ["400", "500", "600", "700", "800", "900"],
 });
 
 export const metadata: Metadata = {
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
 
 type Props = {
   children: React.ReactNode;
-  params: { locale: string };
+  params: Promise<{ locale: string }>;
 };
 
 export default async function RootLayout({ children, params }: Props) {
@@ -30,7 +30,7 @@ export default async function RootLayout({ children, params }: Props) {
 
   return (
     <html lang={locale} dir={direction}>
-      <body className={`${poppins.variable} antialiased w-screen`}>
+      <body className={`${cairo.variable} antialiased w-screen`}>
         <NextIntlClientProvider locale={locale} messages={messages}>
           <Providers>
             <Header />

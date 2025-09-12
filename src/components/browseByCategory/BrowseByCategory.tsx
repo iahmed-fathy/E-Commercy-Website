@@ -3,39 +3,12 @@ import Link from "next/link";
 import { useRef } from "react";
 import categories from "@/features/categories/categories";
 import { useTranslations } from "next-intl";
+import { scrollLeft, scrollRight } from "../../../utils/scroll/scroll";
 
 export default function BrowseByCategory() {
   const isRtl = typeof document !== "undefined" && document.dir === "rtl";
   const scrollRef = useRef<HTMLDivElement>(null);
   const t = useTranslations("headers");
-
-  const scrollLeft = () => {
-    if (scrollRef.current) {
-      isRtl
-        ? scrollRef.current.scrollBy({
-            left: 300,
-            behavior: "smooth",
-          })
-        : scrollRef.current.scrollBy({
-            left: -300,
-            behavior: "smooth",
-          });
-    }
-  };
-
-  const scrollRight = () => {
-    if (scrollRef.current) {
-      isRtl
-        ? scrollRef.current.scrollBy({
-            left: -300,
-            behavior: "smooth",
-          })
-        : scrollRef.current.scrollBy({
-            left: 300,
-            behavior: "smooth",
-          });
-    }
-  };
 
   return (
     <section className="flex flex-col gap-6">
@@ -48,7 +21,10 @@ export default function BrowseByCategory() {
       <div className="flex justify-between items-center">
         <h2 className="font-semibold text-[36px]">{t("Browse By Category")}</h2>
         <div className="flex gap-4">
-          <button className="cursor-pointer" onClick={scrollLeft}>
+          <button
+            className="cursor-pointer"
+            onClick={() => scrollLeft(scrollRef, isRtl)}
+          >
             <svg
               width="46"
               height="46"
@@ -68,7 +44,10 @@ export default function BrowseByCategory() {
             </svg>
           </button>
 
-          <button className="cursor-pointer" onClick={scrollRight}>
+          <button
+            className="cursor-pointer"
+            onClick={() => scrollRight(scrollRef, isRtl)}
+          >
             <svg
               width="46"
               height="46"

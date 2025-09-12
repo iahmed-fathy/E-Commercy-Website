@@ -1,7 +1,9 @@
 "use client";
 import CountUp from "./CountUp";
+import { useTranslations } from "next-intl";
 
 export default function MetricsCards() {
+  const t = useTranslations("headers");
   return (
     <section className="flex max-sm:flex-col gap-4 justify-between items-center">
       <div className="group border-1 border-black/40 rounded-[4px] w-[270px] h-[230px] flex flex-col items-center justify-between p-6 hover:bg-[#DB4444] hover:text-white">
@@ -64,7 +66,9 @@ export default function MetricsCards() {
           />
           k
         </span>
-        <p className="text-[16px]">Sallers active our site</p>
+        <p className="text-[16px] text-center">
+          {t("Sellers active on our site")}
+        </p>
       </div>
       <div className="group border-1 border-black/40 rounded-[4px] w-[270px] h-[230px] flex flex-col items-center justify-between p-6 hover:bg-[#DB4444] hover:text-white">
         <div>
@@ -116,7 +120,7 @@ export default function MetricsCards() {
           />
           k
         </span>
-        <p className="text-[16px]">Mopnthly Produduct Sale</p>
+        <p className="text-[16px] text-center">{t("Monthly Product Sale")}</p>
       </div>
       <div className="group border-1 border-black/40 rounded-[4px] w-[270px] h-[230px] flex flex-col items-center justify-between p-6 hover:bg-[#DB4444] hover:text-white">
         <div>
@@ -152,7 +156,9 @@ export default function MetricsCards() {
           />
           k
         </span>
-        <p className="text-[16px]">Customer active in our site</p>
+        <p className="text-[16px] text-center">
+          {t("Customers active on our site")}
+        </p>
       </div>
       <div className="group border-1 border-black/40 rounded-[4px] w-[270px] h-[230px] flex flex-col items-center justify-between p-6 hover:bg-[#DB4444] hover:text-white">
         <div>
@@ -194,7 +200,9 @@ export default function MetricsCards() {
           />
           k
         </span>
-        <p className="text-[16px]">Anual gross sale in our site</p>
+        <p className="text-[16px] text-center">
+          {t("Annual gross sale on our site")}
+        </p>
       </div>
     </section>
   );

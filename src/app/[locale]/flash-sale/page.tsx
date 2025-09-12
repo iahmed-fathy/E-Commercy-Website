@@ -4,8 +4,11 @@ import Breadcrumb from "@/components/breadCrumbs/Breadcrumbs";
 import ProductsList from "@/components/productsList/ProductsList";
 import { selectAllProducts } from "@/features/products/productsSlice";
 import { useSelector } from "react-redux";
+import { useTranslations } from "next-intl";
 
 export default function FlashSalePage() {
+  const t = useTranslations("headers");
+
   const products = useSelector(selectAllProducts);
   const flashSaleProduct = products.filter((product) => product.discount > 0);
 
@@ -15,9 +18,9 @@ export default function FlashSalePage() {
         <Breadcrumb />
       </div>
       <h2 className="text-[40px] font-medium text-center">
-        Explore Flash Sale Products
+        {t("Explore Flash Sale Products")}
       </h2>
-      <ProductsList products={flashSaleProduct} />
+      <ProductsList products={flashSaleProduct} source="flash-sale" />
     </div>
   );
 }

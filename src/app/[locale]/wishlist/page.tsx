@@ -8,8 +8,10 @@ import {
   selectFavoriteIds,
 } from "@/features/products/productsSlice";
 import { useSelector } from "react-redux";
+import { useTranslations } from "next-intl";
 
 export default function WishList() {
+  const t = useTranslations("headers");
   const products = useSelector(selectAllProducts);
   const favoriteProductIds = useSelector(selectFavoriteIds);
   const favoriteProducts = products.filter((product) =>
@@ -33,6 +35,8 @@ export default function WishList() {
       />{" "}
     </div>
   ) : (
-    <div className="text-center text-[32px] pt-10">No Wishlist Items</div>
+    <div className="text-center text-[32px] pt-10">
+      {t("No Wishlist Items")}
+    </div>
   );
 }

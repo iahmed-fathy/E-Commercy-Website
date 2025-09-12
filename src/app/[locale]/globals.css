@@ -3,10 +3,6 @@
 
 @custom-variant dark (&:is(.dark *));
 
-body {
-  font-family: var(--font-poppins), sans-serif;
-}
-
 .hide-scrollbar::-webkit-scrollbar {
   display: none;
 }
@@ -129,6 +125,7 @@ body {
   }
   body {
     @apply bg-background text-foreground;
+    font-family: var(--font-cairo), sans-serif;
   }
 }
 

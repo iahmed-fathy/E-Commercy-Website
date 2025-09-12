@@ -8,8 +8,11 @@ import { useRouter } from "next/navigation";
 import React from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
+import { useTranslations } from "next-intl";
 
 export default function SearchBar() {
+  const t = useTranslations("headers");
+
   const dispatch = useDispatch();
   const route = useRouter();
 
@@ -27,7 +30,7 @@ export default function SearchBar() {
     <div className="flex bg-[#F5F5F5] px-4 py-2 rounded-[4px] max-w-[280px] max-sm:w-[220px] items-center">
       <input
         type="text"
-        placeholder="What are you looking for?"
+        placeholder={t("search bar")}
         className="focus:outline-0 w-full max-sm:placeholder:text-[10px]"
         value={searchValue}
         onChange={onSearchChange}

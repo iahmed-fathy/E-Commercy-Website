@@ -7,8 +7,11 @@ import {
   selectSearchValue,
 } from "@/features/products/productsSlice";
 import { useSelector } from "react-redux";
+import { useTranslations } from "next-intl";
 
 export default function SearchPage() {
+  const t = useTranslations("headers");
+
   const searchValue = useSelector(selectSearchValue);
   const searchedProducts = useSelector(selectSearchedProducts(searchValue));
 
@@ -18,9 +21,9 @@ export default function SearchPage() {
         <Breadcrumb />
       </div>
       <h2 className="text-[40px] font-medium text-center">
-        Explore Searched Products
+        {t("Explore Searched Products")}
       </h2>
-      <ProductsList products={searchedProducts} />
+      <ProductsList products={searchedProducts} source="searched-products" />
     </div>
   );
 }

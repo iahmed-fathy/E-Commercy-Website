@@ -6,6 +6,7 @@ import Link from "next/link";
 import { useSelector } from "react-redux";
 import { selectAllProducts } from "@/features/products/productsSlice";
 import { useTranslations } from "next-intl";
+import { scrollLeft, scrollRight } from "../../../utils/scroll/scroll";
 
 const FlashSalesTimer = dynamic(() => import("./FlashSalesTimer"), {
   ssr: false,
@@ -27,34 +28,6 @@ export default function FlashSalesComponent() {
   );
   const targetDateUTC = endOfDayLocal.toISOString();
 
-  const scrollLeft = () => {
-    if (scrollRef.current) {
-      isRtl
-        ? scrollRef.current.scrollBy({
-            left: 300,
-            behavior: "smooth",
-          })
-        : scrollRef.current.scrollBy({
-            left: -300,
-            behavior: "smooth",
-          });
-    }
-  };
-
-  const scrollRight = () => {
-    if (scrollRef.current) {
-      isRtl
-        ? scrollRef.current.scrollBy({
-            left: -300,
-            behavior: "smooth",
-          })
-        : scrollRef.current.scrollBy({
-            left: 300,
-            behavior: "smooth",
-          });
-    }
-  };
-
   return (
     <section className="flex flex-col gap-6 ">
       <div className="flex gap-4 items-center">
@@ -69,7 +42,10 @@ export default function FlashSalesComponent() {
           <FlashSalesTimer targetDate={targetDateUTC} />
         </div>
         <div className="flex gap-4 max-sm:self-start">
-          <button className="cursor-pointer" onClick={scrollLeft}>
+          <button
+            className="cursor-pointer"
+            onClick={() => scrollLeft(scrollRef, isRtl)}
+          >
             <svg
               width="46"
               height="46"
@@ -89,7 +65,10 @@ export default function FlashSalesComponent() {
             </svg>
           </button>
 
-          <button className="cursor-pointer" onClick={scrollRight}>
+          <button
+            className="cursor-pointer"
+            onClick={() => scrollRight(scrollRef, isRtl)}
+          >
             <svg
               width="46"
               height="46"
