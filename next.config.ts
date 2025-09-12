@@ -1,32 +1,8 @@
-import { NextConfig } from "next";
-import createNextIntlPlugin from "next-intl/plugin";
-import path from "path";
+/** @type {import('next').NextConfig} */
+const createNextIntlPlugin = require("next-intl/plugin");
 
-const nextConfig: NextConfig = {
-  experimental: {
-    optimizePackageImports: ["next-intl"],
-  },
+const withNextIntl = createNextIntlPlugin("./src/i18n/request.ts");
 
-  assetPrefix: process.env.NODE_ENV === "production" ? "" : "",
+const nextConfig = {};
 
-  webpack(config, { isServer }) {
-    config.resolve.alias = {
-      ...(config.resolve.alias || {}),
-      "@": path.resolve(__dirname, "src"),
-      "@messages": path.resolve(__dirname, "src/messages"),
-    };
-
-    if (!isServer) {
-      config.resolve.fallback = {
-        ...config.resolve.fallback,
-        fs: false,
-      };
-    }
-
-    return config;
-  },
-};
-
-const withNextIntl = createNextIntlPlugin();
-
-export default withNextIntl(nextConfig);
+module.exports = withNextIntl(nextConfig);

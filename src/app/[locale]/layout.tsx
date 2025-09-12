@@ -4,7 +4,10 @@ import "./globals.css";
 import Providers from "./providers";
 import Header from "@/components/header/Header";
 import Footer from "@/components/footer/Footer";
-import { NextIntlClientProvider } from "next-intl";
+import { NextIntlClientProvider, hasLocale } from "next-intl";
+import { getMessages } from "next-intl/server";
+import { notFound } from "next/navigation";
+import { routing } from "@/i18n/routing";
 
 const cairo = Cairo({
   variable: "--font-cairo",
@@ -23,9 +26,19 @@ type Props = {
   params: Promise<{ locale: string }>;
 };
 
+export function generateStaticParams() {
+  return routing.locales.map((locale) => ({ locale }));
+}
+
 export default async function RootLayout({ children, params }: Props) {
   const { locale } = await params;
-  const messages = (await import(`@messages/${locale}.json`)).default;
+
+  // التحقق من صحة locale
+  if (!hasLocale(routing.locales, locale)) {
+    notFound();
+  }
+
+  const messages = await getMessages();
   const direction = locale === "ar" ? "rtl" : "ltr";
 
   return (
