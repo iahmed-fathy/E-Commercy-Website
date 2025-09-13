@@ -2,13 +2,14 @@
 import Link from "next/link";
 import { useRef } from "react";
 import categories from "@/features/categories/categories";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { scrollLeft, scrollRight } from "../../../utils/scroll/scroll";
 
 export default function BrowseByCategory() {
   const isRtl = typeof document !== "undefined" && document.dir === "rtl";
   const scrollRef = useRef<HTMLDivElement>(null);
   const t = useTranslations("headers");
+  const locale = useLocale();
 
   return (
     <section className="flex flex-col gap-6">
@@ -75,7 +76,7 @@ export default function BrowseByCategory() {
         {categories.map((category) => (
           <Link
             key={category.id}
-            href={`/category/${category.id}`}
+            href={`/${locale}/category/${category.id}`}
             className="flex flex-col flex-shrink-0 group gap-2 border border-black/40 rounded-[4px] w-[170px] h-[145px] items-center justify-center hover:bg-[#DB4444] hover:text-white hover:border-[#DB4444]"
           >
             {category.svg}

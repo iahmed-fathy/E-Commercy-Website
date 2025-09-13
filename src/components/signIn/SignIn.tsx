@@ -11,13 +11,14 @@ import {
 import { auth } from "@/lib/firebase";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 
 export default function SignIn() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const t = useTranslations("SignIn");
+  const locale = useLocale();
 
   const router = useRouter();
 
@@ -42,7 +43,7 @@ export default function SignIn() {
       if (auth.currentUser) {
         await updateProfile(auth.currentUser, { displayName: userName });
       }
-      router.push("/");
+      router.push(`/${locale}`);
     } catch {
       setError(t("Please enter a valid email"));
     }
@@ -57,7 +58,7 @@ export default function SignIn() {
       if (auth.currentUser) {
         await updateProfile(auth.currentUser, { displayName: userName });
       }
-      router.push("/");
+      router.push(`/${locale}`);
     } catch (err: unknown) {
       console.error(err);
     }

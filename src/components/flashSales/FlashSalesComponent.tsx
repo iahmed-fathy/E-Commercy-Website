@@ -7,12 +7,15 @@ import { useSelector } from "react-redux";
 import { selectAllProducts } from "@/features/products/productsSlice";
 import { useTranslations } from "next-intl";
 import { scrollLeft, scrollRight } from "../../../utils/scroll/scroll";
+import { useLocale } from "next-intl";
 
 const FlashSalesTimer = dynamic(() => import("./FlashSalesTimer"), {
   ssr: false,
 });
 
 export default function FlashSalesComponent() {
+  const locale = useLocale();
+
   const t = useTranslations("headers");
   const products = useSelector(selectAllProducts);
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -106,7 +109,7 @@ export default function FlashSalesComponent() {
         })}
       </div>
       <Link
-        href={"/flash-sale"}
+        href={`/${locale}/flash-sale`}
         className="bg-[#DB4444] text-white text-[16px] font-semibold flex justify-center items-center h-[56px] w-[234px] rounded-[4px] cursor-pointer hover:animate-pulse animate-infinite animate-delay-500 animate-ease-in-out self-center mt-10"
       >
         {t("View All Products")}

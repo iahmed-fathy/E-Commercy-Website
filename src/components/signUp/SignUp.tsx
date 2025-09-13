@@ -11,9 +11,11 @@ import { auth } from "@/lib/firebase";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 
 export default function SignUp() {
+  const locale = useLocale();
+
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -26,7 +28,7 @@ export default function SignUp() {
       if (auth.currentUser) {
         await updateProfile(auth.currentUser, { displayName: name });
       }
-      router.push("/");
+      router.push(`/${locale}`);
     } catch (err: unknown) {
       console.log(err);
     }
@@ -41,7 +43,7 @@ export default function SignUp() {
       if (auth.currentUser) {
         await updateProfile(auth.currentUser, { displayName: userName });
       }
-      router.push("/");
+      router.push(`/${locale}`);
     } catch (err: unknown) {
       console.log(err);
     }

@@ -15,12 +15,13 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 
 export default function Cart() {
   const dispatch = useDispatch();
   const t = useTranslations("Cart");
   const p = useTranslations("products");
+  const locale = useLocale();
   const products = useSelector(selectAllProducts);
   const cartProductsIds = useSelector(selectCartIds);
   const quantities = useSelector(selectQuantities);
@@ -107,13 +108,13 @@ export default function Cart() {
 
           <div className="flex max-sm:flex-col max-sm:gap-5 justify-between max-sm:items-center">
             <Link
-              href={"/"}
+              href={`/${locale}`}
               className="border border-black/40 w-[218px] h-[56px] rounded-[4px] flex items-center justify-center"
             >
               {t("Return To Shop")}
             </Link>
             <Link
-              href={"/"}
+              href={`/${locale}`}
               className="border border-black/40 w-[218px] h-[56px] rounded-[4px] flex items-center justify-center"
             >
               {t("Update Cart")}
@@ -129,7 +130,7 @@ export default function Cart() {
                 className="w-[300px] max-sm:w-[200px] h-[56px] focus:outline-0 border border-black rounded-[4px] px-4"
                 placeholder={t("Coupon Code")}
               />
-              <button className="font-medium text-[16px] text-white bg-[#DB4444] w-[211px] h-[56px] rounded-[4px]">
+              <button className="font-medium text-[16px] cursor-pointer text-white bg-[#DB4444] w-[211px] h-[56px] rounded-[4px]">
                 {t("Apply Coupon")}
               </button>
             </div>
@@ -154,7 +155,7 @@ export default function Cart() {
                 </div>
               </div>
               <Link
-                href={"/check-out"}
+                href={`/${locale}/check-out`}
                 className="font-medium text-[16px] text-white bg-[#DB4444] w-[260px] h-[56px] rounded-[4px] self-center flex items-center justify-center"
               >
                 {t("Proceed to checkout")}

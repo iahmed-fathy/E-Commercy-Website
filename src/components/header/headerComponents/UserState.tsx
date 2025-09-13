@@ -1,4 +1,4 @@
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { auth } from "@/lib/firebase";
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 import Image from "next/image";
@@ -10,6 +10,7 @@ export default function UserState() {
   const router = useRouter();
   const [user, setUser] = useState<User | null>(null);
   const t = useTranslations("UserState");
+  const locale = useLocale();
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
@@ -22,7 +23,7 @@ export default function UserState() {
   const logoutHandler = async () => {
     try {
       await signOut(auth);
-      router.push("/");
+      router.push(`/${locale}`);
     } catch (err) {
       console.error(t("logoutError"), err);
     }
@@ -67,7 +68,7 @@ export default function UserState() {
           <>
             <DropdownMenu.Item
               className="flex gap-2 cursor-pointer hover:outline-0 items-center"
-              onClick={() => router.push("/my-account")}
+              onClick={() => router.push(`/${locale}/my-account`)}
             >
               <Image
                 src={"/icons/manageMyAccount.png"}
@@ -79,7 +80,7 @@ export default function UserState() {
             </DropdownMenu.Item>
             <DropdownMenu.Item
               className="flex gap-2 cursor-pointer hover:outline-0 items-center"
-              onClick={() => router.push("/")}
+              onClick={() => router.push(`/${locale}/`)}
             >
               <Image
                 src={"/icons/myOrder.png"}
@@ -91,7 +92,7 @@ export default function UserState() {
             </DropdownMenu.Item>
             <DropdownMenu.Item
               className="flex gap-2 cursor-pointer hover:outline-0 items-center"
-              onClick={() => router.push("/")}
+              onClick={() => router.push(`/${locale}/`)}
             >
               <Image
                 src={"/icons/myCancellations.png"}
@@ -103,7 +104,7 @@ export default function UserState() {
             </DropdownMenu.Item>
             <DropdownMenu.Item
               className="flex gap-2 cursor-pointer hover:outline-0 items-center"
-              onClick={() => router.push("/")}
+              onClick={() => router.push(`/${locale}/`)}
             >
               <Image
                 src={"/icons/myReviews.png"}
@@ -130,9 +131,7 @@ export default function UserState() {
           <>
             <DropdownMenu.Item
               className="flex gap-2 cursor-pointer hover:outline-0 items-center"
-              onClick={() => {
-                router.push("/sign-in");
-              }}
+              onClick={() => router.push(`/${locale}/sign-in`)}
             >
               <Image
                 src={"/icons/signInIcon.png"}
@@ -145,9 +144,7 @@ export default function UserState() {
 
             <DropdownMenu.Item
               className="flex gap-2 cursor-pointer hover:outline-0 items-center"
-              onClick={() => {
-                router.push("/sign-up");
-              }}
+              onClick={() => router.push(`/${locale}/sign-up`)}
             >
               <Image
                 src={"/icons/signUpIcon.png"}

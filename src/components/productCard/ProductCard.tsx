@@ -9,8 +9,9 @@ import type { Product } from "@/features/products/ProductsData";
 import Image from "next/image";
 import Link from "next/link";
 import Stars from "../reactStarts/ReactStars";
-import useProductActions from "../../../hooks/useProductActions";
 import { useTranslations } from "next-intl";
+import useProductActions from "../../../hooks/useProductActions";
+import { useLocale } from "next-intl";
 
 type ProductCardProps = {
   product: Product;
@@ -28,6 +29,8 @@ export default function ProductCard({
   source,
   inWishlistPage,
 }: ProductCardProps) {
+  const locale = useLocale();
+
   const t = useTranslations("tags");
   const p = useTranslations("products");
   const favoriteProducts = useSelector(selectFavoriteIds);
@@ -42,7 +45,7 @@ export default function ProductCard({
 
   return (
     <Link
-      href={`/${source}/product/${product.id}`}
+      href={`/${locale}/${source}/product/${product.id}`}
       className="items-center justify-center w-[270px]"
     >
       <div className="flex flex-col gap-1 w-full group">

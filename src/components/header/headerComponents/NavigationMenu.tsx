@@ -3,6 +3,7 @@
 import Link from "next/link";
 import type { Dispatch, SetStateAction } from "react";
 import { useTranslations } from "next-intl";
+import { useLocale } from "next-intl";
 
 type NavigationMenuType = {
   isDialogOpen?: boolean;
@@ -16,6 +17,7 @@ export default function NavigationMenu({
   setDialogOpen,
 }: NavigationMenuType) {
   const t = useTranslations("nav");
+  const locale = useLocale();
 
   const closeDialog = () => {
     if (isDialogOpen && setDialogOpen && isDialogOpen === true) {
@@ -25,23 +27,22 @@ export default function NavigationMenu({
 
   const navData = [
     {
-      href: "/",
+      href: `/${locale}/`,
       label: t("Home"),
     },
     {
-      href: "/contact",
+      href: `/${locale}/contact`,
       label: t("Contact"),
     },
     {
-      href: "/about",
+      href: `/${locale}/about`,
       label: t("About"),
     },
     {
-      href: "/sign-up",
+      href: `/${locale}/sign-up`,
       label: t("Sign Up"),
     },
   ];
-
   return (
     <nav>
       <ul className={className}>

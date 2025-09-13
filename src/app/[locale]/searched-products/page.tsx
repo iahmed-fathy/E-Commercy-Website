@@ -20,10 +20,22 @@ export default function SearchPage() {
       <div className="self-start">
         <Breadcrumb />
       </div>
-      <h2 className="text-[40px] font-medium text-center">
-        {t("Explore Searched Products")}
-      </h2>
-      <ProductsList products={searchedProducts} source="searched-products" />
+      {searchedProducts.length > 0 ? (
+        <>
+          <h2 className="text-[40px] font-medium text-center">
+            {t("Explore Searched Products")}
+          </h2>
+
+          <ProductsList
+            products={searchedProducts}
+            source="searched-products"
+          />
+        </>
+      ) : (
+        <p className="text-[40px] font-medium text-center">
+          {t("productNotFound")}
+        </p>
+      )}
     </div>
   );
 }

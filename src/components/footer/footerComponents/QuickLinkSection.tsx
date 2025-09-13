@@ -1,31 +1,33 @@
-import { getTranslations } from "next-intl/server";
+import { getLocale, getTranslations } from "next-intl/server";
+import Link from "next/link";
 
 export default async function QuickLinkSection() {
   const t = await getTranslations("headers");
+  const local = await getLocale();
 
   return (
     <section>
       <h6 className="font-Medium text-[24px] mb-4">{t("quickLink")}</h6>
       <ul className="flex flex-col gap-4">
         <li>
-          <a href="#" className="font-normal text-[16px]">
+          <Link href="#" className="font-normal text-[16px]">
             {t("privacyPolicy")}
-          </a>
+          </Link>
         </li>
         <li>
-          <a href="#" className="font-normal text-[16px]">
+          <Link href="#" className="font-normal text-[16px]">
             {t("termsOfUse")}
-          </a>
+          </Link>
         </li>
         <li>
-          <a href="#" className="font-normal text-[16px]">
+          <Link href="#" className="font-normal text-[16px]">
             {t("faq")}
-          </a>
+          </Link>
         </li>
         <li>
-          <a href="#" className="font-normal text-[16px]">
+          <Link href={`/${local}/contact`} className="font-normal text-[16px]">
             {t("contact")}
-          </a>
+          </Link>
         </li>
       </ul>
     </section>

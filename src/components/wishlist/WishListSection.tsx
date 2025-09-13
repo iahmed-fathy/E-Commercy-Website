@@ -9,7 +9,7 @@ import {
 } from "@/features/products/productsSlice";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
 
 export default function WishListSection() {
@@ -18,12 +18,13 @@ export default function WishListSection() {
   const dispatch = useDispatch();
   const t = useTranslations("headers");
   const router = useRouter();
+  const locale = useLocale();
 
   const MoveToCart = () => {
     favoriteProductsIds.forEach((productId) => {
       dispatch(removeFromFavorites(productId));
       dispatch(addToCart(productId));
-      router.push("/cart");
+      router.push(`/${locale}/cart`);
     });
   };
 

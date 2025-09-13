@@ -1,10 +1,11 @@
 import ProductCard from "../productCard/ProductCard";
 import Link from "next/link";
 import { products } from "@/features/products/ProductsData";
-import { getTranslations } from "next-intl/server";
+import { getTranslations, getLocale } from "next-intl/server";
 
 export default async function BestSelling() {
   const t = await getTranslations("headers");
+  const locale = await getLocale();
 
   const bestSellingProducts = products
     .filter((product) => product.soldCount > 10000)
@@ -23,7 +24,7 @@ export default async function BestSelling() {
           {t("Best Selling Products")}
         </h2>
         <Link
-          href={"/best-selling"}
+          href={`/${locale}/best-selling`}
           className="bg-[#DB4444] text-white text-[16px] font-semibold flex justify-center items-center h-[56px] w-[159px] rounded-[4px] cursor-pointer hover:animate-pulse animate-infinite animate-delay-500 animate-ease-in-out"
         >
           {t("View All")}

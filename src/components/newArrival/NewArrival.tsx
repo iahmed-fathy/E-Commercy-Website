@@ -1,9 +1,11 @@
 import Image from "next/image";
 import Link from "next/link";
-import { getTranslations } from "next-intl/server";
+import { getLocale, getTranslations } from "next-intl/server";
 
 export default async function NewArrival() {
   const t = await getTranslations("headers");
+  const locale = await getLocale();
+
   return (
     <section className="flex flex-col gap-6 ">
       <div className="flex gap-4 items-center">
@@ -30,7 +32,7 @@ export default async function NewArrival() {
                 {t("Black and White version of the PS5 coming out on sale")}.
               </p>
               <Link
-                href={"/our-products"}
+                href={`/${locale}/flash-sale/product/4`}
                 className="text-[16px] font-medium border-b  w-fit"
               >
                 {t("Shop Now")}
@@ -48,7 +50,7 @@ export default async function NewArrival() {
                 {t("Featured women collections that give you another vibe")}.
               </p>
               <Link
-                href={"/our-products"}
+                href={`/${locale}/our-products`}
                 className="text-[16px] font-medium border-b  w-fit"
               >
                 {t("Shop Now")}
@@ -70,7 +72,7 @@ export default async function NewArrival() {
                 </h6>
                 <p className="text-[14px]">{t("Amazon wireless speakers")}</p>
                 <Link
-                  href={"/our-products"}
+                  href={`/${locale}/our-products`}
                   className="text-[16px] font-medium border-b  w-fit"
                 >
                   {t("Shop Now")}
@@ -91,7 +93,7 @@ export default async function NewArrival() {
                 </h6>
                 <p className="text-[14px]">{t("GUCCI INTENSE OUD EDP")}</p>
                 <Link
-                  href={"/our-products"}
+                  href={`/${locale}/our-products`}
                   className="text-[16px] font-medium border-b  w-fit"
                 >
                   {t("Shop Now")}

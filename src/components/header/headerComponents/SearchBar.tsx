@@ -8,10 +8,13 @@ import { useRouter } from "next/navigation";
 import React from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
+import { usePathname } from "next/navigation";
 
 export default function SearchBar() {
   const t = useTranslations("headers");
+  const locale = useLocale();
+  const pathName = usePathname();
 
   const dispatch = useDispatch();
   const route = useRouter();
@@ -21,7 +24,10 @@ export default function SearchBar() {
   };
 
   const onSearchSubmit = () => {
-    route.push("/searched-products");
+    console.log(pathName);
+    if (pathName !== `/${locale}/searched-products`) {
+      route.push(`/${locale}/searched-products`);
+    }
   };
 
   const searchValue = useSelector(selectSearchValue);

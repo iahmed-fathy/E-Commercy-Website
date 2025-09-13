@@ -248,8 +248,12 @@
 
   "headers": {
     "HOME": "الرئيسية",
+    "productNotFound": "المنتج الذي تبحث عنة غير متاح",
+    "Explore Related Products": "استكشف المنتجات ذات الصلة",
+    "There are no related products": "لا توجد منتجات ذات صلة",
     "Flash Sales": "تخفيضات",
     "FLASH SALE": "تخفيضات",
+    "RELATED PRODUCTS": "المنتجات ذات صلة",
     "OUR PRODUCTS": "متجاتنا",
     "Today’s": "اليوم",
     "Categories": "الفئات",

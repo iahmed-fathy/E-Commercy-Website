@@ -1,10 +1,11 @@
 import Image from "next/image";
 import PromotionalTimer from "./PromotionalTimer";
 import Link from "next/link";
-import { getTranslations } from "next-intl/server";
+import { getLocale, getTranslations } from "next-intl/server";
 
 export default async function Promotional() {
   const t = await getTranslations("headers");
+  const locale = await getLocale();
 
   const now = new Date();
   const endOfDayLocal = new Date(
@@ -28,7 +29,7 @@ export default async function Promotional() {
         </h4>
         <PromotionalTimer targetDate={targetDateUTC} />
         <Link
-          href={"/flash-sale/product/23"}
+          href={`/${locale}/flash-sale/product/23`}
           className="bg-[#00FF66] text-white text-[16px] font-semibold flex justify-center items-center h-[56px] w-[234px] rounded-[4px] cursor-pointer hover:animate-pulse animate-infinite animate-delay-500 animate-ease-in-out max-sm:self-center mt-10 self-start"
         >
           {t("Buy Now")}!

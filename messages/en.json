@@ -246,6 +246,10 @@
   "headers": {
     "HOME": "HOME",
     "Flash Sales": "Flash Sales",
+    "productNotFound": "The product you are looking for is not available",
+    "Explore Related Products": "Explore Related Products",
+    "There are no related products": "There are no related products.",
+    "RELATED PRODUCTS": "Related Products",
     "FLASH SALE": "FLASH SALE",
     "OUR PRODUCTS": "OUR PRODUCTS",
     "Today’s": "Today’s",

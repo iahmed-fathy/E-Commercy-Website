@@ -3,6 +3,7 @@
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
+import { useLocale } from "next-intl";
 
 type category = {
   categoryName: string;
@@ -23,10 +24,11 @@ export default function Dropdown({
   triggerLink,
 }: DropdownType) {
   const t = useTranslations("headers");
+  const locale = useLocale();
 
   return triggerLink ? (
     <Link
-      href={triggerLink}
+      href={`/${locale}${triggerLink}`}
       className="w-[300px] max-sm:justify-center max-sm:w-[170px] text-center hover:scale-105 px-4 py-2 text-black rounded cursor-pointer focus:outline-0 flex justify-between items-center gap-6"
     >
       {t(Trigger)}
@@ -69,7 +71,7 @@ export default function Dropdown({
               key={category.categoryPageUrl}
             >
               <Link
-                href={category.categoryPageUrl}
+                href={`/${locale}${category.categoryPageUrl}`}
                 className="flex items-center"
               >
                 {t(category.categoryName)}

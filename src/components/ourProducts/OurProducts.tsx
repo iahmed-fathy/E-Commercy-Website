@@ -5,11 +5,13 @@ import { useRef } from "react";
 import { useSelector } from "react-redux";
 import ProductCard from "../productCard/ProductCard";
 import Link from "next/link";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { scrollLeft, scrollRight } from "../../../utils/scroll/scroll";
 
 export default function OurProducts() {
   const t = useTranslations("headers");
+  const locale = useLocale();
+
   const isRtl = typeof document !== "undefined" && document.dir === "rtl";
   const products = useSelector(selectAllProducts);
 
@@ -95,7 +97,7 @@ export default function OurProducts() {
         })}
       </div>
       <Link
-        href={"/our-products"}
+        href={`/${locale}/our-products`}
         className="bg-[#DB4444] text-white text-[16px] font-semibold flex justify-center items-center h-[56px] w-[234px] rounded-[4px] cursor-pointer hover:animate-pulse animate-infinite animate-delay-500 animate-ease-in-out self-center mt-10"
       >
         {t("View All Products")}

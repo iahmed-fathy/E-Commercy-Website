@@ -2,28 +2,35 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
+import { routing } from "@/i18n/routing";
 
 type BreadcrumbType = { productName?: string };
+type Locale = (typeof routing.locales)[number];
+
 export default function Breadcrumb({ productName }: BreadcrumbType) {
   const t = useTranslations("headers");
-
+  const locale = useLocale();
   const pathname = usePathname();
 
   const generateBreadcrumbs = () => {
-    const paths = pathname.split("/").filter(Boolean);
+    let paths = pathname.split("/").filter(Boolean);
+    if (paths.length > 0 && routing.locales.includes(paths[0] as Locale)) {
+      paths = paths.slice(1);
+    }
+
     const items: { label: string; href?: string }[] = [
-      { label: t("HOME"), href: "/" },
+      { label: t("HOME"), href: `/${locale}/` },
     ];
 
     for (let i = 0; i < paths.length; i++) {
       const current = paths[i];
 
       if (current === "product" && paths[i + 1]) {
-        const href = "/" + paths.slice(0, i + 2).join("/");
+        const href = `/${locale}/` + paths.slice(0, i + 2).join("/");
         if (productName) {
           items.push({
-            label: `${productName?.toUpperCase()}`,
+            label: productName.toUpperCase(),
             href,
           });
         } else {
@@ -31,10 +38,10 @@ export default function Breadcrumb({ productName }: BreadcrumbType) {
         }
         i++;
       } else if (current === "category" && paths[i + 1]) {
-        const href = "/" + paths.slice(0, i + 2).join("/");
+        const href = `/${locale}/` + paths.slice(0, i + 2).join("/");
         if (productName) {
           items.push({
-            label: `${productName?.toUpperCase()}`,
+            label: productName.toUpperCase(),
             href,
           });
         } else {
@@ -42,22 +49,22 @@ export default function Breadcrumb({ productName }: BreadcrumbType) {
         }
         i++;
       } else if (current === "sub-category" && paths[i + 1]) {
-        const href = "/";
+        const href = `/${locale}/`;
         if (productName) {
           items.push({
-            label: t(`${productName?.toUpperCase()}`),
+            label: t(productName.toUpperCase()),
             href,
           });
         } else {
           items.push({ label: "404 ERROR" });
         }
         i++;
-      } else if (current === "en" || current === "es" || current === "ar") {
-        continue;
       } else {
-        const href = "/" + paths.slice(0, i + 1).join("/");
+        const key = current.replace(/-/g, " ").toUpperCase();
+        const label = t.has(key) ? t(key) : current;
+        const href = `/${locale}/` + paths.slice(0, i + 1).join("/");
         items.push({
-          label: t(current.replace(/-/g, " ").toUpperCase()),
+          label,
           href,
         });
       }

@@ -27,12 +27,13 @@ export default function WishList() {
       <Breadcrumb />
       <WishListSection />
       <RelatedItem
+        href="related-products"
         seeAll
         lable="Just For You"
         categories={favoriteCategories}
         id={favoriteProductIds}
         source="wishlist"
-      />{" "}
+      />
     </div>
   ) : (
     <div className="text-center text-[32px] pt-10">
