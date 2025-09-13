@@ -51,14 +51,16 @@ export default function Breadcrumb({ productName }: BreadcrumbType) {
       } else if (current === "sub-category" && paths[i + 1]) {
         const href = `/${locale}/`;
         if (productName) {
+          const key = productName.toUpperCase();
+          const label = t.has(key) ? t(key) : productName;
           items.push({
-            label: t(productName.toUpperCase()),
+            label: label,
             href,
           });
         } else {
           items.push({ label: "404 ERROR" });
         }
-        i++;
+        i += 2;
       } else {
         const key = current.replace(/-/g, " ").toUpperCase();
         const label = t.has(key) ? t(key) : current;

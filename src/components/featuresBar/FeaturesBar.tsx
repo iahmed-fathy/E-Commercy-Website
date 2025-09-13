@@ -5,7 +5,7 @@ export default async function FeaturesBar() {
   const t = await getTranslations("headers");
 
   return (
-    <div className="flex max-w-[1000px] max-sm:flex-col gap-20 self-center">
+    <div className="flex max-w-[750px] max-sm:flex-col gap-20 self-center">
       <div className="flex flex-col w-[300] items-center justify-center text-center">
         <Image
           src="/icons/delivery.png"

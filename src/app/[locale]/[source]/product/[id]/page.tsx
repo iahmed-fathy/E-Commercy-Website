@@ -25,7 +25,7 @@ export default function DetailsPage() {
   return (
     <div className="flex flex-col gap-15 px-30 max-lg:px-5 pt-10">
       <Breadcrumb productName={translatedTitle} />
-      <div className="flex gap-10 max-lg:flex-col max-sm:gap-5">
+      <div className="flex gap-10 max-xl:flex-col max-sm:gap-5">
         <ProductImgsPreview gallery={product?.gallery} />
         <ProductInf product={{ ...product, title: translatedTitle }} />
       </div>

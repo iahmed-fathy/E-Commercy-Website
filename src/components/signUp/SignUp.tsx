@@ -30,7 +30,7 @@ export default function SignUp() {
       }
       router.push(`/${locale}`);
     } catch (err: unknown) {
-      console.log(err);
+      console.error(err);
     }
   };
 
@@ -45,7 +45,7 @@ export default function SignUp() {
       }
       router.push(`/${locale}`);
     } catch (err: unknown) {
-      console.log(err);
+      console.error(err);
     }
   };
 

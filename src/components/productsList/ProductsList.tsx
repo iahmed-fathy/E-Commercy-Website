@@ -13,7 +13,7 @@ export default function ProductsList({ products, source }: ProductsListProps) {
   const [productsDisplayedNum, setProductsDisplayedNum] = useState(12);
   return (
     <>
-      <div className="grid grid-cols-4 max-sm:grid-cols-1 max-lg:grid-cols-2 gap-15 max-sm:place-items-center">
+      <div className="grid grid-cols-4 max-sm:grid-cols-1 max-lg:grid-cols-2 max-xl:grid-cols-3 gap-15 max-sm:place-items-center ">
         {products.slice(0, productsDisplayedNum).map((product) => (
           <ProductCard product={product} key={product.id} source={source} />
         ))}

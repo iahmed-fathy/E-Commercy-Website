@@ -11,11 +11,19 @@ import SearchBar from "./SearchBar";
 import SideNavDialog from "./SideNavDialog";
 import Image from "next/image";
 import UserState from "./UserState";
+import { useEffect, useState } from "react";
 
 export default function UserActions() {
+  const [isClient, setIsClient] = useState(false);
   const favoriteProducts = useSelector(selectFavoriteIds);
   const cartProducts = useSelector(selectCartIds);
   const locale = useLocale();
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  if (!isClient) return null;
 
   return (
     <div className="flex gap-4 w-full justify-end max-lg:justify-between">

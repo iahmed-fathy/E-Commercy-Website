@@ -30,7 +30,7 @@ export default async function BestSelling() {
           {t("View All")}
         </Link>
       </div>
-      <div className="flex gap-4 items-center sm:justify-center max-lg:overflow-x-scroll hide-scrollbar">
+      <div className="flex gap-4 items-center overflow-x-scroll hide-scrollbar sm:justify-center max-lg:overflow-x-scroll hide-scrollbar">
         {bestSellingProducts.map((product) => {
           return (
             <ProductCard

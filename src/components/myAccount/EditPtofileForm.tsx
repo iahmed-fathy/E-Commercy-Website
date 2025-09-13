@@ -101,7 +101,7 @@ export default function EditPtofileForm() {
         setEmail(user.email || "");
         getAddress(user.uid).then(setAddress);
       } else {
-        console.log("No user is signed in.");
+        console.error("No user is signed in.");
       }
     });
 

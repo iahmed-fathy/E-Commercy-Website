@@ -9,10 +9,27 @@ type ProductsState = {
   cart: string[];
   searchValue: string;
 };
+
+const loadFavorites = (): string[] => {
+  if (typeof window !== "undefined") {
+    const stored = localStorage.getItem("favorites");
+    return stored ? JSON.parse(stored) : [];
+  }
+  return [];
+};
+
+const loadCart = (): string[] => {
+  if (typeof window !== "undefined") {
+    const stored = localStorage.getItem("cart");
+    return stored ? JSON.parse(stored) : [];
+  }
+  return [];
+};
+
 const initialState: ProductsState = {
   items: seedProducts,
-  favorites: [],
-  cart: [],
+  favorites: loadFavorites(),
+  cart: loadCart(),
   searchValue: "",
 };
 
@@ -22,15 +39,19 @@ const productsSlice = createSlice({
   reducers: {
     addToCart: (state, action: PayloadAction<string>) => {
       state.cart.push(action.payload);
+      localStorage.setItem("cart", JSON.stringify(state.cart));
     },
     removeFromCart: (state, action: PayloadAction<string>) => {
       state.cart = state.cart.filter((id) => id !== action.payload);
+      localStorage.setItem("cart", JSON.stringify(state.cart));
     },
     addToFavorites: (state, action: PayloadAction<string>) => {
       state.favorites.push(action.payload);
+      localStorage.setItem("favorites", JSON.stringify(state.favorites));
     },
     removeFromFavorites: (state, action: PayloadAction<string>) => {
       state.favorites = state.favorites.filter((id) => id !== action.payload);
+      localStorage.setItem("favorites", JSON.stringify(state.favorites));
     },
     setSearchValue: (state, action: PayloadAction<string>) => {
       state.searchValue = action.payload.toLocaleLowerCase();

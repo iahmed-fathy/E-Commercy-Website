@@ -24,7 +24,6 @@ export default function SearchBar() {
   };
 
   const onSearchSubmit = () => {
-    console.log(pathName);
     if (pathName !== `/${locale}/searched-products`) {
       route.push(`/${locale}/searched-products`);
     }

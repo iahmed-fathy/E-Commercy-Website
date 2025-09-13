@@ -61,7 +61,7 @@ export default function CategoriesSideNav() {
   ];
 
   return (
-    <ul className="flex sm:flex-col pt-4 gap-1 sm:ltr:border-r-1 sm:rtl:sm:border-l-1 sm:border-black/40 w-[300px] h-full max-sm:items-center max-sm:h-[100px] max-sm:overflow-x-scroll hide-scrollbar max-sm:w-full max-sm:gap-[1px]">
+    <ul className="flex sm:flex-col pt-4 gap-1 sm:ltr:border-r-1 sm:rtl:sm:border-l-1 sm:border-black/40 w-[300px] h-full max-sm:items-center max-sm:h-[100px] max-sm:overflow-x-scroll hide-scrollbar max-sm:w-full max-sm:gap-4">
       {subCategories.map((subCat, index) => (
         <li key={index}>
           <Dropdown

@@ -43,7 +43,9 @@ export default async function RootLayout({ children, params }: Props) {
 
   return (
     <html lang={locale} dir={direction}>
-      <body className={`${cairo.variable} antialiased w-screen`}>
+      <body
+        className={`${cairo.variable} antialiased w-full overflow-x:hidden`}
+      >
         <NextIntlClientProvider locale={locale} messages={messages}>
           <Providers>
             <Header />

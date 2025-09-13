@@ -12,7 +12,6 @@ const DropdownMenuItem = DropdownMenuPrimitive.Item;
 export default function LanguageSelector() {
   const pathName = usePathname();
   const language = pathName.split("/")[1];
-  console.log(language);
   const [currentLanguage, setCurrentLanguage] = useState(
     (language === "ar" && "العربية") ||
       (language === "en" && "English") ||

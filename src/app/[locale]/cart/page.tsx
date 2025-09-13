@@ -7,17 +7,21 @@ import {
   setQuantities,
   updateQuantity,
 } from "@/features/checkout/checkoutSlice";
+
 import {
+  removeFromCart,
   selectAllProducts,
   selectCartIds,
 } from "@/features/products/productsSlice";
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useLocale, useTranslations } from "next-intl";
 
 export default function Cart() {
+  const [isClient, setIsClient] = useState(false);
+
   const dispatch = useDispatch();
   const t = useTranslations("Cart");
   const p = useTranslations("products");
@@ -45,11 +49,21 @@ export default function Cart() {
     dispatch(updateQuantity({ id, value }));
   };
 
+  const onRemoveFromCart = (id: string) => {
+    dispatch(removeFromCart(id));
+  };
+
   const cartRows = products.filter((p) => cartProductsIds.includes(p.id));
   const grandTotal = cartRows.reduce(
     (acc, p) => acc + p.finalPrice * (quantities[p.id] ?? 1),
     0
   );
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  if (!isClient) return null;
 
   return (
     <div className="w-full pt-10">
@@ -64,6 +78,7 @@ export default function Cart() {
                 </th>
                 <th className="w-1/6">{t("Price")}</th>
                 <th className="w-1/6">{t("Quantity")}</th>
+                <th></th>
                 <th className="w-1/6">{t("Subtotal")}</th>
               </tr>
             </thead>
@@ -74,7 +89,7 @@ export default function Cart() {
                 const subtotal = qty * product.finalPrice;
 
                 return (
-                  <tr key={product.id} className="shadow h-fit">
+                  <tr key={product.id} className="shadow h-fit relative">
                     <td className="py-3 px-8 max-sm:px-1 flex items-center gap-2 w-1/2 max-sm:w-1/4">
                       <Image
                         src={product.gallery[0]}
@@ -86,7 +101,7 @@ export default function Cart() {
                       <span>{p(`${product.id}.title`)}</span>
                     </td>
                     <td className="text-center w-1/6">${product.finalPrice}</td>
-                    <td className="text-center w-1/6">
+                    <td className="text-center w-1/6 relative">
                       <input
                         type="number"
                         min="1"
@@ -97,6 +112,28 @@ export default function Cart() {
                         }
                       />
                     </td>
+                    <td>
+                      <button onClick={() => onRemoveFromCart(product.id)}>
+                        <svg
+                          className="opacity-30 hover:fill-[#DB4444] cursor-pointer"
+                          width="34"
+                          height="34"
+                          viewBox="0 0 34 34"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <circle cx="17" cy="17" r="17" fill="white" />
+                          <path
+                            d="M25 10.5714H10.3333L11.6667 26H22.3333L23.6667 10.5714H9M17 14.4286V22.1429M20.3333 14.4286L19.6667 22.1429M13.6667 14.4286L14.3333 22.1429M14.3333 10.5714L15 8H19L19.6667 10.5714"
+                            stroke="black"
+                            strokeWidth="1.56"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          />
+                        </svg>
+                      </button>
+                    </td>
+
                     <td className="text-center w-1/6">
                       ${subtotal.toFixed(2)}
                     </td>
