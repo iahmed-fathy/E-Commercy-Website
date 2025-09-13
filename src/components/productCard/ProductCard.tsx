@@ -218,22 +218,24 @@ export default function ProductCard({
           )}
         </div>
       </Link>
-      <Dialog.Root open={isDialogOpen} onOpenChange={setDialogOpen}>
-        <Dialog.Trigger></Dialog.Trigger>
-        <Dialog.Portal>
-          <Dialog.Overlay className="fixed inset-0 bg-black/40" />
-          <Dialog.Content className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50 p-4 bg-white rounded-md shadow-lg max-w-[90vw] max-h-[90vh] w-full sm:w-3/4 md:w-1/2 lg:w-1/3 overflow-auto">
-            <Dialog.Title />
-            <Dialog.Description />
-            <Dialog.Close asChild>
-              <button aria-label="Close" className="cursor-pointer">
-                X
-              </button>
-            </Dialog.Close>
-            <ProductImgsPreview gallery={product?.gallery} />
-          </Dialog.Content>
-        </Dialog.Portal>
-      </Dialog.Root>
+      {isDialogOpen && (
+        <Dialog.Root open={isDialogOpen} onOpenChange={setDialogOpen}>
+          <Dialog.Trigger></Dialog.Trigger>
+          <Dialog.Portal>
+            <Dialog.Overlay className="fixed inset-0 bg-black/40" />
+            <Dialog.Content className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50 p-4 bg-white rounded-md shadow-lg max-w-[90vw] max-h-[90vh] w-full sm:w-3/4 md:w-1/2 lg:w-1/3 overflow-auto">
+              <Dialog.Title />
+              <Dialog.Description />
+              <Dialog.Close asChild>
+                <button aria-label="Close" className="cursor-pointer">
+                  X
+                </button>
+              </Dialog.Close>
+              <ProductImgsPreview gallery={product?.gallery} />
+            </Dialog.Content>
+          </Dialog.Portal>
+        </Dialog.Root>
+      )}
     </>
   );
 }
