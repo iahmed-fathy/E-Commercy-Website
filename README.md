@@ -18,7 +18,7 @@
 
 ## التقنيات المستخدمة
 
-- **Frontend**: Next.js 14, React 19, TypeScript
+- **Frontend**: Next.js 15.5, TypeScript
 - **Styling**: Tailwind CSS, Radix UI
 - **Internationalization**: next-intl
 - **State Management**: Redux Toolkit
