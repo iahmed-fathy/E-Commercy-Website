@@ -27,7 +27,7 @@ export default function WishList() {
       <Breadcrumb />
       <WishListSection />
       <RelatedItem
-        href="related-products"
+        href="/wishlist/related-products"
         seeAll
         lable="Just For You"
         categories={favoriteCategories}

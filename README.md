@@ -1,36 +1,124 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+<div dir="rtl">
 
-## Getting Started
+# متجر إلكتروني — E-Commerce
 
-First, run the development server:
+![Next.js](https://img.shields.io/badge/Next.js-15.5-black) ![TypeScript](https://img.shields.io/badge/TypeScript-blue) ![Tailwind](https://img.shields.io/badge/TailwindCSS-38B2AC)
+
+## نبذة عن المشروع
+
+واجهة متجر إلكتروني أمامية متقدمة مبنية بـ **Next.js (App Router)** و **Tailwind CSS**، منظمة كمكونات قابلة لإعادة الاستخدام مع دعم تعدد اللغات عبر **next-intl**. المشروع مصمم لعرض المنتجات والعروض والفئات بطريقة احترافية وقابلة للتوسيع.
+
+## المزايا الرئيسية
+
+✨ **الأداء السريع** - استخدام Next.js مع تحسينات SSR و SSG  
+🌐 **تعدد اللغات** - دعم كامل للعربية والإنجليزية  
+📱 **التجاوب التام** - متوافق مع جميع الأجهزة  
+🛒 **تجربة تسوق متكاملة** - سلة تسوق، قائمة المفضلة، إدارة الحساب  
+🔒 **الأمان** - نظام مصادقة متقدم
+
+## التقنيات المستخدمة
+
+- **Frontend**: Next.js 14, React 19, TypeScript
+- **Styling**: Tailwind CSS, Radix UI
+- **Internationalization**: next-intl
+- **State Management**: Redux Toolkit
+- **UI Components**: Swiper, lucide-react, react-icons
+- **Backend (اختياري)**: Firebase
+
+## الميزات المتقدمة
+
+- 🔍 **البحث الذكي** - بحث متطور في المنتجات
+- 🏷️ **الفئات الديناميكية** - تصفح حسب الفئات
+- ⭐ **الأكثر مبيعاً** - عرض المنتجات الشائعة
+- 💰 **العروض الخاصة** - قسم Flash Sales
+- 📊 **إحصائيات** - تتبع المبيعات والزيارات
+
+## هيكل الملفات
+
+```
+src/
+├── app/
+│   └── [locale]/
+│       ├── page.tsx          # الصفحة الرئيسية
+│       └── layout.tsx        # تخطيط عام مع دعم الترجمة
+├── components/               # المكونات القابلة لإعادة الاستخدام
+├── i18n/                    # إعدادات الترجمة
+├── locales/
+│   ├── ar/                  # ملفات الترجمة العربية
+│   └── en/                  # ملفات الترجمة الإنجليزية
+└── screenshots/             # صور المشروع
+```
+
+## التشغيل المحلي
+
+1. **تثبيت التبعيات:**
+
+```bash
+npm install
+```
+
+2. **تشغيل بيئة التطوير:**
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+3. **الوصول للموقع:**
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```
+http://localhost:3000
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## البناء للإنتاج
 
-## Learn More
+```bash
+npm run build
+npm start
+```
 
-To learn more about Next.js, take a look at the following resources:
+## لقطات الشاشة
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### الصفحة الرئيسية
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+![الصفحة الرئيسية بالعربية](screenshots/Home-Page-ar.png)
+![الصفحة الرئيسية بالإنجليزية](screenshots/Home-Page-en.png)
 
-## Deploy on Vercel
+### صفحات المنتجات
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+![صفحة منتجاتنا](screenshots/Our-Products-Page.png)
+![صفحة الفئات](screenshots/Categories-Page.png)
+![تفاصيل المنتج](screenshots/Details-Page.png)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### إدارة التسوق
+
+![صفحة السلة](screenshots/Cart-Page.png)
+![صفحة الدفع](screenshots/Check-Out-Page.png)
+![قائمة المفضلة](screenshots/wishList-Page.png)
+
+### صفحات المستخدم
+
+![تسجيل الدخول](screenshots/Sign-In.png)
+![التسجيل](screenshots/Sign-Up.png)
+![إدارة الحساب](screenshots/Manage-My-Account.png)
+
+### واجهات أخرى
+
+![عن الموقع](screenshots/About.png)
+![اتصل بنا](screenshots/Conact-us.png)
+![صفحة البحث](screenshots/Search-Page.png)
+![القائمة الجانبية](screenshots/SideNav.png)
+
+### التجاوب
+
+![الهاتف المحمول](screenshots/Mobile.png)
+![الجهاز اللوحي](screenshots/Tablet.png)
+
+---
+
+<div dir="ltr">
+
+**Made with ❤️ by <a href="https://www.linkedin.com/in/iahmedfathy/">Ahmed Fathy</a>**
+
+</div>
+
+</div>

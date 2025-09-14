@@ -30,6 +30,7 @@ export default function DetailsPage() {
         <ProductInf product={{ ...product, title: translatedTitle }} />
       </div>
       <RelatedItem
+        href={`/${source}/product/${id}/related-products`}
         seeAll
         lable="Related Item"
         category={product.category}

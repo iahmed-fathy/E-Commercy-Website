@@ -31,7 +31,7 @@ export const products: Products = [
     id: "1",
     title: "iPhone 14 Series",
     brand: "Apple",
-    category: "Phones",
+    category: "phones",
     description:
       "Powerful and elegant, the iPhone 14 offers cutting-edge technology, stunning cameras, and an incredibly fast processor.",
     price: 1000,

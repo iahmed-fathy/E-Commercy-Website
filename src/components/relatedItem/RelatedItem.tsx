@@ -1,10 +1,10 @@
 "use client";
 
 import Link from "next/link";
-import ProductCard from "../productCard/ProductCard";
 import { useSelector } from "react-redux";
 import { selectAllProducts } from "@/features/products/productsSlice";
 import { useLocale, useTranslations } from "next-intl";
+import ProductCard from "../productCard/ProductCard";
 
 type RelatedItemType = {
   category?: string;
